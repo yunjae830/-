@@ -16,7 +16,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import com.tmail.board.Biz.AddressBizImpl;
+import com.tmail.board.Biz.impl.AddressBizImpl;
 import com.tmail.board.Dto.AddressDto;
 public class ExcelChk {
 		public void excelDataInsert(String fileFullPath, int members_seq){

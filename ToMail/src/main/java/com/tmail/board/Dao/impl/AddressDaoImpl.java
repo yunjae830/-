@@ -1,4 +1,4 @@
-package com.tmail.board.Dao;
+package com.tmail.board.Dao.impl;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.tmail.board.Dao.AddressDao;
 import com.tmail.board.Dto.AddressDto;
 @Repository
 public class AddressDaoImpl implements AddressDao {

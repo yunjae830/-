@@ -1,10 +1,11 @@
-package com.tmail.board.Biz;
+package com.tmail.board.Biz.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tmail.board.Biz.AddressBiz;
 import com.tmail.board.Dao.AddressDao;
 import com.tmail.board.Dto.AddressDto;
 @Service

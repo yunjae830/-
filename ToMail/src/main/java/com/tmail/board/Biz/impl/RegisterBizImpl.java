@@ -1,9 +1,10 @@
-package com.tmail.board.Biz;
+package com.tmail.board.Biz.impl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tmail.board.Biz.RegisterBiz;
 import com.tmail.board.Dao.RegisterDao;
 import com.tmail.board.Dto.RegisterDto;
 

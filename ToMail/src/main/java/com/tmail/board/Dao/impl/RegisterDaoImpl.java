@@ -1,9 +1,10 @@
-package com.tmail.board.Dao;
+package com.tmail.board.Dao.impl;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.tmail.board.Dao.RegisterDao;
 import com.tmail.board.Dto.RegisterDto;
 
 @Repository

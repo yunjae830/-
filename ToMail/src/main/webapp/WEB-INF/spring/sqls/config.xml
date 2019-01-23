@@ -3,12 +3,14 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.tmail.board.Dto.addressDto" alias="addressDto"/>
-		<typeAlias type="com.tmail.board.Dto.registerDto" alias="registerDto"/>
+		<typeAlias type="com.tmail.board.Dto.AddressDto" alias="AddressDto"/>
+		<typeAlias type="com.tmail.board.Dto.RegisterDto" alias="RegisterDto"/>
+		<typeAlias type="com.tmail.board.Dto.MailboxDto" alias="MailboxDto"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/sqls/register_mapper.xml"/>
 		<mapper resource="/sqls/address_mapper.xml"/>
+		<mapper resource="/sqls/mailboxMapper.xml"/>
 	</mappers>
 </configuration>
