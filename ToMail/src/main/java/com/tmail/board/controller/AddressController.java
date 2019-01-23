@@ -15,22 +15,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.tmail.board.Biz.addressBiz;
-import com.tmail.board.Biz.registerBiz;
-import com.tmail.board.Dto.addressDto;
-import com.tmail.board.Dto.testDto;
-import com.tmail.board.excel.excel_chk;
+import com.tmail.board.Biz.AddressBiz;
+import com.tmail.board.Biz.RegisterBiz;
+import com.tmail.board.Dto.AddressDto;
+import com.tmail.board.Dto.TestDto;
+import com.tmail.board.excel.ExcelChk;
 import com.tmail.board.sha256.SHA256;
 
 @Controller
-public class address_Controller {
+public class AddressController {
 @Autowired
 private JavaMailSender mailSender;
 @Autowired
-private registerBiz reg_biz;
+private RegisterBiz reg_biz;
 @Autowired
-private addressBiz biz;
-private excel_chk ex_ck;
+private AddressBiz biz;
+private ExcelChk ex_ck;
 	
 	@RequestMapping(value="myaddr_Form.do")
 	public String myaddr_Form(Model model, String email) {
@@ -40,7 +40,7 @@ private excel_chk ex_ck;
 		return "guest_addr_insert";
 	}
 	@RequestMapping(value="myaddr_insert.do", method=RequestMethod.POST)
-	public String myaddr(Model model, addressDto dto) {
+	public String myaddr(Model model, AddressDto dto) {
 		int res = biz.insert(dto);
 		System.out.println(res+"-------------------!!!!!!!!!!!");
 		if(res==0) {
@@ -62,7 +62,7 @@ private excel_chk ex_ck;
 		return "mailTest";
 	}
 	@RequestMapping("tests.do")
-	public String tests(HttpServletResponse response, testDto dto) throws MessagingException, IOException {
+	public String tests(HttpServletResponse response, TestDto dto) throws MessagingException, IOException {
 		MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
         String setfrom = "jea830@hanmail.net";

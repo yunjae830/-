@@ -36,15 +36,15 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.util.WebUtils;
 
-import com.tmail.board.Biz.registerBiz;
-import com.tmail.board.Dto.registerDto;
+import com.tmail.board.Biz.RegisterBiz;
+import com.tmail.board.Dto.RegisterDto;
 import com.tmail.board.sha256.SHA256;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
-public class register_Controller {
+public class RegisterController {
 	
 	// 값주입
 	   @Autowired
@@ -168,7 +168,7 @@ public class register_Controller {
 
 	//--------------------     회원가입
 	   @Autowired
-	   private registerBiz biz;
+	   private RegisterBiz biz;
 
 	   @RequestMapping(value = "joinform.do")
 	   public String joinform() {
@@ -177,7 +177,7 @@ public class register_Controller {
 	   }
 
 	   @RequestMapping(value = "join.do", method = RequestMethod.POST)
-	   public String join(registerDto dto, HttpServletResponse response, HttpSession session) throws Exception {
+	   public String join(RegisterDto dto, HttpServletResponse response, HttpSession session) throws Exception {
 	      System.out.println("dto에 담겨진 이름" + dto.getMembers_name());
 	      int join_chek = biz.joinCheck(dto.getMembers_email(), dto.getMembers_pw());
 	      System.out.println("체크체크 : " + join_chek);
@@ -284,7 +284,7 @@ public class register_Controller {
 	   }
 
 	   @RequestMapping(value = "login.do")
-	   public @ResponseBody HashMap<String, Object> login(@RequestBody registerDto dto, HttpSession session) throws Exception {
+	   public @ResponseBody HashMap<String, Object> login(@RequestBody RegisterDto dto, HttpSession session) throws Exception {
 	      HashMap<String, Object> hashmap = new HashMap<String, Object>();
 	      System.out.println("로그인 유지 체크 여부" + dto.getLogin_check());
 	      System.out.println("내가보낸 비번값 : " + dto.getMembers_pw());
@@ -318,7 +318,7 @@ public class register_Controller {
 	   }
 
 	   @RequestMapping(value = "pass.do")
-	   public String pass_ck(registerDto dto, HttpSession session, Model model, HttpServletResponse response) throws Exception {
+	   public String pass_ck(RegisterDto dto, HttpSession session, Model model, HttpServletResponse response) throws Exception {
 	      int res = biz.pass_ck(dto.getMembers_email());
 
 	      if (res == 1) {
@@ -399,7 +399,7 @@ public class register_Controller {
 	   }
 
 	   @RequestMapping(value = "pass_change_ck.do")
-	   public String pass_change_ck(registerDto dto, HttpSession session, HttpServletResponse response, Model model) {
+	   public String pass_change_ck(RegisterDto dto, HttpSession session, HttpServletResponse response, Model model) {
 	      int result = biz.pass_change(dto);
 	      if (result == 1) {// 비밀번호가 잘바뀌면
 	         session.setAttribute("email", null);

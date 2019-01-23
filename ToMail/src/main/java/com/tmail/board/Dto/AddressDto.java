@@ -1,6 +1,6 @@
 package com.tmail.board.Dto;
 
-public class addressDto {
+public class AddressDto {
 
 	private int customer_seq;
 	private String customer_name;

@@ -1,6 +1,6 @@
 package com.tmail.board.Dto;
 
-public class testDto {
+public class TestDto {
 
 	private String email;
 	private String title;

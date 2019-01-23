@@ -4,15 +4,15 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.tmail.board.Dto.registerDto;
+import com.tmail.board.Dto.RegisterDto;
 
 @Repository
-public class registerDaoImpl implements registerDao {
+public class RegisterDaoImpl implements RegisterDao {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public int joinInsert(registerDto dto) {
+	public int joinInsert(RegisterDto dto) {
 		int res = 0;
 		try {
 			res = sqlSession.insert(namespace+"joinInsert",dto);
@@ -83,7 +83,7 @@ public class registerDaoImpl implements registerDao {
 	}
 
 	@Override
-	public int pass_change(registerDto dto) {
+	public int pass_change(RegisterDto dto) {
 		int res = 0;
 		try {
 			res = sqlSession.update(namespace+"pass_change", dto);

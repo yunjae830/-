@@ -5,29 +5,29 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tmail.board.Dao.addressDao;
-import com.tmail.board.Dto.addressDto;
+import com.tmail.board.Dao.AddressDao;
+import com.tmail.board.Dto.AddressDto;
 @Service
-public class addressBizImpl implements addressBiz {
+public class AddressBizImpl implements AddressBiz {
 	@Autowired
-	private addressDao dao;
+	private AddressDao dao;
 	@Override
-	public List<addressDto> selectList(int members_seq) {
+	public List<AddressDto> selectList(int members_seq) {
 		return dao.selectList(members_seq);
 	}
 
 	@Override
-	public addressDto selectOne_email_chk(String name) {
+	public AddressDto selectOne_email_chk(String name) {
 		return dao.selectOne_email_chk(name);
 	}
 
 	@Override
-	public int insert(addressDto dto) {
+	public int insert(AddressDto dto) {
 		return dao.insert(dto);
 	}
 
 	@Override
-	public int update(addressDto dto) {
+	public int update(AddressDto dto) {
 		return dao.update(dto);
 	}
 

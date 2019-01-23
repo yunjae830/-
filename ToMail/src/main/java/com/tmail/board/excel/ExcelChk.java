@@ -16,9 +16,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import com.tmail.board.Biz.addressBizImpl;
-import com.tmail.board.Dto.addressDto;
-public class excel_chk {
+import com.tmail.board.Biz.AddressBizImpl;
+import com.tmail.board.Dto.AddressDto;
+public class ExcelChk {
 		public void excelDataInsert(String fileFullPath, int members_seq){
 			File file = new File(fileFullPath);
 			FileInputStream inputDocument = null;
@@ -35,7 +35,7 @@ public class excel_chk {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			addressBizImpl biz = new addressBizImpl(); // DB에 데이터를 Insert하기 위해 생성한 서비스  객체(각자 상황에 맞게...)
+			AddressBizImpl biz = new AddressBizImpl(); // DB에 데이터를 Insert하기 위해 생성한 서비스  객체(각자 상황에 맞게...)
 			try {
 				Sheet workSheet = workbook.getSheetAt(0); // 첫번째 Sheet
 				Iterator<Row> rowIterator = workSheet.iterator();
@@ -44,7 +44,7 @@ public class excel_chk {
 					Row row = workSheet.getRow(i);
 					int cellLength = (int) row.getLastCellNum(); // 열의 총 개수
 					String valueStr = ""; // 엑셀에서 뽑아낸 데이터를 담아놓을 String 변수 선언 및 초기화
-					addressDto address = new addressDto(); // DB에 Insert하기 위해 valueStr 데이터를 옮겨담을 객체 (각자 DB 테이블의 데이터 타입에 맞춰서...)
+					AddressDto address = new AddressDto(); // DB에 Insert하기 위해 valueStr 데이터를 옮겨담을 객체 (각자 DB 테이블의 데이터 타입에 맞춰서...)
 					for(int j=0; j<cellLength; j++){
 						Cell cell = row.getCell(j);
 						// 셀에 있는 데이터들을 타입별로 분류해서 valueStr 변수에 담는다.

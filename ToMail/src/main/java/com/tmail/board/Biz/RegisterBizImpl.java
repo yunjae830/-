@@ -4,15 +4,17 @@ package com.tmail.board.Biz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tmail.board.Dao.registerDao;
-import com.tmail.board.Dto.registerDto;
+import com.tmail.board.Dao.RegisterDao;
+import com.tmail.board.Dto.RegisterDto;
 
 @Service
-public class registerBizImpl implements registerBiz {
+public class RegisterBizImpl implements RegisterBiz {
+	
 	@Autowired
-	private registerDao dao;
+	private RegisterDao dao;
+	
 	@Override
-	public int joinInsert(registerDto dto) {
+	public int joinInsert(RegisterDto dto) {
 		return dao.joinInsert(dto);
 	}
 	@Override
@@ -33,7 +35,7 @@ public class registerBizImpl implements registerBiz {
 		
 	}
 	@Override
-	public int pass_change(registerDto dto) {
+	public int pass_change(RegisterDto dto) {
 		return dao.pass_change(dto);
 	}
 	@Override

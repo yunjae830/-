@@ -1,6 +1,6 @@
 package com.tmail.board.Dto;
 
-public class registerDto {
+public class RegisterDto {
 
 	private String members_email;
 	private String members_name;

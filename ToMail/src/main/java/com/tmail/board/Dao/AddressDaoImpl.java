@@ -6,15 +6,15 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.tmail.board.Dto.addressDto;
+import com.tmail.board.Dto.AddressDto;
 @Repository
-public class addressDaoImpl implements addressDao {
+public class AddressDaoImpl implements AddressDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	@Override
-	public List<addressDto> selectList(int members_seq) {
-		List<addressDto>res = null;
+	public List<AddressDto> selectList(int members_seq) {
+		List<AddressDto>res = null;
 		
 		try {
 			res = sqlSession.selectList(namespace + "selectList", members_seq);
@@ -26,8 +26,8 @@ public class addressDaoImpl implements addressDao {
 	}
 
 	@Override
-	public addressDto selectOne_email_chk(String name) {
-		addressDto dto = sqlSession.selectOne(namespace + "selectOne_email_chk",name);
+	public AddressDto selectOne_email_chk(String name) {
+		AddressDto dto = sqlSession.selectOne(namespace + "selectOne_email_chk",name);
 		try {
 			
 		} catch (Exception e) {
@@ -38,7 +38,7 @@ public class addressDaoImpl implements addressDao {
 	}
 
 	@Override
-	public int insert(addressDto dto) {
+	public int insert(AddressDto dto) {
 		int res = 0;
 		try {
 			res = sqlSession.insert(namespace + "insert", dto);
@@ -50,7 +50,7 @@ public class addressDaoImpl implements addressDao {
 	}
 
 	@Override
-	public int update(addressDto dto) {
+	public int update(AddressDto dto) {
 		int res = 0;
 		try {
 			res = sqlSession.update(namespace + "update", dto);
