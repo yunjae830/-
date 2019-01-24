@@ -6,7 +6,7 @@ var replyBiz = (function(){
 		
 		$.ajax({
 			type: 'post',
-			url: 'replies/new.do',
+			url: '/board/replies/new.do',
 			data: JSON.stringify(reply),
 			contentType: "application/json; charset=utf-8",
 			success: function(result, status, xhr){
@@ -28,7 +28,26 @@ var replyBiz = (function(){
 		var bno = param.bno;
 		var page = param.page || 1;
 		
-		$.getJSON("replies/pages/" + bno + "/" + page + ".json",
+//		$.ajax({
+//			type: 'get',
+//			url: '/board/replies/pages/' + bno + "/" + page + ".do",
+//			contentType: "application/json; charset=utf-8",
+//			success: function(data, status, xhr) {
+//				if(callback){
+//					callback(data.replyCnt, data.list);
+//					status(status);
+//					xhr(xhr);
+//				}
+//			},
+//			error: function(xhr, status, er){
+//				if(error){
+//					error(er);
+//				}
+//			}
+//			
+//		});
+		
+		$.getJSON("/board/replies/pages/" + bno + "/" + page + ".do",
 				function(data){
 					if(callback){
 						//callback(data);
@@ -39,12 +58,17 @@ var replyBiz = (function(){
 						error();
 					}
 				});
-			}
+		}
 	
 	function remove(rno, callback, error){
+		
+		console.log("rno: " + rno);
+		
 		$.ajax({
 			type: 'delete',
-			url: 'replies/' + rno +'.do',
+			url: '/board/replies/' + rno +'.do',
+			data: JSON.stringify(rno),
+			contentType: 'application/json; charset=utf-8',
 			success: function(deleteResult, status, xhr){
 				if(callback){
 					callback(deleteResult);
@@ -56,6 +80,7 @@ var replyBiz = (function(){
 				}
 			}
 		});
+		
 	}
 	
 	function update(reply, callback, error){
@@ -63,7 +88,7 @@ var replyBiz = (function(){
 		
 		$.ajax({
 			type: 'put',
-			url:'replies/' + reply.rno,
+			url:'/board/replies/' + reply.rno + '.do',
 			data: JSON.stringify(reply),
 			contentType: "application/json; charset=utf-8",
 			success: function(result, status, xhr){
@@ -80,7 +105,24 @@ var replyBiz = (function(){
 	}
 	
 	function get(rno, callback, error){
-		$.get("replies/" + rno + ".json", function(result){
+		$.ajax({
+			type:'get',
+			url: '/board/replies/'+ rno + '.do',
+			contentType: "application/json; charset=utf-8",
+			success: function(result, status, xhr){
+				if(callback){
+					callback(result);
+				}
+			},
+			error: function(xhr, status, er){
+				if(error){
+					error(er);
+				}
+			}
+		});
+		
+		
+		/*$.get("/board/replies/" + rno + ".json", function(result){
 			if(callback){
 				callback(result);
 			}
@@ -88,7 +130,7 @@ var replyBiz = (function(){
 			if(error){
 				error();
 			}
-		});
+		});*/
 	}
 	
 	function displayTime(timeValue){

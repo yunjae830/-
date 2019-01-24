@@ -36,11 +36,11 @@ public class ReplyController {
 		int insertCount = biz.register(dto);
 		
 		return insertCount == 1 ? 
-				new ResponseEntity<>("success", HttpStatus.OK)
-			:	new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+				new ResponseEntity<String>("success", HttpStatus.OK)
+			:	new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@GetMapping(value="pages/{bno}/{page}.do", produces= 
+	@GetMapping(value="/pages/{bno}/{page}.do", produces= 
 			{MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<ReplyPageDto> getList(
@@ -49,22 +49,22 @@ public class ReplyController {
 		
 		Criteria cri = new Criteria(page, 10);
 		
-		return new ResponseEntity<>(biz.getListPage(cri, bno), HttpStatus.OK);
+		return new ResponseEntity<ReplyPageDto>(biz.getListPage(cri, bno), HttpStatus.OK);
 	}
 	
 	@GetMapping(value="{rno}.do", produces= {MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<ReplyDto> get(@PathVariable("rno") Long rno) {
 		
-		return new ResponseEntity<>(biz.get(rno), HttpStatus.OK);
+		return new ResponseEntity<ReplyDto>(biz.get(rno), HttpStatus.OK);
 	}
 	
 	@DeleteMapping(value="{rno}.do", produces= {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> remove(@PathVariable("rno") Long rno) {
 		
 		return biz.remove(rno) == 1
-				? new ResponseEntity<>("success", HttpStatus.OK)
-				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+				? new ResponseEntity<String>("success", HttpStatus.OK)
+				: new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="{rno}.do",
@@ -73,8 +73,8 @@ public class ReplyController {
 	public ResponseEntity<String> modify(@RequestBody ReplyDto dto, @PathVariable("rno") int rno){
 		dto.setRno(rno);
 		return biz.modify(dto) == 1
-				? new ResponseEntity<>("success", HttpStatus.OK)
-				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+				? new ResponseEntity<String>("success", HttpStatus.OK)
+				: new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 }

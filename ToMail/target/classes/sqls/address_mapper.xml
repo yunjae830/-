@@ -2,16 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="email">
 
-	<select id="selectList" resultType="addressDto" parameterType="int">
+	<select id="selectList" resultType="AddressDto" parameterType="int">
 		SELECT CUSTOMER_NAME, CUSTOMER_EMAIL FROM ADDRESS_TABLE WHERE MEMBERS_SEQ = #{members_seq}
 	</select>
-	<select id="selectOne_email_chk" resultType="addressDto" parameterType="String">
+	<select id="selectOne_email_chk" resultType="AddressDto" parameterType="String">
 		SELECT CUSTOMER_NAME, CUSTOMER_EMAIL FROM ADDRESS_TABLE WHERE CUSTOMER_NAME = #{customer_name}
 	</select>
-	<insert id="insert" parameterType="addressDto" statementType="PREPARED">
+	<insert id="insert" parameterType="AddressDto" statementType="PREPARED">
 		INSERT INTO ADDRESS_TABLE VALUES(email_customer_seq.nextval, #{customer_name}, #{customer_email}, #{members_seq})
 	</insert>
-	<update id="update" parameterType="addressDto" statementType="PREPARED">
+	<update id="update" parameterType="AddressDto" statementType="PREPARED">
 		UPDATE ADDRESS_TABLE SET CUSTOMER_NAME = #{customer_name}, CUSTOMER_EMAIL = #{customer_email} WHERE CUSTOMER_NAME = #{customer_name}
 	</update>
 	<delete id="delete" parameterType="String">

@@ -266,7 +266,7 @@ $(document).ready(function(){
 	});
 	
 	$("button[data-oper='getList']").on("click", function(e){
-		operForm.find("#seqno").remove();
+		operForm.find("#bno").remove();
 		operForm.attr("action", "getList.do");
 		operForm.submit();
 	});
@@ -286,7 +286,7 @@ $(document).ready(function(){
   				
   				<div class="form-group">
   					<label>Board Number</label>
-  					<input class="form-control" name="seqno" value='<c:out value="${mail.bno }"/>' readonly="readonly"/>
+  					<input class="form-control" name="bno" value='<c:out value="${mail.bno }"/>' readonly="readonly"/>
   				</div>
   
   				<div class="form-group">			
@@ -343,15 +343,6 @@ $(document).ready(function(){
 		<div class="panel-body">
 			<ul class="chat">
 			<!-- start reply -->
-				<li class="left clearfix" data-rno='12'>
-					<div>
-						<div class="header">
-							<strong class="primary-font">user00</strong>
-							<small class="pull-right text-muted">2018-01-01 13:13</small>
-						</div>
-						<p>Good Job!</p>
-					</div>
-				</li>
 			<!-- end reply -->		
 			</ul>
 			<!-- end ul -->
