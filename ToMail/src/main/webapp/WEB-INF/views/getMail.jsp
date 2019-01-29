@@ -59,9 +59,10 @@ $(document).ready(function(){
 	} // end showList();
 	
 	var modal = $(".modal");
-	var modalInputReply = modal.find("input[name='reply']");
-	var modalInputReplyer = modal.find("input[name='replyer']");
-	var modalInputReplyDate = modal.find("input[name='replyDate']");
+
+	var modalInputReply = $("input[name='reply']");
+	var modalInputReplyer = $("input[name='replyer']");
+	var modalInputReplyDate = $("input[name='replyDate']");
 	
 	var modalModBtn = $("#modalModBtn");
 	var modalRemoveBtn = $("#modalRemoveBtn");
@@ -277,6 +278,44 @@ $(document).ready(function(){
 
 <body>
 
+<div class="container">
+  <div class="modal fade" id="myModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+        	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          	<h4 class="modal-title" id="myModalLabel">Reply Modal</h4>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+        	<div class="form-group">
+        		<label>Reply</label>
+        		<input class="form-control" id="modalReply" name="reply" value="New Reply"/>
+        	</div>
+        	<div class="form-group">
+        		<label>Replier</label>
+        		<input class="form-control" id="modalReplyer" name="replyer" value="replyer"/>
+        	</div>
+        	<div class="form-group">
+        		<label>Reply Date</label>
+        		<input class="form-control" id="modalReplyDate" name="replyDate" value=""/>
+        	</div>
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button id="modalModBtn" type="button" class="btn btn-warning">Modify</button>
+          <button id="modalRemoveBtn" type="button" class="btn btn-danger">Remove</button>
+          <button id="modalRegisterBtn" type="button" class="btn btn-primary">Register</button>
+          <button id="modalCloseBtn" type="button" class="btn btn-close">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
 <div class="jumbotron jumbotron-fluid" style="margin-top:100px;">
   <div class="container">
   	<div class="panel panel-default">
@@ -343,6 +382,9 @@ $(document).ready(function(){
 		<div class="panel-body">
 			<ul class="chat">
 			<!-- start reply -->
+			
+				<!-- where replies go -->
+			
 			<!-- end reply -->		
 			</ul>
 			<!-- end ul -->
@@ -356,43 +398,6 @@ $(document).ready(function(){
 		</div>
 		<!-- end panel -->
 	</div>
-</div>
-
-<div class="container">
-  <div class="modal fade" id="myModal" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <!-- Modal Header -->
-        <div class="modal-header">
-        	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          	<h4 class="modal-title" id="myModalLabel">Reply Modal</h4>
-        </div>
-        <!-- Modal body -->
-        <div class="modal-body">
-        	<div class="form-group">
-        		<label>Reply</label>
-        		<input class="form-control" name="reply" value="New Reply"/>
-        	</div>
-        	<div class="form-group">
-        		<label>Replier</label>
-        		<input class="form-control" name="replyer" value="replyer"/>
-        	</div>
-        	<div class="form-group">
-        		<label>Reply Date</label>
-        		<input class="form-control" name="replyDate" value=""/>
-        	</div>
-        </div>
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button id="modalModBtn" type="button" class="btn btn-warning">Modify</button>
-          <button id="modalRemoveBtn" type="button" class="btn btn-danger">Remove</button>
-          <button id="modalRegisterBtn" type="button" class="btn btn-primary">Register</button>
-          <button id="modalCloseBtn" type="button" class="btn btn-close">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
 </div>
 
 </body>

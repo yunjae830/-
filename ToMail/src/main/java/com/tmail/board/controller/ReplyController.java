@@ -52,10 +52,9 @@ public class ReplyController {
 		return new ResponseEntity<ReplyPageDto>(biz.getListPage(cri, bno), HttpStatus.OK);
 	}
 	
-	@GetMapping(value="{rno}.do", produces= {MediaType.APPLICATION_XML_VALUE,
+	@GetMapping(value="/{rno}.do", produces= {MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<ReplyDto> get(@PathVariable("rno") Long rno) {
-		
 		return new ResponseEntity<ReplyDto>(biz.get(rno), HttpStatus.OK);
 	}
 	

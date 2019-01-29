@@ -21,6 +21,11 @@ public class MailboxController {
 	@Autowired
 	MailboxBiz biz;
 	
+	@RequestMapping("file.do")
+	public String getFileForm() {
+		return "file";
+	}
+	
 	@RequestMapping("getList.do")
 	public String getList(Criteria cri, Model model) {
 		model.addAttribute("list", biz.getList(cri));

@@ -105,24 +105,23 @@ var replyBiz = (function(){
 	}
 	
 	function get(rno, callback, error){
-		$.ajax({
-			type:'get',
-			url: '/board/replies/'+ rno + '.do',
-			contentType: "application/json; charset=utf-8",
-			success: function(result, status, xhr){
-				if(callback){
-					callback(result);
-				}
-			},
-			error: function(xhr, status, er){
-				if(error){
-					error(er);
-				}
-			}
-		});
+//		$.ajax({
+//			type:'get',
+//			url: '/board/replies/'+ rno + '.do',
+//			success: function(result, status, xhr){
+//				if(callback){
+//					callback(result);
+//				}
+//			},
+//			error: function(xhr, status, er){
+//				if(error){
+//					error(er);
+//				}
+//			}
+//		});
 		
 		
-		/*$.get("/board/replies/" + rno + ".json", function(result){
+		$.get("/board/replies/" + rno + ".do", function(result){
 			if(callback){
 				callback(result);
 			}
@@ -130,8 +129,12 @@ var replyBiz = (function(){
 			if(error){
 				error();
 			}
-		});*/
+		});
+		
+		
 	}
+	
+	
 	
 	function displayTime(timeValue){
 		var today = new Date();
