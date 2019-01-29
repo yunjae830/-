@@ -84,50 +84,6 @@ b {
 }
 </style>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
-	var f = null;
-	var ch = 0;
-	function Login_ck() {
-		f = document.forms[0];
-		if (f.ch.checked) {
-			ch = 1;
-		}
-		if (!f.ch.checked) {
-			ch = 0;
-		}
-	}
-	function mytest() {
-		var pw1 = document.forms["loginForm"]["members_pw"].value;
-		var e = document.forms["loginForm"]["members_email"].value;
-
-		var form = {
-			members_email : e,//dto와 이름 같게 해서 보내야함
-			members_pw : pw1,
-			login_check : ch
-		//로그인 유지기능
-		};
-		$.ajax({
-			type : "post",
-			data : JSON.stringify(form),
-			dataType : 'json', //서버에서 보내는 데이터 타입 
-			contentType : "application/json; charset=UTF-8", //서버로 보내는타입 
-			url : "login.do",
-			success : function(result) {
-				if(result.mail_checked === 'true'){
-				if (result.login_true == 1) {
-					alert("어서오세요~ 투메일입니다");
-					location.href = "main2.do";
-				}
-				}else if (result.mail_ck_false === 'false'){
-					alert("이메일 인증이 필요합니다!");
-					location.href = "loginform.do";
-				}else if (result.login_false == 0) {
-					alert("잘못된 정보입니다");
-				}
-			}
-		});
-	}
-</script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -151,7 +107,7 @@ b {
 						</div>
 						<br>
 
-						<form class="justify-content-center" onsubmit="mytest()"
+						<form class="justify-content-center" action="login.do"
 							name="loginForm" method="post">
 							<div class="form-group">
 								<label class="control-label" for="email">이메일 주소</label> <input
@@ -170,10 +126,6 @@ b {
 									title="로그인">로그인</button>
 							</div>
 							<br>
-							<div>
-								<input type="checkbox" name="ch" onclick="Login_ck()"><a>
-									로그인 상태 유지하기</a>
-							</div>
 							<div align="center">
 								<hr width="300px;">
 								<a href="password.do">비밀번호를

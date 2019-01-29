@@ -1,20 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="email">
-
-	<select id="selectList" resultType="addressDto" parameterType="int">
-		SELECT CUSTOMER_NAME, CUSTOMER_EMAIL FROM ADDRESS_TABLE WHERE MEMBERS_SEQ = #{members_seq}
-	</select>
-	<select id="selectOne_email_chk" resultType="addressDto" parameterType="String">
-		SELECT CUSTOMER_NAME, CUSTOMER_EMAIL FROM ADDRESS_TABLE WHERE CUSTOMER_NAME = #{customer_name}
-	</select>
-	<insert id="insert" parameterType="addressDto" statementType="PREPARED">
-		INSERT INTO ADDRESS_TABLE VALUES(email_customer_seq.nextval, #{customer_name}, #{customer_email}, #{members_seq})
-	</insert>
-	<update id="update" parameterType="addressDto" statementType="PREPARED">
-		UPDATE ADDRESS_TABLE SET CUSTOMER_NAME = #{customer_name}, CUSTOMER_EMAIL = #{customer_email} WHERE CUSTOMER_NAME = #{customer_name}
-	</update>
-	<delete id="delete" parameterType="String">
-		DELETE FROM ADDRESS_TABLE WHERE CUSTOMER_NAME = #{customer_name}
-	</delete>
+   <select id="selectList" resultType="AddressDto" parameterType="AddressDto">
+      SELECT CUSTOMER_NAME, CUSTOMER_EMAIL, CUSTOMER_SEQ FROM ADDRESS_TABLE WHERE MEMBERS_SEQ = #{members_seq} AND group_seq = #{group_seq}
+   </select>
+   <select id="selectOne_email_chk" resultType="AddressDto" parameterType="String">
+      SELECT CUSTOMER_NAME, CUSTOMER_EMAIL FROM ADDRESS_TABLE WHERE CUSTOMER_NAME = #{customer_name}
+   </select>
+   <insert id="insert" parameterType="AddressDto" statementType="PREPARED">
+      INSERT INTO ADDRESS_TABLE VALUES(address_customer_seq.nextval, #{customer_name}, #{customer_email}, #{group_seq}, #{members_seq})
+   </insert>
+   <update id="update" parameterType="AddressDto" statementType="PREPARED">
+      UPDATE ADDRESS_TABLE SET CUSTOMER_NAME = #{customer_name} WHERE members_seq = #{members_seq} AND group_seq = #{group_seq} AND CUSTOMER_SEQ = #{customer_seq}
+   </update>
+   <delete id="delete" parameterType="String">
+      DELETE FROM ADDRESS_TABLE WHERE CUSTOMER_NAME = #{customer_name}
+   </delete>
+   <select id="address_check" parameterType="AddressDto" resultType="String">
+      SELECT CUSTOMER_NAME FROM ADDRESS_TABLE WHERE CUSTOMER_EMAIL = #{customer_email} AND group_seq = #{group_seq}
+   </select>
+   <insert id="group_insert" parameterType="Address_GroupDto">
+      INSERT INTO GROUP_ADDRESS_TABLE VALUES(GROUP_ADDRESS_SEQ.nextval, #{group_title}, sysdate, #{members_seq}, 0)
+   </insert>
+   <select id="group_selectList" resultType="Address_GroupDto" parameterType="int">
+      SELECT group_seq, group_title, group_date, members_seq, cnt FROM GROUP_ADDRESS_TABLE WHERE members_seq = #{members_seq}
+   </select>
+   <select id="group_admin_size" parameterType="int" resultType="int">
+      SELECT count(*) FROM ADDRESS_TABLE group by group_seq having group_seq = #{group_seq}
+   </select>
+   <update id="group_cnt" parameterType="Address_GroupDto">
+      UPDATE GROUP_ADDRESS_TABLE SET CNT = #{cnt} where group_seq = #{group_seq} AND members_seq = #{members_seq}
+   </update>
+   <delete id="delete_group_addr" parameterType="AddressDto">
+      DELETE FROM ADDRESS_TABLE WHERE members_seq = #{members_seq} AND group_seq = #{group_seq} AND customer_seq = #{customer_seq}
+   </delete>
+   <delete id="delete_group" parameterType="Address_GroupDto">
+      DELETE FROM GROUP_ADDRESS_TABLE WHERE members_seq = #{members_seq} AND group_seq = #{group_seq}
+   </delete>
+   <update id="update_group" parameterType="Address_GroupDto">
+      UPDATE GROUP_ADDRESS_TABLE SET GROUP_TITLE = #{group_title} WHERE members_seq = #{members_seq} AND group_seq = #{group_seq}
+   </update>
+   <select id="selectOne_email_to" parameterType="AddressDto" resultType="String">
+      SELECT CUSTOMER_EMAIL FROM ADDRESS_TABLE WHERE CUSTOMER_SEQ = #{customer_seq} AND group_seq = #{group_seq} AND members_seq = #{members_seq}
+   </select>
 </mapper>
