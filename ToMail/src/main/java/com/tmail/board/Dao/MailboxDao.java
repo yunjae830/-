@@ -11,6 +11,7 @@ public interface MailboxDao {
 	
 	List<MailboxDto> getList(Criteria cri);
 	void addMail(MailboxDto mail);
+	void insertSelectKey(MailboxDto mail);
 	MailboxDto getMail(int bno);
 	boolean deleteMail(int bno);
 	boolean updateMail(MailboxDto mail);

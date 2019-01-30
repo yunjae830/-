@@ -17,6 +17,17 @@
 		)
 	</insert>
 	
+	<insert id="insertSelectKey" parameterType="MailboxDto">
+		
+		<selectKey keyProperty="bno" order="BEFORE" resultType="int">
+			SELECT SEQ_MAILBOX.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		INSERT INTO TBL_MAILBOX(BNO, RECIPIENT, TITLE, CONTENT)
+		VALUES(#{bno}, #{recipient}, #{title}, #{content})
+		
+	</insert>
+	
 	<delete id="deleteMail">
 		DELETE FROM TBL_MAILBOX WHERE BNO = #{bno}
 	</delete>

@@ -48,7 +48,7 @@ $(document).ready(function(){
 	});
 	
 	$('#regBtn').on("click", function(){
-		location.href = "addMail.do";
+		self.location = "/board/mailbox/addMail";
 	});
 	
 	$("#updateBtn").on("click", function(e){
@@ -59,7 +59,7 @@ $(document).ready(function(){
 	$(".move").on("click", function(e){
 		e.preventDefault();
 		actionForm.append("<input type='hidden' name='bno' value='"+ $(this).attr("href")+"'>");
-		actionForm.attr("action", "getMail.do");
+		actionForm.attr("action", "/board/mailbox/getMail");
 		actionForm.submit();
 	});
 	
@@ -117,7 +117,7 @@ $(document).ready(function(){
   		
   		<div class="row">
   			<div class="col-lg-12">
-  				<form id="searchForm" action="getList.do" method="get">
+  				<form id="searchForm" action="/board/mailbox/getList" method="get">
   					<select name='type'>
   						<option value="" <c:out value="${pagemaker.cri.type == null ? 'selected' : '' }"/>>--</option>
   						<option value="T" <c:out value="${pagemaker.cri.type eq 'T' ? 'selected' : '' }"/>>제목</option>
@@ -127,9 +127,9 @@ $(document).ready(function(){
   						<option value="TR" <c:out value="${pagemaker.cri.type eq 'TN' ? 'selected' : '' }"/>>제목 or 수신자</option>
   						<option value="TRC" <c:out value="${pagemaker.cri.type eq 'TNC' ? 'selected' : '' }"/>>제목 or 내용 or 수신자</option>
   					</select>
-  					<input type="text" name="keyword" value="<c:out value="${pageMaker.cri.keyword }"/>"/>
-  					<input type="hidden" name="pageNum" value="<c:out value="${pageMaker.cri.pageNum }"/>"/>
-  					<input type="hidden" name="amount" value="<c:out value="${pageMaker.cri.amount }"/>"/>
+  					<input type="text" name="keyword" value="<c:out value='${pageMaker.cri.keyword }'/>"/>
+  					<input type="hidden" name="pageNum" value="<c:out value='${pageMaker.cri.pageNum }'/>"/>
+  					<input type="hidden" name="amount" value="<c:out value='${pageMaker.cri.amount }'/>"/>
   					<button class="btn btn-default">Search</button>
   				</form>
   			</div>
@@ -137,7 +137,6 @@ $(document).ready(function(){
   		
   		
   	<div class="container">
-  			
   				<ul class="pagination">
   					<c:if test="${pageMaker.prev }">
     				<li class="page-item"><a class="page-link" href="${pageMaker.startPage -1 }">Previous</a></li>
@@ -151,7 +150,7 @@ $(document).ready(function(){
     				</c:if>
   				</ul>
   			
-  			<form id="actionForm" action="getList.do" method="get">
+  			<form id="actionForm" action="/board/mailbox/getList" method="get">
   				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }"/>
   				<input type="hidden" name="amount" value="${pageMaker.cri.amount }"/>
   				<input type="hidden" name="type" value="<c:out value="${pageMaker.cri.type }"/>"/>

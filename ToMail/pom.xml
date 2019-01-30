@@ -28,6 +28,22 @@
 				 </exclusion>
 			</exclusions>
 		</dependency>
+		
+		<!-- spring-jdbc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- spring-tx (transaction) -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
@@ -205,6 +221,23 @@
 		</dependency>
 		<!-- jstl(보통 jsp 안에서 model에서 받아온 리턴값을 활용하기 위해 씀) for,if.. -->
 		<!-- taglibs -->
+		
+		<!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->
+		<!-- 업로드된 파일이 이미지 종류의 파일인지 확인, 이미지 파일인 경우 섬네일 이미지 생성 및 저장 -->
+		<dependency>
+		    <groupId>net.coobird</groupId>
+		    <artifactId>thumbnailator</artifactId>
+		    <version>0.4.8</version>
+		</dependency>
+		
+		<!-- spring-orm -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-orm</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		
+		
     <dependency>
         <groupId>taglibs</groupId>
         <artifactId>datetime</artifactId>
