@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Åõ¸ÞÀÏ | ´ç½ÅÀ» À§ÇÑ ÀÌ¸ÞÀÏ ¸¶ÄÉÆÃ</title>
-    <meta charset="EUC-KR">
+<meta charset="UTF-8">
+<title>íˆ¬ë©”ì¼ | ë‹¹ì‹ ì„ ìœ„í•œ ì´ë©”ì¼ ë§ˆì¼€íŒ…</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -13,7 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    <!-- ±Û²Ã -->
+    <!-- ê¸€ê¼´ -->
    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 
 <style type="text/css">
@@ -162,14 +161,14 @@ $(function () {
          </button>
          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav text-right">
-               <li class="nav-item active"><a class="nav-link" href="#"><b>°í°´»ç·Ê</b></a></li>
-               <li class="nav-item active"><a class="nav-link" href="#"><b>µµ¿ò¸»</b></a></li>               
-               <li class="nav-item active"><a class="nav-link" href="loginform.do"><b>·Î±×ÀÎ</b></a></li>               
+               <li class="nav-item active"><a class="nav-link" href="#"><b>ê³ ê°ì‚¬ë¡€</b></a></li>
+               <li class="nav-item active"><a class="nav-link" href="#"><b>ë„ì›€ë§</b></a></li>               
+               <li class="nav-item active"><a class="nav-link" href="loginform.do"><b>ë¡œê·¸ì¸</b></a></li>               
 
             </ul>
          </div>
 
-         <button class="btn ml-auto rounded-0 hidden-xs" onclick="location.href='joinform.do'"><b>Áö±Ý ½ÃÀÛÇÏ±â</b></button>   
+         <button class="btn ml-auto rounded-0 hidden-xs" onclick="location.href='joinform.do'"><b>ì§€ê¸ˆ ì‹œìž‘í•˜ê¸°</b></button>   
 
       </div>
 </nav>
@@ -179,18 +178,18 @@ $(function () {
 
          <div class="joinbtn">
             <h2>
-               Æí¸®ÇÑ <strong>ÀÌ¸ÞÀÏ¸¶ÄÉÆÃ</strong>
+               íŽ¸ë¦¬í•œ <strong>ì´ë©”ì¼ë§ˆì¼€íŒ…</strong>
             </h2>
             <br>
             <h5>
-               <strong>Á÷°üÀûÀÎ È­¸éºÎÅÍ °£ÆíÇÑ Àü¼Û±îÁö,</strong>
+               <strong>ì§ê´€ì ì¸ í™”ë©´ë¶€í„° ê°„íŽ¸í•œ ì „ì†¡ê¹Œì§€,</strong>
             </h5>
             <h5>
-               <strong>»õ·Î¿î ÀÌ¸ÞÀÏ¸¶ÄÉÆÃÀ» °æÇèÇØº¸¼¼¿ä.</strong>
+               <strong>ìƒˆë¡œìš´ ì´ë©”ì¼ë§ˆì¼€íŒ…ì„ ê²½í—˜í•´ë³´ì„¸ìš”.</strong>
             </h5>
             <br>
             <button class="btn rounded-0" onclick="location.href='joinform.do'">
-               <b>Áö±Ý ½ÃÀÛÇÏ±â</b>
+               <b>ì§€ê¸ˆ ì‹œìž‘í•˜ê¸°</b>
             </button>
          </div>
       </div>
@@ -200,13 +199,13 @@ $(function () {
          </div>
          <div class="col-sm">
             <h2 id="h2">
-               ¸ñÀû¿¡ µû¶ó<br>
-               <strong>µðÀÚÀÎ µÈ ÅÛÇÃ¸´</strong>
+               ëª©ì ì— ë”°ë¼<br>
+               <strong>ë””ìžì¸ ëœ í…œí”Œë¦¿</strong>
             </h2>
             <br>
             <p>
-               Áö±Ý ¹Ù·Î »ç¿ëÇÒ ¼ö ÀÖ´Â ¸ÚÁø µðÀÚÀÎÀÇ ÅÛÇÃ¸´<br>À» Á¦°øÇÕ´Ï´Ù. ÄÜÅÙÃ÷¸¸ ÁØºñµÇ¾îÀÖ´Ù¸é 5<br>ºÐ¸¸¿¡
-               ÀÌ¸ÞÀÏÀ» ¿Ï¼ºÇÒ ¼ö ÀÖ½À´Ï´Ù.
+               ì§€ê¸ˆ ë°”ë¡œ ì‚¬ìš©í•  ìˆ˜ ìžˆëŠ” ë©‹ì§„ ë””ìžì¸ì˜ í…œí”Œë¦¿<br>ì„ ì œê³µí•©ë‹ˆë‹¤. ì½˜í…ì¸ ë§Œ ì¤€ë¹„ë˜ì–´ìžˆë‹¤ë©´ 5<br>ë¶„ë§Œì—
+               ì´ë©”ì¼ì„ ì™„ì„±í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
             </p>
          </div>
 
@@ -217,13 +216,13 @@ $(function () {
                <img id="img" alt="tomainmain" src="img/main.png">
             </div>
             <h2 id="h2">
-               Çàµ¿ÀÌ³ª Á¶°Ç¿¡ µû¶ó<br>
-               <strong>½±°Ô ¹ß¼Û</strong>µÇ´Â ÀÌ¸ÞÀÏ
+               í–‰ë™ì´ë‚˜ ì¡°ê±´ì— ë”°ë¼<br>
+               <strong>ì‰½ê²Œ ë°œì†¡</strong>ë˜ëŠ” ì´ë©”ì¼
             </h2>
             <br>
             <p>
-               °¡ÀÔ È¯¿µ ¸ÞÀÏ, ½Ã³ª¸®¿À ¸ÞÀÏ µî ¹Ì¸® ¼³Á¤ÇÑ Çàµ¿ÀÌ³ª <br>Á¶°Ç¿¡ µû¶ó ÀÌ¸ÞÀÏÀ» ¹ß¼ÛÇÕ´Ï´Ù. °í°´¸¶´Ù
-               °³ÀÎÈ­µÈ<br>¸Þ½ÃÁö¸¦ ¹ß¼ÛÇÏ¿© ¸¶ÄÉÆÃ È¿°ú¸¦ ±Ø´ëÈ­ÇÏ¼¼¿ä.
+               ê°€ìž… í™˜ì˜ ë©”ì¼, ì‹œë‚˜ë¦¬ì˜¤ ë©”ì¼ ë“± ë¯¸ë¦¬ ì„¤ì •í•œ í–‰ë™ì´ë‚˜ <br>ì¡°ê±´ì— ë”°ë¼ ì´ë©”ì¼ì„ ë°œì†¡í•©ë‹ˆë‹¤. ê³ ê°ë§ˆë‹¤
+               ê°œì¸í™”ëœ<br>ë©”ì‹œì§€ë¥¼ ë°œì†¡í•˜ì—¬ ë§ˆì¼€íŒ… íš¨ê³¼ë¥¼ ê·¹ëŒ€í™”í•˜ì„¸ìš”.
             </p>
          </div>
          <div class="col-sm  hidden-xs">
@@ -236,13 +235,13 @@ $(function () {
          </div>
          <div class="col-sm">
             <h2 id="h2">
-               ÀÚµ¿À¸·Î ÀÔ·ÂµÇ´Â<br>
-               <strong>¸ÂÃãÇü »óÀÚ</strong>
+               ìžë™ìœ¼ë¡œ ìž…ë ¥ë˜ëŠ”<br>
+               <strong>ë§žì¶¤í˜• ìƒìž</strong>
             </h2>
             <br>
             <p>
-               ÀÌ¹ÌÁö¸¦ µî·ÏÇÏ¸é µ¿¿µ»ó ½æ³×ÀÏÀÌ ÀÚµ¿<br>À¸·Î Ãß°¡µË´Ï´Ù. ÀÌ ¿Ü¿¡µµ Áöµµ »óÀÚ, SNS ¸µ<br>Å©
-               »óÀÚ µî ¸ÂÃãÇü »óÀÚ¸¦ Á¦°øÇÕ´Ï´Ù
+               ì´ë¯¸ì§€ë¥¼ ë“±ë¡í•˜ë©´ ë™ì˜ìƒ ì¸ë„¤ì¼ì´ ìžë™<br>ìœ¼ë¡œ ì¶”ê°€ë©ë‹ˆë‹¤. ì´ ì™¸ì—ë„ ì§€ë„ ìƒìž, SNS ë§<br>í¬
+               ìƒìž ë“± ë§žì¶¤í˜• ìƒìžë¥¼ ì œê³µí•©ë‹ˆë‹¤
             </p>
          </div>
 
@@ -257,23 +256,23 @@ $(function () {
          <br>
          <br>
          <p style="color: white;">
-            ¿Â¶óÀÎ ºñÁî´Ï½ºÀÇ ´Ù¾çÈ­·Î ÀÎÇì 'Åõ¸ÞÀÏ'À» ÇÊ¿ä·ÎÇÏ´Â ´Ù¸¥ ±â¾÷°ú Çù¾÷ÇÏ¿©,<br> ¼ö¸¹Àº °í°´µéÀ»
-            À§ÇØ ÀÌ¸ÞÀÏ¸¶ÄÉÆÃÀ» Á¦°øÇÏ°í ÀÖ½À´Ï´Ù.
+            ì˜¨ë¼ì¸ ë¹„ì¦ˆë‹ˆìŠ¤ì˜ ë‹¤ì–‘í™”ë¡œ ì¸í—¤ 'íˆ¬ë©”ì¼'ì„ í•„ìš”ë¡œí•˜ëŠ” ë‹¤ë¥¸ ê¸°ì—…ê³¼ í˜‘ì—…í•˜ì—¬,<br> ìˆ˜ë§Žì€ ê³ ê°ë“¤ì„
+            ìœ„í•´ ì´ë©”ì¼ë§ˆì¼€íŒ…ì„ ì œê³µí•˜ê³  ìžˆìŠµë‹ˆë‹¤.
          </p>
          <br>
          <button class="btn btn-md ml-auto rounded-0">
-            <b>°í°´»ç·Ê º¸±â</b>
+            <b>ê³ ê°ì‚¬ë¡€ ë³´ê¸°</b>
          </button>
       </div>
    </div>
    <div class="row col-sm-12" style="background-color: #F4F4F5">
       <div class="col-sm"  align="center">
          <img alt="tomail" src="img/logo_tomail_font.png" width="150px"><br><br>
-         <p><a href="#">ÀÌ¿ë¾à°ü</a> | <a href="#">°³ÀÎÁ¤º¸Ãë±Þ¹æÄ§</a> | <a href="#">½ºÆÔ¸ÞÀÏÁ¤Ã¥</a></p>
+         <p><a href="#">ì´ìš©ì•½ê´€</a> | <a href="#">ê°œì¸ì •ë³´ì·¨ê¸‰ë°©ì¹¨</a> | <a href="#">ìŠ¤íŒ¸ë©”ì¼ì •ì±…</a></p>
       </div>
-      <div  class="col-sm"><p style="padding-top: 15px;">(ÁÖ)Åõ¸ÞÀÏ, ´ëÇ¥ ÃÖ°æ¼ö, »ç¾÷ÀÚµî·Ï¹øÈ£ 100-82-82821,
-      Åë½ÅÆÇ¸Å¾÷½Å°í¹øÈ£ 2019-¼­¿ï¿ª»ï-8282,<br>
-      ¼­¿ïÆ¯º°½Ã °­³²±¸ Å×Çì¶õ·Î14±æ 6 ³²µµºôµù 2Ãþ, 3Ãþ, 4Ãþ 
+      <div  class="col-sm"><p style="padding-top: 15px;">(ì£¼)íˆ¬ë©”ì¼, ëŒ€í‘œ ìµœê²½ìˆ˜, ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸ 100-82-82821,
+      í†µì‹ íŒë§¤ì—…ì‹ ê³ ë²ˆí˜¸ 2019-ì„œìš¸ì—­ì‚¼-8282,<br>
+      ì„œìš¸íŠ¹ë³„ì‹œ ê°•ë‚¨êµ¬ í…Œí—¤ëž€ë¡œ14ê¸¸ 6 ë‚¨ë„ë¹Œë”© 2ì¸µ, 3ì¸µ, 4ì¸µ 
       support@tomail.com 080-335-0020</p> </div>
    </div>
 
