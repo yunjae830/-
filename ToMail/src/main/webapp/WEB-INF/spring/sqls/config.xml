@@ -6,11 +6,15 @@
 		<typeAlias type="com.tmail.board.Dto.AddressDto" alias="AddressDto"/>
 		<typeAlias type="com.tmail.board.Dto.RegisterDto" alias="RegisterDto"/>
 		<typeAlias type="com.tmail.board.Dto.MailboxDto" alias="MailboxDto"/>
+		<typeAlias type="com.tmail.board.Dto.ReplyDto" alias="ReplyDto"/>
+		<typeAlias type="com.tmail.board.Dto.MailboxAttachDto" alias="MailboxAttachDto"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/sqls/register_mapper.xml"/>
 		<mapper resource="/sqls/address_mapper.xml"/>
 		<mapper resource="/sqls/mailboxMapper.xml"/>
+		<mapper resource="/sqls/replyMapper.xml"/>
+		<mapper resource="/sqls/mailboxAttachMapper.xml"/>
 	</mappers>
 </configuration>

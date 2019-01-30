@@ -1,6 +1,7 @@
 package com.tmail.board.Dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class MailboxDto {
 /*	
@@ -20,6 +21,8 @@ public class MailboxDto {
 	private String title;
 	private String content;
 	private Date regdate;
+	
+	private List<MailboxAttachDto> attachList;
 	
 	public MailboxDto() {
 		super();
@@ -82,4 +85,14 @@ public class MailboxDto {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
+
+	public List<MailboxAttachDto> getAttachList() {
+		return attachList;
+	}
+
+	public void setAttachList(List<MailboxAttachDto> attachList) {
+		this.attachList = attachList;
+	}
+	
+	
 }

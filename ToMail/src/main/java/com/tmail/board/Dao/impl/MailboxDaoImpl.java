@@ -25,12 +25,17 @@ public class MailboxDaoImpl implements MailboxDao{
 	public void addMail(MailboxDto mail) {
 		sql.insert(namespace + "addMail", mail);
 	}
-
+	
+	@Override
+	public void insertSelectKey(MailboxDto mail) {
+		sql.insert(namespace + "insertSelectKey", mail);
+	}
+	
 	@Override
 	public MailboxDto getMail(int bno) {
 		return sql.selectOne(namespace + "getMail", bno);
 	}
-
+	
 	@Override
 	public boolean deleteMail(int bno) {
 		return sql.delete(namespace + "deleteMail", bno) == 1;
@@ -45,5 +50,7 @@ public class MailboxDaoImpl implements MailboxDao{
 	public int getTotal(Criteria cri) {
 		return sql.selectOne(namespace + "getTotalCount", cri);
 	}
+
+	
 
 }
