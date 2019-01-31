@@ -7,6 +7,7 @@ public class PageDto {
 	private boolean prev, next;
 	
 	private int total;
+	
 	private Criteria cri;
 	
 	public PageDto(Criteria cri, int total) {

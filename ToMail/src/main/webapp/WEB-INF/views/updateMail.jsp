@@ -42,7 +42,7 @@ $(document).ready(function(){
 			formObj.append(typeTag);
 			formObj.append(keywordTag);
 			
-		} else if(operation === 'updateBoard'){
+		} else if(operation === 'updateMail'){
 			console.log("submit clicked.");
 			
 			var str ="";

@@ -12,7 +12,6 @@ import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -23,7 +22,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.util.WebUtils;
@@ -32,9 +30,9 @@ import com.tmail.board.Biz.AddressBiz;
 import com.tmail.board.Biz.RegisterBiz;
 import com.tmail.board.Dto.AddressDto;
 import com.tmail.board.Dto.Address_GroupDto;
+import com.tmail.board.Dto.EmailFormDto;
 import com.tmail.board.Dto.TestDto;
 import com.tmail.board.excel.CustomerExcelReader;
-import com.tmail.board.sha256.SHA256;
 
 @Controller
 public class AddressController {
@@ -46,6 +44,8 @@ public class AddressController {
    private AddressBiz biz;
    @Autowired
    private CustomerExcelReader ex_red;
+   
+   private EmailFormDto emailFormDto = new EmailFormDto();
 
    @RequestMapping(value = "myaddr_Form.do")
    public String myaddr_Form(Model model, HttpSession session, int group_seq, AddressDto dto) {
@@ -319,11 +319,12 @@ public class AddressController {
       List<String> tomail = dto.getEmail(); // 받는 사람 이메일
       String title = dto.getTitle(); // 제목
       String content = dto.getContent(); // 내용
-      for(int i = 0; i<tomail.size(); i++) {
+      for(int i = 0; i < tomail.size(); i++) {
       messageHelper.setFrom(setfrom); // 보내는사람 생략하거나 하면 정상작동을 안함
       messageHelper.setTo(tomail.get(i)); // 받는사람 이메일
       messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
       messageHelper.setText(content, true); // html이라는 의미로 true를 써준다.
+      
       mailSender.send(message);
       }
       response.setCharacterEncoding("UTF-8");
@@ -336,4 +337,7 @@ public class AddressController {
       out_p.flush();
       return "";
    }
+   
+   
+   
 }

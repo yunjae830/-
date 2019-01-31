@@ -32,9 +32,9 @@ public class MailboxController {
 	@Autowired
 	MailboxBiz biz;
 	
-	@RequestMapping("/file")
+	@RequestMapping("/mailForm")
 	public String getFileForm() {
-		return "file";
+		return "mailFormTest";
 	}
 	
 	@RequestMapping("/getList")
@@ -140,5 +140,7 @@ public class MailboxController {
 		
 		
 	}
+	
+	
 	
 }
