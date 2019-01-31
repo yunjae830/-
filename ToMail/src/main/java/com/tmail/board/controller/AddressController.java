@@ -301,17 +301,20 @@ public class AddressController {
          System.out.println(addr_emails);
          addr_email.add(addr_emails);
       }
+      TestDto testDto = new TestDto();
+      model.addAttribute("testDto", testDto);
       System.out.println(addr_email+"list값");
       model.addAttribute("email", addr_email);
-      return "mailTest";
+//      return "mailTest";
+      return "addMailTest";
    }
    // 테스트중
-   @RequestMapping(value = "test.do")
-   public String test() {
-      return "mailTest";
-   }
+//   @RequestMapping(value = "test.do")
+//   public String test() {
+//      return "addMailTest";
+//   }
 
-   @RequestMapping("tests.do")
+   @RequestMapping(value="tests.do", method=RequestMethod.POST)
    public String tests(HttpServletResponse response, TestDto dto) throws MessagingException, IOException {
       MimeMessage message = mailSender.createMimeMessage();
       MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
@@ -323,7 +326,7 @@ public class AddressController {
       messageHelper.setFrom(setfrom); // 보내는사람 생략하거나 하면 정상작동을 안함
       messageHelper.setTo(tomail.get(i)); // 받는사람 이메일
       messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
-      messageHelper.setText(content, true); // html이라는 의미로 true를 써준다.
+      messageHelper.setText(dto.getTemplate1() + title + dto.getTemplate2() + content + dto.getTemplate3(), true); // html이라는 의미로 true를 써준다.
       
       mailSender.send(message);
       }
@@ -337,6 +340,8 @@ public class AddressController {
       out_p.flush();
       return "";
    }
+   
+   
    
    
    
