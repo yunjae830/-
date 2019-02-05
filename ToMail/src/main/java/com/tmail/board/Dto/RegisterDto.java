@@ -1,13 +1,19 @@
 package com.tmail.board.Dto;
 
 public class RegisterDto {
-
-   private String members_email;
-   private String members_name;
-   private String members_pw;
-   private int login_check;
+	
+	private int members_seq;
+	private String members_email;
+	private String members_name;
+	private String members_pw;
+	private int login_check;
    
-   
+   public int getMembers_seq() {
+	return members_seq;
+   }
+   public void setMembers_seq(int members_seq) {
+	this.members_seq = members_seq;
+   }
    public int getLogin_check() {
       return login_check;
    }

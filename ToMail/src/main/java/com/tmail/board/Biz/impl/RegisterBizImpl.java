@@ -51,5 +51,10 @@ public class RegisterBizImpl implements RegisterBiz {
    public String master_name_ck(String email) {
       return dao.master_name_ck(email);
    }
+   
+	@Override
+	public RegisterDto getMember(int members_seq) {
+		return dao.getMember(members_seq);
+	}
 
 }

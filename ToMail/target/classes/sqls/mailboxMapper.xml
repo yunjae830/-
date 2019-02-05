@@ -2,18 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mailbox">
 	
-	<select id="getList" resultType="MailboxDto">
-		SELECT * FROM TBL_MAILBOX ORDER BY BNO DESC
+	<select id="getTemplates" resultType="MailboxDto">
+		SELECT * FROM TBL_MAILBOX WHERE MNO = #{mno} ORDER BY BNO DESC
 	</select>
 	
 	<select id="getMail" resultType="MailboxDto">
-		SELECT * FROM TBL_MAILBOX
-		WHERE BNO = #{bno}
+		SELECT * FROM TBL_MAILBOX WHERE BNO = #{bno}
 	</select>
 	
 	<insert id="addMail" parameterType="MailboxDto">
-		INSERT INTO TBL_MAILBOX (BNO, RECIPIENT, TITLE, CONTENT) VALUES(
-			SEQ_MAILBOX.NEXTVAL, #{recipient}, #{title}, #{content}
+		INSERT INTO TBL_MAILBOX(BNO, MNO, TITLE1, TITLE2, TEXT1, TEXT2, TEXT3, IMG1, IMG2, IMG3, LINK1, LINK2, LINK3, TEMPLATE)
+		VALUES(SEQ_MAILBOX.NEXTVAL, #{mno, jdbcType=INTEGER}, #{title1, jdbcType=VARCHAR}, #{title2,  jdbcType=VARCHAR},
+		 #{text1, jdbcType=VARCHAR}, #{text2, jdbcType=VARCHAR}, #{text3, jdbcType=VARCHAR},
+		 #{img1, jdbcType=VARCHAR}, #{img2, jdbcType=VARCHAR}, #{img3, jdbcType=VARCHAR},
+		 #{link1, jdbcType=VARCHAR}, #{link2, jdbcType=VARCHAR}, #{link3, jdbcType=VARCHAR}, #{template, jdbcType=INTEGER}
+		 
 		)
 	</insert>
 	
@@ -23,8 +26,13 @@
 			SELECT SEQ_MAILBOX.NEXTVAL FROM DUAL
 		</selectKey>
 		
-		INSERT INTO TBL_MAILBOX(BNO, RECIPIENT, TITLE, CONTENT)
-		VALUES(#{bno}, #{recipient}, #{title}, #{content})
+		INSERT INTO TBL_MAILBOX(BNO, MNO, TITLE1, TITLE2, TEXT1, TEXT2, TEXT3, IMG1, IMG2, IMG3, LINK1, LINK2, LINK3 TEMPLATE)
+		VALUES(#{bno, jdbcType=INTEGER}, #{mno, jdbcType=INTEGER}, #{title1, jdbcType=VARCHAR}, #{title2,  jdbcType=VARCHAR},
+		 #{text1, jdbcType=VARCHAR}, #{text2, jdbcType=VARCHAR}, #{text3, jdbcType=VARCHAR},
+		 #{img1, jdbcType=VARCHAR}, #{img2, jdbcType=VARCHAR}, #{img3, jdbcType=VARCHAR},
+		 #{link1, jdbcType=VARCHAR}, #{link2, jdbcType=VARCHAR}, #{link3, jdbcType=VARCHAR}, #{template, jdbcType=INTEGER}
+		 
+		)
 		
 	</insert>
 	
@@ -34,61 +42,45 @@
 	
 	<update id="updateMail" parameterType="MailboxDto">
 		UPDATE TBL_MAILBOX
-		SET RECIPIENT = #{recipient},
-		TITLE = #{title},
-		CONTENT = #{content}
+		SET 
+		TITLE1 = #{title1, jdbcType=VARCHAR},
+		TITLE2 = #{title2, jdbcType=VARCHAR},
+		TEXT1 = #{text1, jdbcType=VARCHAR},
+		TEXT2 = #{text2, jdbcType=VARCHAR},
+		TEXT3 = #{text3, jdbcType=VARCHAR},
+		IMG1 = #{img1, jdbcType=VARCHAR},
+		IMG2 = #{img2, jdbcType=VARCHAR},
+		IMG3 = #{img3, jdbcType=VARCHAR},
+		LINK1 = #{link1, jdbcType=VARCHAR},
+		LINK2 = #{link2, jdbcType=VARCHAR},
+		LINK3 = #{link3, jdbcType=VARCHAR},
+		TEMPLATE = #{template, jdbcType=INTEGER}
 		WHERE BNO = #{bno}
 	</update>
 	
-	<sql id="criteria">
-		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
-			<foreach item='type' collection="typeArr">
-				<trim prefix="OR">
-					<choose>
-						<when test="type == 'T'.toString()">
-							TITLE LIKE '%'||#{keyword}||'%'
-						</when>
-						<when test="type == 'C'.toString()">
-							CONTENT LIKE '%'||#{keyword}||'%'
-						</when>
-						<when test="type == 'R'.toString()">
-							RECIPIENT LIKE '%'||#{keyword}||'%'
-						</when>
-					</choose>					
-				</trim>
-			</foreach>
-		</trim>
-	</sql>
-	
 	<select id="getListWithPaging" resultType="MailboxDto">
 	<![CDATA[
-		SELECT BNO, WRITER, RECIPIENT, TITLE, CONTENT, REGDATE
+		SELECT BNO, TITLE1, TEXT1, REGDATE, TEMPLATE
 		FROM
 		(
-		SELECT /*+INDEX_DESC(TBL_MAILBOX PK_MAILBOX)*/
-		ROWNUM RN, BNO, WRITER, RECIPIENT, TITLE, CONTENT, REGDATE
+		SELECT /*+INDEX_DESC(TBL_MAILBOX IDX_MAILBOX)*/
+		ROWNUM RN, BNO, TITLE1, TEXT1, REGDATE, TEMPLATE
 		FROM
 			TBL_MAILBOX
-		WHERE 
-
-		]]>
-		
-		<include refid="criteria"/>
-		
-		<![CDATA[
-				ROWNUM <= #{pageNum} * #{amount}
+		WHERE MNO = #{mno}
+		AND BNO > 0
+		AND	ROWNUM <= #{cri.pageNum} * #{cri.amount}
 		)
-		WHERE RN > (#{pageNum} -1) * #{amount}
+		WHERE RN > (#{cri.pageNum} -1) * #{cri.amount}
+		
 		]]>
 		
 	</select>
 	
-	<select id="getTotalCount" resultType="int">
-		SELECT COUNT(*) FROM TBL_MAILBOX WHERE
+	<select id="getCountByMno" resultType="int">
+	
+		SELECT COUNT(BNO) FROM TBL_MAILBOX WHERE MNO = #{mno}
 		
-		<include refid="criteria"/>
-		
-		BNO > 0
 	</select>
 
 

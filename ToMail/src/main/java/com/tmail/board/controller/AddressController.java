@@ -292,6 +292,7 @@ public class AddressController {
       List<String> addr_email = new ArrayList<String>();
       String email = (String) session.getAttribute("group_email");
       int members_seq = reg_biz.member_seq_return(email);
+      session.setAttribute("mno", members_seq);
       for(int i=0; i<all_value.length; i++) {
          System.out.println(all_value[i]+"\t"+members_seq+"\t"+group_seq);
          dto.setMembers_seq(members_seq);
@@ -306,7 +307,7 @@ public class AddressController {
       System.out.println(addr_email+"list값");
       model.addAttribute("email", addr_email);
 //      return "mailTest";
-      return "addMailTest";
+      return "getList";
    }
    // 테스트중
 //   @RequestMapping(value = "test.do")
@@ -326,7 +327,7 @@ public class AddressController {
       messageHelper.setFrom(setfrom); // 보내는사람 생략하거나 하면 정상작동을 안함
       messageHelper.setTo(tomail.get(i)); // 받는사람 이메일
       messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
-      messageHelper.setText(dto.getTemplate1() + title + dto.getTemplate2() + content + dto.getTemplate3(), true); // html이라는 의미로 true를 써준다.
+      messageHelper.setText(content, true); // html이라는 의미로 true를 써준다.
       
       mailSender.send(message);
       }

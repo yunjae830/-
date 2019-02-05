@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-   <meta charset="EUC-KR">
+   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -16,9 +16,9 @@
     <!-- 글꼴 -->
    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
    <!-- sweetalert -->
-   <script src="js/sweetalert2.all.min.js"></script>
-   <script src="js/sweetalert2.min.js"></script>
-   <link rel="stylesheet" href="js/sweetalert2.min.css">
+   <script src="/board/resources/js/sweetalert2.all.min.js"></script>
+   <script src="/board/resources/js/sweetalert2.min.js"></script>
+   <link rel="stylesheet" href="/board/resources/js/sweetalert2.css">
 </head>
 <style type="text/css">
 body{
@@ -60,7 +60,7 @@ function clause(){
          <div>
             <div align="center">
                <div>
-                  <img alt="tomail" src="img/logo_tomail.png" width="200px" onclick="location.href='main.do'"><br>
+                  <img alt="tomail" src="/board/resources/img/logo_tomail.png" width="200px" onclick="location.href='main.do'"><br>
                </div>
                <div>
                   <h3><strong>환영합니다!</strong></h3><br>
@@ -121,7 +121,7 @@ function clause(){
                      <a href="main.do">tomail.com으로 돌아가기</a>
                   </div><br><br><br>
                   <div>
-                     <img alt="tomail" src="img/logo_tomail_font.png" width="150px"><br>
+                     <img alt="tomail" src="/board/resources/img/logo_tomail_font.png" width="150px"><br>
                   </div>
                </div>
             </div>

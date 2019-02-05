@@ -231,7 +231,7 @@ $(document).ready(function(){
 				<c:forEach var="dto" items="${list }">
 					<hr>
 					<div>
-						<img alt="로고" src="img/camel.png"
+						<img alt="로고" src="/board/resources/img/camel.png"
 							style="width: 150px; height: 100px;">
 					</div>
 					<div id="wrapper">

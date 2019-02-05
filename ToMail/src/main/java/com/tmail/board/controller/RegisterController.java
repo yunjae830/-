@@ -309,6 +309,7 @@ public class RegisterController {
             } else if (res == 1) {
                System.out.println("로그인 성공");
                session.setAttribute("email_login", dto.getMembers_email());
+               session.setAttribute("mno", biz.member_seq_return(dto.getMembers_email()));
                response.setCharacterEncoding("UTF-8");
                response.setContentType("text/html; charset=UTF-8"); // 한글깨짐 방지
                PrintWriter out = null;
@@ -320,6 +321,7 @@ public class RegisterController {
                } finally {
                   out.flush();
                }
+               model.addAttribute("mno", biz.member_seq_return(dto.getMembers_email()));
                model.addAttribute("email", dto.getMembers_email());
                return "main2";
             }

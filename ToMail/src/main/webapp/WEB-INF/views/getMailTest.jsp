@@ -15,7 +15,7 @@
 
 <script type="text/javascript">
 
-/* $(document).ready(function(){
+$(document).ready(function(){
 	
 	var operForm = $("#operForm");
 	
@@ -100,118 +100,69 @@ function showImage(fileCallPath){
 			$(".bigPictureWrapper").hide();
 		}, 1000);
 	});
-} */
+}
 </script>
-
-<style type="text/css">
-.uploadResult{
-	width:100%;
-	background-color: gray;
-}
-.uploadResult ul{
-	display: flex;
-	flex-flow: row;
-	justify-content: center;
-	align-items: ceter;
-}
-.uploadResult ul li{
-	list-style: none;
-	padding: 10px;
-	align-content: center;
-	text-align: center;
-}
-.uploadResult ul li img{
-	width: 100px;
-}
-.uploadResult ul li span{
-	color: white;
-}
-.bigPictureWrapper{
-	position: absolute;
-	display: none;
-	justify-content: center;
-	align-items: center;
-	top: 0%;
-	width: 100%;
-	height: 100%;
-	background-color: gray;
-	z-index: 100;
-	background: rgba(255,255,255,0.5);
-}
-.bigPicture{
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-.bigPicture img{
-	width: 600px;
-}
-</style>
 
 </head>
 
-<body style="box-sizing: border-box;">
+<body>
 
-	<h2>CSS Layout Flexbox</h2>
-	<p style="font-size: 20px; font-family: verdana;">In this example, we have created a header, two columns/boxes and a footer. On smaller screens, the columns will stack on top of each other.</p>
-	<p>Resize the browser window to see the responsive effect.</p>
-	<p><strong>Note:</strong> Flexbox is not supported in Internet Explorer 10 eand earlier versions.</p>
-
-  <div>
-	
-  <header style="background-color: #666; padding: 20px; text-align: center; font-size: 30px; color: white;">
-  		<h2><!-- title!! --></h2>
-  </header>
-  
-<section style="display: -webkit-flex; display: flex;">
-  <nav style="-webkit-flex: 1; -ms-flex: 1; flex: 1; background: #ccc; padding: 20px;">
-    <ul style="list-style-type: none; padding: 0;">
-      <li><a href="#">London</a></li>
-      <li><a href="#">Paris</a></li>
-      <li><a href="#">Tokyo</a></li>
-    </ul>
-  </nav>
-  
-  <article style="-webkit-flex: 3; -ms-flex: 3; flex: 3; background-color: #f1f1f1; padding: 10px;">
-    <h1><!-- content title --></h1>
-    	<p><!-- content --></p>
-  		</article>
-</section>
-
-<footer style="background-color: #777; padding: 30px; text-align: center; color: white;">
-  <b style="font-family:sans-serif; font-size: 20px;">Footer</b>
-</footer>
-  
-</div>
+	  <div style="margin-top: 30px;" align="center">
+	  
+		<h2>CSS Layout Flexbox</h2>
+		<p style="font-size: 20px; font-family: verdana;">In this example, we have created a header, two columns/boxes and a footer. On smaller screens, the columns will stack on top of each other.</p>
+		<p>Resize the browser window to see the responsive effect.</p>
+		<p><strong>Note:</strong> Flexbox is not supported in Internet Explorer 10 eand earlier versions.</p>
+		
+  		<table style="font-family:'Times New Roman', Times, serif; background-color: #F5F5F5;">
+  			<tr>
+  				<td style="background-color: #F5F5F5;">
+  			</tr>
   			
-  			  		<button class="btn btn-default" data-oper="updateMail">Update</button>
-  					<button class="btn btn-primary" data-oper="getList">To List</button>
+  			<tr>
+  				<td style="background-color: #F5F5F5;">
+		  			<header style="text-align: center; font-size: 30px;">
+		  				<p>${mail.title1 }</p>
+		  			</header>
+  				</td>
+  			</tr>
+  			
+  			<tr>
+				<td style="background-color: #F5F5F5; height: 500px">
+					<div style="column-count:2; width: 500px; word-wrap: break-word; font-size: 20px">
+					${mail.text1 }
+					</div>
+				</td>
+	  				
+			</tr>
+			<tr>
+				<td style="height: 200px; background-color: #F5F5F5;" class="uploadResult">
+					<ul>
+					</ul>
+				</td>
+			</tr>
+			
+			<tr>
+				<td style="height: 200px;">
+					<footer style="background-color: #F5F5F5; text-align: center;">
+		  				<b style="font-family:sans-serif; font-size: 20px;">${mail.text2 }</b>
+		  				<b style="font-size: 19px;"><a href="${mail.link1 }">Go to our page!</a></b>
+					</footer>
+				</td>
+			</tr>
+  		</table>
+  		<button class="btn btn-default" data-oper="updateMail">Update</button>
+  		<button class="btn btn-primary" data-oper="getList">To List</button>
+  			
   			
   				<form id='operForm' method="get">
   					<input type="hidden" id="bno" name="bno" value='<c:out value="${mail.bno }"/>'/>
   					<input type="hidden" name="pageNum" value="<c:out value="${cri.pageNum }"/>"/>
   					<input type="hidden" name="amount" value="<c:out value="${cri.amount }"/>"/>
-					<input type="hidden" name="keyword" value="<c:out value="${cri.keyword }"/>"/>
-					<input type="hidden" name="type" value="<c:out value="${cri.type }"/>"/>
+  					<input type="hidden" name="mno" value="<c:out value="${mno }"/>"/>
   				</form>
 
-
-<div class="container">
-	<div class="panel panel-default">
-		<!-- panel-heading -->
-		<div class="panel-heading">Files</div>
-		<!-- panel-body -->
-		<div class="panel-body">
-			<div class="uploadResult">
-				<ul>
-				</ul>
-			</div>
-		</div>
-		<!-- end panel-body -->
-	</div>
-	<!-- end panel-heading -->
-</div>
+	  </div>
 
 <div class="bigPictureWrapper">
 	<div class="bigPicture">
