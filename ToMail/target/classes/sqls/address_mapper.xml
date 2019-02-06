@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="email">
-
    <select id="selectList" resultType="AddressDto" parameterType="AddressDto">
       SELECT CUSTOMER_NAME, CUSTOMER_EMAIL, CUSTOMER_SEQ FROM ADDRESS_TABLE WHERE MEMBERS_SEQ = #{members_seq} AND group_seq = #{group_seq}
    </select>
@@ -18,7 +17,10 @@
       DELETE FROM ADDRESS_TABLE WHERE CUSTOMER_NAME = #{customer_name}
    </delete>
    <select id="address_check" parameterType="AddressDto" resultType="String">
-      SELECT CUSTOMER_NAME FROM ADDRESS_TABLE WHERE CUSTOMER_EMAIL = #{customer_email} AND group_seq = #{group_seq}
+      SELECT CUSTOMER_NAME FROM ADDRESS_TABLE WHERE CUSTOMER_EMAIL = #{customer_email} AND members_seq = #{members_seq}
+   </select>
+   <select id="address_check2" parameterType="AddressDto" resultType="String">
+   		SELECT CUSTOMER_EMAIL FROM ADDRESS_TABLE WHERE CUSTOMER_EMAIL = #{customer_email} AND members_seq = #{members_seq}
    </select>
    <insert id="group_insert" parameterType="Address_GroupDto">
       INSERT INTO GROUP_ADDRESS_TABLE VALUES(GROUP_ADDRESS_SEQ.nextval, #{group_title}, sysdate, #{members_seq}, 0)
@@ -43,5 +45,11 @@
    </update>
    <select id="selectOne_email_to" parameterType="AddressDto" resultType="String">
       SELECT CUSTOMER_EMAIL FROM ADDRESS_TABLE WHERE CUSTOMER_SEQ = #{customer_seq} AND group_seq = #{group_seq} AND members_seq = #{members_seq}
+   </select>
+   <insert id="email_list" parameterType="AddressDto">
+   		INSERT INTO GROUP_ADDRESS VALUES(ADDRESS_SEQ.nextval, #{customer_email}, #{members_seq}, #{group_seq})
+   </insert>
+   <select id="selectList_cusSeq" parameterType="AddressDto" resultType="String">
+   		SELECT customer_seq FROM ADDRESS_TABLE WHERE group_seq = #{group_seq} AND members_seq = #{members_seq}
    </select>
 </mapper>

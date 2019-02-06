@@ -174,14 +174,6 @@ function group_seq(num){
 	//alert(num);
 	document.getElementById("group").value = num;
 }
-$(document).ready(function(){
-	  $("#search").on("keyup", function() {
-	    var value = $(this).val().toLowerCase();
-	    $("#myDIV *").filter(function() {
-	      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-	    });
-	  });
-	});
 </script>
 </head>
 <body>
@@ -192,8 +184,8 @@ $(document).ready(function(){
 				<div>
 					<div id="logo_body" style="float: left; border: 1px;">
 						<img alt="도움말"
-							src="https://kin-phinf.pstatic.net/20170217_195/1487265323583TOP2A_PNG/%B7%CE%B0%ED%BE%F3%B1%BCPNG.png"
-							style="width: 40px; height: 40px; margin-top: 50px;">
+							src="img/logo_tomail.png"
+							style="width: 40px; height: 50px; margin-top: 50px;">
 					</div>
 					<div id="logo_side"
 						style="float: right; border: 1px; margin-top: 60px;">
@@ -204,12 +196,10 @@ $(document).ready(function(){
 					<h2>투메일에서 조언 및 답변</h2>
 					<div class="box">
 						<div class="container-4">
-						<form action="">
 							<input type="search" id="search" placeholder="답변 검색 중..." name=""/>
 							<button class="icon" type="submit">
 								<i class="fa fa-search"></i>
 							</button>
-						</form>
 						</div>
 					</div>
 				</div>
@@ -220,48 +210,48 @@ $(document).ready(function(){
 		<c:set var="name" value="${name}" />
 		<c:if test="${name eq '관리자'}">
 			<br>
-			<div>
+			<div align="right">
 				<button class="btn btn-primary" data-toggle="modal"
 					data-target="#myModal" title="도움말 추가" name="help_insert">도움말
 					추가</button>
 			</div>
 		</c:if>
-		<div>
+		<div style="padding-top: 10px;">
 			<section class="section">
 				<c:forEach var="dto" items="${list }">
-					<hr>
-					<div>
+					<div style="border: 1px; float: left; margin-right: 10px;">
 						<img alt="로고" src="img/camel.png"
 							style="width: 150px; height: 100px;">
 					</div>
-					<div id="wrapper">
-						<div id="title_div">
+					<div>
+						<div>
 							<h3>
 								<a>${dto.help_title }</a>
 							</h3>
 						</div>
-						<div id="title_detail">
+						<div>
 							<h5>
 								<a>${dto.help_title_detail}</a>
 							</h5>
 						</div>
-						<div id="list_size_div">
+						</div>
+						<div style="padding-top: 40px;">
 							<div>
 								<div>
-									<a>작성자: ${dto.members_name}</a>
+									<a>작성자: <b>${dto.members_name}</b></a>
 								</div>
 							</div>
 						</div>
-					</div>
 					<c:set var="name" value="${name}" />
 					<c:if test="${name eq '관리자'}">
 						<div id="button">
-							<button id="update_group" data-toggle="modal"
+							<button id="update_group" data-toggle="modal" class="btn btn-sm" style="background-color: #FFCB08"
 								data-target="#myModal_up" onclick="group_seq(${dto.help_seq })">수정</button>
-							<button id="delete_group"
+							<button id="delete_group" class="btn btn-sm" style="background-color: #FFCB08"
 								onclick="button_event(${dto.help_seq })">삭제</button>
 						</div>
 					</c:if>
+					<hr>
 				</c:forEach>
 			</section>
 		</div>
@@ -356,6 +346,5 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
-	<%@ include file="kakaoopenchat.jsp"%>
 </body>
 </html>

@@ -24,7 +24,9 @@
    <a href="template.do">템플릿</a>
    <br/>
    <a href="group_mail.do">그룹메일보관함</a>
-   <br/>
-   <a href="droganddrop.do">드래그앤드롭</a>
+   <br>
+   <a href="summernoteForm.do">테스트테스트</a>
+   <br>
+   <a href="EmailBuilderForm.do">이메일 빌더</a>
 </body>
 </html>

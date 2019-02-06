@@ -4,10 +4,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
 <!DOCTYPE html>
+<%@page import="java.util.ArrayList"%>
 <html>
 <head>
 <meta charset="EUC-KR">
@@ -125,9 +127,50 @@ b {
 			return;
 		}
 	}
-	function group_seq(num){
+	function button_event2(num) {
 		document.getElementById("group").value = num;
 	}
+	var cnt_check = 0;
+	var group_seq = 0;
+	function cnt_return(cnt_num,group_seqs){
+		group_seq = group_seqs;
+		cnt_check = cnt_num;
+	}
+	$(document).ready(function(){
+		var all_value = new Array();
+		$("#All_check").click(function(){
+			//클릭되었으면
+	        if($("#All_check").prop("checked")){
+	        	//input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
+	            $("input[name=addr_check]").prop("checked",true);
+	            for(var i=0; i<$("input[name=addr_check]").length; i++) {//전체 체크박스의 개수 == 전체 구독자 수(만큼 돌리고 변수에 값을 담음)
+	            	all_value[i] = $("input[name=addr_check]:checked")[i].value;
+	        	}
+	            //클릭이 안되있으면
+	        }else{
+	            //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
+	            $("input[name=addr_check]").prop("checked",false);
+	        }
+		});
+		$("input[name=addr_check]").click(function(){
+			if($("input[name=addr_check]").length == $("input[name=addr_check]:checked").length){
+				$("input[name=all]").prop("checked",true);
+		}else{
+			$("input[name=all]").prop("checked",false);
+			for(var i=0; i<$("input[name=addr_check]").length; i++){
+				all_value[i] = $("input[name=addr_check]:checked")[i].value;
+			}
+		}
+		});
+		$("#addr_ck").click(function(){
+			if($("input[name=addr_check]:checked").length==0){
+				alert('그룹을 선택하지 않으셨습니다.');
+			}
+			else if($("input[name=addr_check]:checked").length>0){
+				location.href = 'addr_group.do?all_value=' + all_value;
+			}
+		});
+	});
 </script>
 </head>
 <body>
@@ -135,21 +178,38 @@ b {
 
 	<div class="container">
 		<div>
+		<c:set var="list" value="${list}"/>
+		<c:choose>
+		<c:when test="${fn:length(list) > 0}">
 			<div>
-				<h2>이메일</h2>
+				<h2>그룹을 선택하세요</h2>
 			</div>
-			<div id="button">
-				<div align="left">
+			<div id="button" style="padding-bottom: 0px;">
+			
+				<div style="border: 1px; float: right;">
+					<p>
+						<button type="button" class="btn btn-success" id="addr_ck">+ 그룹 선택</button>
+					</p>
+				</div>
+				<div style="border: 1px; float: right; margin-right: 10px;">
 					<p>
 						<button type="button" class="btn btn-primary" data-toggle="modal"
 							data-target="#myModal">+ 그룹 새로 만들기</button>
 					</p>
+				</div> 
+				<div class="checkbox">
+				<div align="left"><input type="checkbox" id="All_check" name="all"><b style="padding-left: 10px;">전체 선택 </b></div>
 				</div>
+				<br>
+				<hr style="border-color: black;">
 			</div>
 			<c:forEach var="dto" items="${list }">
-				<div id="wrapper">
-					<hr>
-					<div id="title_div">
+					<div class="row">
+					<div class="col-sm-4"  style="padding-top: 27px;">
+					<div style="border: 1px; float: left; padding-right: 10px">
+					<input type="checkbox" name="addr_check" value="${dto.group_seq }" onclick="cnt_return(${dto.cnt},${dto.group_seq })" />
+					</div>
+					<div id="title_div" style="border: 1px; float: left;">
 						<h3>
 							<a href="myaddr_Form.do?group_seq=${dto.group_seq }">${dto.group_title }</a>
 						</h3>
@@ -157,24 +217,48 @@ b {
 						<fmt:formatDate pattern="yyyy-MM-dd.a HH:mm"
 							value="${dto.group_date }" />
 					</div>
-					<div id="list_size_div">
+					</div>
+					<div class="col-sm-4" style="padding-top: 30px;">
+					<div id="list_size_div" align="center" >
 						<div>
 							<div>구독자</div>
 							<b>${dto.cnt}</b>
 						</div>
 					</div>
-					<div id="update_bb">
-						<button id="update_group" data-toggle="modal"
-							data-target="#myModal_up" onclick="group_seq(${dto.group_seq })">수정</button>
 					</div>
-					<div id="delete_bb">
-						<button id="delete_group"
-							onclick="button_event(${dto.group_seq })">삭제</button>
+					<div class="col-sm-4" style="padding-top: 40px;">
+					<div align="right">
+					<div id="delete_bb" style="float: right; border: 1px;">
+					<a id="delete_group" class="btn btn-sm" onclick="button_event(${dto.group_seq })"><img alt="삭제" src="img/delete.png" style="width: 30px;"></a>
+					</div>
+					<div id="update_bb" style="float: right; border: 1px; margin-right: 10px;">
+					<a id="update_group" class="btn btn-sm" onclick="button_event2(${dto.group_seq })" data-toggle="modal" data-target="#myModal_up"><img alt="수정" src="img/update.png" style="width: 30px;"></a>
+					</div>
 					</div>
 				</div>
+					</div>
+					<hr>
 			</c:forEach>
+			</c:when>
+			<c:when test="${fn:length(list) == 0}">
+			<div>
+				<h2>그룹을 만들어주세요</h2>
+			</div>
+			<div id="button" style="padding-bottom: 0px;">
+				<div style="border: 1px; float: right; margin-right: 10px;">
+					<p>
+						<button type="button" class="btn btn-primary" data-toggle="modal"
+							data-target="#myModal">+ 그룹 새로 만들기</button>
+					</p>
+				</div> 
+				<div>
+				</div>
+				<br>
+				<hr style="border-color: black;">
+			</div>
+		</c:when>
+		</c:choose>
 		</div>
-
 		<!--group_insert Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">

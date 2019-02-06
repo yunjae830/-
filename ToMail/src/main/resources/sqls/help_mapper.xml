@@ -17,4 +17,7 @@
    <delete id="help_delete" parameterType="int">
    	DELETE FROM HELP_TABLE WHERE HELP_SEQ = #{help_seq}
    </delete>
+   <select id="selectOne_email_group" parameterType="AddressDto" resultType="String">
+   		SELECT CUSTOMER_EMAIL FROM ADDRESS_TABLE WHERE group_seq = #{group_seq} AND members_seq = #{members_seq} AND customer_seq = #{customer_seq}
+   </select>
 </mapper>

@@ -81,4 +81,9 @@ public class AddressBizImpl implements AddressBiz {
    public String selectOne_email(AddressDto dto) {
       return dao.selectOne_email(dto);
    }
+
+   @Override
+   public List<String> selectOne_cus_seq(AddressDto dto) {
+	return dao.selectOne_cus_seq(dto);
+}
 }

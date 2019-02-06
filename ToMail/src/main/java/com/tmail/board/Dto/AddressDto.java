@@ -7,6 +7,7 @@ public class AddressDto {
    private String customer_email;
    private int group_seq;
    private int members_seq;
+   private String all_cus_seq;
    
    public int getCustomer_seq() {
       return customer_seq;
@@ -39,7 +40,13 @@ public class AddressDto {
    public void setMembers_seq(int members_seq) {
       this.members_seq = members_seq;
    }
-   @Override
+   public String getAll_cus_seq() {
+	return all_cus_seq;
+   }
+   public void setAll_cus_seq(String all_cus_seq) {
+	this.all_cus_seq = all_cus_seq;
+   }
+@Override
    public String toString() {
       return "Email [customer_seq=" + customer_seq + ", customer_name=" + customer_name + ", customer_email="
             + customer_email + ", members_seq=" + "]";

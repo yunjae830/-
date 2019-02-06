@@ -3,6 +3,8 @@ package com.tmail.board.Dao.impl;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +14,8 @@ import com.tmail.board.Dto.Address_GroupDto;
 @Repository
 public class AddressDaoImpl implements AddressDao {
 
+	Logger log = LoggerFactory.getLogger(AddressDaoImpl.class);
+	
    @Autowired
    private SqlSessionTemplate sqlSession;
    @Override
@@ -43,6 +47,7 @@ public class AddressDaoImpl implements AddressDao {
    @Override
    public int insert(AddressDto dto) {
       int res = 0;
+      System.out.println(dto.getCustomer_email()+"이메일\n"+dto.getCustomer_name()+"이름\n"+dto.getGroup_seq()+"그룸에스이큐\n"+dto.getMembers_seq()+"멤버에스이큐\n");
       try {
          res = sqlSession.insert(namespace + "insert", dto);
       } catch (Exception e) {
@@ -82,12 +87,16 @@ public class AddressDaoImpl implements AddressDao {
    @Override
    public int address_check(AddressDto dto) {
       String names = null;
+      String email = null;
+      System.out.println("이메일 체크 시작");
       try {
          names = sqlSession.selectOne(namespace+ "address_check", dto);
+         email = sqlSession.selectOne(namespace+"address_check2",dto);
       } catch (Exception e) {
          e.printStackTrace();
       }
-      if(dto.getCustomer_name().equals(names)) {
+      System.out.println("디비에서 나온 이름 :"+names + "\n 내가보낸 이름 :" + dto.getCustomer_name());
+      if(dto.getCustomer_name().equals(names)||dto.getCustomer_email().equals(email)) {
          System.out.println("중복됐어요");
          return 0;
       }else {
@@ -157,6 +166,7 @@ public class AddressDaoImpl implements AddressDao {
    @Override
    public int update_group(Address_GroupDto dto) {
       int res = 0;
+      System.out.println(dto.getGroup_seq());
       try {
          System.out.println(dto.getGroup_seq()+"\n"+dto.getMembers_seq()+"\n"+dto.getGroup_title());
          res = sqlSession.update(namespace+"update_group", dto);
@@ -197,7 +207,22 @@ public class AddressDaoImpl implements AddressDao {
       } catch (Exception e) {
          e.printStackTrace();
       }
-      System.out.println(res+"디비에서 나온값");
+      System.out.println(res+"디비에서 나온 이메일 확인 값");
       return res;
    }
+
+@Override
+public List<String> selectOne_cus_seq(AddressDto dto) {
+	System.out.println(dto.getGroup_seq()+"그룹그룹"+dto.getMembers_seq()+"멤버멤버");
+	//List<Integer> ress = null;
+	List<String> res = null;
+	try {
+		res = sqlSession.selectList(namespace +"selectList_cusSeq", dto);
+		System.out.println(res);
+		//res = (tmp==null)?0:Integer.parseInt(tmp.toString());
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return res;
+}
 }

@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -22,17 +23,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.util.WebUtils;
 
 import com.tmail.board.Biz.AddressBiz;
+import com.tmail.board.Biz.HelpBiz;
 import com.tmail.board.Biz.RegisterBiz;
 import com.tmail.board.Dto.AddressDto;
 import com.tmail.board.Dto.Address_GroupDto;
-import com.tmail.board.Dto.EmailFormDto;
+import com.tmail.board.Dto.InsertResultDto;
 import com.tmail.board.Dto.TestDto;
-import com.tmail.board.excel.CustomerExcelReader;
+import com.tmail.board.excel.ReadXLSX;
+import com.tmail.board.sha256.SHA256;
 
 @Controller
 public class AddressController {
@@ -43,9 +47,9 @@ public class AddressController {
    @Autowired
    private AddressBiz biz;
    @Autowired
-   private CustomerExcelReader ex_red;
-   
-   private EmailFormDto emailFormDto = new EmailFormDto();
+   private ReadXLSX ex_red;
+   @Autowired
+   private HelpBiz help_biz;
 
    @RequestMapping(value = "myaddr_Form.do")
    public String myaddr_Form(Model model, HttpSession session, int group_seq, AddressDto dto) {
@@ -60,47 +64,78 @@ public class AddressController {
       return "guest_addr_insert";
    }
 
+   @RequestMapping(value="myaddr_insert_file.do", method=RequestMethod.POST)
+   public String myaddr_file(Model model, AddressDto dto, HttpSession session, int members_seq, HttpServletResponse response, MultipartHttpServletRequest multi) throws IOException { 
+	   InsertResultDto result = new InsertResultDto();
+	   InputStream inputStream = null;
+       OutputStream outputStream = null;
+       if(multi.getFile("files").getSize()>0) {            
+       // 파일경로
+       String path = "";
+       try {
+          path = WebUtils.getRealPath(multi.getSession().getServletContext(), "/storage");
+       } catch (FileNotFoundException e1) {
+          e1.printStackTrace();
+       }
+       System.out.println(path);
+       // 파일들을 List형식으로 보관
+       List<MultipartFile> files = multi.getFiles("files");
+
+       File file = new File(path);
+       // 파일이 없다면 디렉토리를 생성
+       if (file.exists() == false) {
+          file.mkdirs();
+       }
+       File filename = null;
+       for (int i = 0; i < files.size(); i++) {
+             inputStream = files.get(i).getInputStream();
+             System.out.println(files.get(i).getOriginalFilename() + " 업로드");
+             filename = new File(path + "/" + files.get(i).getOriginalFilename());
+             if (!filename.exists()) {
+                filename.createNewFile();
+             }
+             outputStream = new FileOutputStream(filename);
+             int read = 0;
+             byte[] b = new byte[(int) files.get(i).getSize()];
+
+             while ((read = inputStream.read(b)) != -1) {
+                outputStream.write(b, 0, read);
+             }
+             System.out.println(path + "\\" + files.get(i).getOriginalFilename());
+             ex_red.ReadXLSX_Read(path + "\\" + files.get(i).getOriginalFilename(), members_seq, dto.getGroup_seq());
+       }
+       System.out.println(result.getSum()+"-------------------------리절트");
+    	   String email = (String) session.getAttribute("group_email");
+           model.addAttribute("group_seq", dto.getGroup_seq());
+           model.addAttribute("email",email);
+           model.addAttribute("members_seq", members_seq);
+           model.addAttribute("list", biz.selectList(dto));
+           return "guest_addr_insert";
+      }else {
+    	  response.setCharacterEncoding("UTF-8");
+          response.setContentType("text/html; charset=UTF-8"); // 한글깨짐 방지
+          PrintWriter out_p = null;
+          try {
+             out_p = response.getWriter();
+             out_p.println("<script>alert('파일을 넣어주세요');</script>");
+          } catch (IOException e) {
+             e.printStackTrace();
+          } finally {
+             out_p.flush();
+          }
+   	   String email = (String) session.getAttribute("group_email");
+          model.addAttribute("group_seq", dto.getGroup_seq());
+          model.addAttribute("email",email);
+          model.addAttribute("members_seq", members_seq);
+          model.addAttribute("list", biz.selectList(dto));
+          return "guest_addr_insert";
+      }
+   }
    @RequestMapping(value="myaddr_insert.do", method=RequestMethod.POST)
-   public String myaddr(Model model, AddressDto dto, HttpSession session, int members_seq, HttpServletResponse response, MultipartHttpServletRequest multi) throws IOException {
-      InputStream inputStream = null;
-         OutputStream outputStream = null;
-         if(multi.getFile("files").getSize()>0) {            
-         // 파일경로
-         String path = "";
-         try {
-            path = WebUtils.getRealPath(multi.getSession().getServletContext(), "/storage");
-         } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
-         }
-         System.out.println(path);
-         // 파일들을 List형식으로 보관
-         List<MultipartFile> files = multi.getFiles("files");
-
-         File file = new File(path);
-         // 파일이 없다면 디렉토리를 생성
-         if (file.exists() == false) {
-            file.mkdirs();
-         }
-         File filename = null;
-         for (int i = 0; i < files.size(); i++) {
-               inputStream = files.get(i).getInputStream();
-               System.out.println(files.get(i).getOriginalFilename() + " 업로드");
-               filename = new File(path + "/" + files.get(i).getOriginalFilename());
-               ex_red.xlsxToCustomerVoList(path + "/" + files.get(i).getOriginalFilename());
-               if (!filename.exists()) {
-                  filename.createNewFile();
-               }
-               outputStream = new FileOutputStream(filename);
-               int read = 0;
-               byte[] b = new byte[(int) files.get(i).getSize()];
-
-               while ((read = inputStream.read(b)) != -1) {
-                  outputStream.write(b, 0, read);
-               }
-         }
-         }else if(!(dto.getCustomer_email().equals("")&&dto.getCustomer_name().equals(""))) {
-      int check = biz.address_check(dto);
-      dto.setMembers_seq(members_seq);
+   public String myaddr(Model model, AddressDto dto, HttpSession session, int members_seq, HttpServletResponse response, MultipartHttpServletRequest multi) throws IOException { 
+	   if(!(dto.getCustomer_email().equals("")&&dto.getCustomer_name().equals(""))) {
+        	 dto.setMembers_seq(members_seq);
+       int check = biz.address_check(dto);
       if(check==0) {
          response.setCharacterEncoding("UTF-8");
             response.setContentType("text/html; charset=UTF-8"); // 한글깨짐 방지
@@ -156,7 +191,6 @@ public class AddressController {
              model.addAttribute("list", biz.selectList(dto));
             return "guest_addr_insert";
          }
-         return"error";
    }
 
    // 그룹 만들기
@@ -232,11 +266,20 @@ public class AddressController {
    }
    //그룹 삭제 버튼 클릭시
    @RequestMapping(value="delete_dd.do")
-   public String group_delete(HttpSession session, Model model, int group_seq,Address_GroupDto dto) {
-      String email = (String) session.getAttribute("group_email");
+   public String group_delete(HttpSession session, Model model, int group_seq,Address_GroupDto dto, AddressDto dto2) {
+	   List<String> cus_seq = null;
+	   String email = (String) session.getAttribute("group_email");
       int members_seq = reg_biz.member_seq_return(email);
+      System.out.println(members_seq+"member_seq-----------");
       dto.setGroup_seq(group_seq); dto.setMember_seq(members_seq);
       System.out.println(group_seq+"@@@@@@"+members_seq);
+      dto2.setGroup_seq(group_seq); dto2.setMembers_seq(members_seq);
+      cus_seq = biz.selectOne_cus_seq(dto2);
+      for(int j = 0; j<cus_seq.size(); j++) {
+    	  dto2.setGroup_seq(group_seq); dto2.setMembers_seq(members_seq);
+    	  dto2.setCustomer_seq(Integer.parseInt(cus_seq.get(j)));
+    	  biz.delete_addr(dto2);
+      }
       int res = biz.delete_group(dto);
       List<Address_GroupDto> group_list = biz.selectList_Group(members_seq);
       model.addAttribute("member_seq", members_seq);
@@ -278,6 +321,7 @@ public class AddressController {
          dto.setMembers_seq(members_seq);
          dto.setGroup_seq(group_seq);         
          dto.setCustomer_seq(delete_addr[i]);
+         String addr_emails = biz.selectOne_email(dto);
          biz.delete_addr(dto);
       }
       model.addAttribute("group_seq", group_seq);
@@ -322,12 +366,11 @@ public class AddressController {
       List<String> tomail = dto.getEmail(); // 받는 사람 이메일
       String title = dto.getTitle(); // 제목
       String content = dto.getContent(); // 내용
-      for(int i = 0; i < tomail.size(); i++) {
+      for(int i = 0; i<tomail.size(); i++) {
       messageHelper.setFrom(setfrom); // 보내는사람 생략하거나 하면 정상작동을 안함
       messageHelper.setTo(tomail.get(i)); // 받는사람 이메일
       messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
-      messageHelper.setText(dto.getTemplate1() + title + dto.getTemplate2() + content + dto.getTemplate3(), true); // html이라는 의미로 true를 써준다.
-      
+      messageHelper.setText(content, true); // html이라는 의미로 true를 써준다.
       mailSender.send(message);
       }
       response.setCharacterEncoding("UTF-8");
@@ -340,9 +383,5 @@ public class AddressController {
       out_p.flush();
       return "";
    }
-   
-   
-   
-   
    
 }
