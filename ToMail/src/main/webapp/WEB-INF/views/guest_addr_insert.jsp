@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
@@ -28,10 +29,11 @@
 <!-- 글꼴 -->
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic"
 	rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <!-- emoji -->
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <style type="text/css">
 h2 {
 	margin-top: 60px;
@@ -100,6 +102,13 @@ b {
 		overflow: scroll;
 	}
 }
+
+input[type="search"] {
+ background: white;
+ border-radius: 5px;
+/*  width: 140px; */
+ font-family:"맑은 고딕";
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -125,7 +134,7 @@ b {
 			return;
 		}
 	}
-	function group_seq(num){
+	function cus_seq(num){
 		document.getElementById("group").value = num;
 	}
 $(document).ready(function(){
@@ -162,6 +171,12 @@ $(document).ready(function(){
 			location.href = 'addr_check.do?all_value=' + all_value + '&group_seq=' + ${group_seq};
 		}
 	});
+	$("#in_ad").click(function(){
+		for(var i=0; i<$("input[name=addr_check]").length; i++){
+			all_value[i] = $("input[name=addr_check]")[i].value;
+		}
+		document.getElementById("group_cus_seq").value = all_value;
+	});
 	$("#delete_addr_ck").click(function(){
 		if($("input[name=addr_check]:checked").length==0){
 			alert('구독자를 선택하지 않으셨습니다.');
@@ -174,6 +189,11 @@ $(document).ready(function(){
 			}
 		}
 	});
+	$("#addr_se").click(function(){
+		var name = document.getElementById("search_name").value;
+		var offset = $("#" + name).offset();//절대좌표 offset()
+        $('html, body').animate({scrollTop : offset.top}, 400); //400은 이동되는 시간
+	});
 });
 </script>
 </head>
@@ -182,42 +202,87 @@ $(document).ready(function(){
 
 	<div class="container">
 		<div>
+		<c:set var="list" value="${list}"/>
+		<c:choose>
+		<c:when test="${fn:length(list) > 0}">
+			<div style="padding-bottom: 60px;">
 			<div>
-				<h2>구독자정보</h2>
+				<h2>구독자를 선택하세요</h2>
+			</div>
+			<div align="right">
+				<div class="box">
+						<div class="container-4">
+							<input type="search" id="search_name" placeholder="구독자 이름 검색중..."/>
+							<a id="addr_se" href="#">
+								<img alt="검색" src="img/search.png" style="width: 30px; padding-bottom: 10px;">
+							</a>
+						</div>
+					</div>
+			</div>
+			</div>
+			<div>
+					<div style="border: 1px; float: right;">
+						<p>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="in_ad">+ 구독자 새로 만들기</button>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal_file" id="file insert">+ 구독자 파일 추가</button>
+							<button type="button" class="btn btn-danger" id="delete_addr_ck">선택한 구독자 삭제</button>
+							<button type="submit" class="btn btn-success" id="addr_ck">선택한 구독자로 메일 보내기</button>
+						</p>
+					</div>
+				<div>
+				<div align="left"><input type="checkbox" id="All_check" name="all"><b style="padding-left: 10px;">전체 선택 </b></div>
+				<div align="right" style="padding-top: 10px;">
+				</div>
+				<hr style="border-color: black;">
+				</div>
+			</div>
+			
+			<c:forEach var="dto" items="${list }">
+				<div class="row" id="content">
+				<div class="col-sm-4" style="padding-top: 5px;">
+					<div class="checkbox checkbox-primary" style="border: 1px; float: left; padding-right: 10px">
+					<input type="checkbox" name="addr_check" value="${dto.customer_seq}"/>
+					</div>
+					<div id="${dto.customer_name }" style="border: 1px; float: left;">
+						<h3>
+							<a>${dto.customer_name }</a>
+						</h3>
+						</div>
+						</div>
+						<div class="col-sm-4" style="padding-top: 10px;">
+						<b>이메일 </b> <a>${dto.customer_email }</a>
+						</div>
+					<div class="col-sm-4" style="padding-top: 10px;">
+					<div id="delete_bb" style="float: right; border: 1px;">
+						<a id="delete_group" class="btn btn-sm" onclick="button_event(${dto.customer_seq},${group_seq})"><img alt="삭제" src="img/delete.png" style="width: 30px;"></a>
+					</div>
+					<div id="update_bb" style="float: right; border: 1px; margin-right: 10px;">
+						<a id="update_group" class="btn btn-sm" onclick="cus_seq(${dto.customer_seq })" data-toggle="modal" data-target="#myModal_up"><img alt="수정" src="img/update.png" style="width: 30px;"></a>
+					</div>
+					</div>
+				</div>
+				<hr>
+			</c:forEach>
+		</c:when>
+		<c:when test="${fn:length(list) == 0}">
+			<div>
+				<h2>구독자를 만들어주세요</h2>
 			</div>
 			<div>
 					<div align="right">
 						<p>
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">+ 구독자 새로 만들기</button>
-							<button type="button" class="btn btn-primary" id="delete_addr_ck">선택한 구독자 삭제</button>
-							<button type="submit" class="btn btn-primary" id="addr_ck">선택한 구독자로 메일 보내기</button>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="in_ad">+ 구독자 직접 추가</button>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal_file" id="file insert">+ 구독자 파일 추가</button>
 						</p>
 					</div>
 				<div>
-				<div align="left"><input type="checkbox" id="All_check" name="all"><b>전체 선택 </b></div>
+				<hr style="border-color: black;">
 				</div>
 			</div>
-			<c:forEach var="dto" items="${list }">
-				<div id="wrapper">
-					<hr>
-					<div>
-					<input type="checkbox" name="addr_check" value="${dto.customer_seq}"/>
-					</div>
-					<div id="title_div">
-						<h3>
-							<a>${dto.customer_name }</a>
-						</h3>
-						<b>이메일 </b> <a>${dto.customer_email }</a>
-					</div>
-					<div id="button">
-						<button id="update_group" data-toggle="modal" data-target="#myModal_up" onclick="group_seq(${dto.customer_seq })">수정</button>
-						<button id="delete_group" onclick="button_event(${dto.customer_seq},${group_seq})">삭제</button>
-					</div>
-				</div>
-			</c:forEach>
+		</c:when>
+		</c:choose>
 		</div>
 	</div>
-
 	<!-- insert_addr_modal-->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -248,21 +313,79 @@ $(document).ready(function(){
 									</div>
 								</div>
 								<div>
-									<form:form action="myaddr_insert.do?members_seq=${members_seq}" name="address" method="post" enctype="multipart/form-data" modelAttribute="uploadFile">
+									<form:form id="insert_addr" action="myaddr_insert.do?members_seq=${members_seq}" name="address" method="post" enctype="multipart/form-data" modelAttribute="uploadFile">
+										<div>
+											<label for="name" class="control-label">이름</label> 
+											<input id="name" name="customer_name" type="text" placeholder="이름" value="${name_return }" class="form-control"/>
+											 <label for="email" class="control-label">이메일</label> 
+											 <input id="email" name="customer_email" type="email" placeholder="이메일" value="${email_return }" class="form-control"/>
+											 <input id="group_seq" name="group_seq" type="hidden" value="${group_seq }" />
+											 <input id="group_cus_seq" type="hidden" name="all_cus_seq">
+										</div>
+										<div align="center">
+											<button onclick="submit" name="address_insert" class="btn btn-primary btn-block login-button">구독자 등록</button>
+											<input type="button" value="취소" onclick="location.href='myaddr_Form.do?group_seq=${group_seq }'" class="btn btn-primary btn-block login-button">
+										</div>
+									</form:form>
+									<br>
+									<div align="center">
+										<br>
+										<div>
+											<img alt="tomail" src="img/logo_tomail_font.png"
+												width="150px"><br>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- insert_file_modal-->
+	<div class="modal fade" id="myModal_file" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div>
+								<div align="center">
+									<div>
+										<img alt="tomail" src="img/logo_tomail.png" width="200px"><br>
+									</div>
+									<div>
+										<h3>
+											<strong>다양한 구독자를 많이 만들어보세요</strong>
+										</h3>
+										<br>
+										<p>
+											xlsx버전만 지원합니다.<br>구독자의 이름, 이메일순으로 넣어주세요.
+										</p>
+									</div>
+								</div>
+								<div>
+									<form:form id="insert_addr" action="myaddr_insert_file.do?members_seq=${members_seq}" name="address" method="post" enctype="multipart/form-data" modelAttribute="uploadFile">
 										<div>
 											<div class="form-group">
 												<input class="form-control" type="file" name="files" multiple="multiple">
 											</div>
-											<label for="name">이름</label> 
-											<input id="name" name="customer_name" type="text" placeholder="이름" value="${name_return }" />
-											 <label for="email">이메일</label> 
-											 <input id="email" name="customer_email" type="email" placeholder="이메일" value="${email_return }" />
 											 <input id="group_seq" name="group_seq" type="hidden" value="${group_seq }" />
+											 <input id="group_cus_seq" type="hidden" name="all_cus_seq">
 										</div>
-										<p>
-											<button onclick="submit" name="address_insert">수신자 등록</button>
-											<input type="button" value="취소" onclick="location.href='myaddr_Form.do?group_seq=${group_seq }'">
-										</p>
+										<div align="center">
+											<button onclick="submit" name="address_insert" class="btn btn-primary btn-block login-button">구독자 파일 등록</button>
+											<input type="button" value="취소" onclick="location.href='myaddr_Form.do?group_seq=${group_seq }'" class="btn btn-primary btn-block login-button">
+										</div>
 									</form:form>
 									<br>
 									<div align="center">

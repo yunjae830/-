@@ -8,6 +8,8 @@
 		<typeAlias type="com.tmail.board.Dto.MailboxDto" alias="MailboxDto"/>
 		<typeAlias type="com.tmail.board.Dto.ReplyDto" alias="ReplyDto"/>
 		<typeAlias type="com.tmail.board.Dto.MailboxAttachDto" alias="MailboxAttachDto"/>
+		<typeAlias type="com.tmail.board.Dto.Group_addressEmailDto" alias="Group_addressEmailDto"/>
+		<typeAlias type="com.tmail.board.Dto.PersonalDto" alias="PersonalDto"/>
       	<typeAlias type="com.tmail.board.Dto.Address_GroupDto" alias="Address_GroupDto"/>
       	<typeAlias type="com.tmail.board.Dto.HelpDto" alias="HelpDto"/>
 	</typeAliases>
@@ -17,6 +19,7 @@
 		<mapper resource="/sqls/address_mapper.xml"/>
 		<mapper resource="/sqls/mailboxMapper.xml"/>
 		<mapper resource="/sqls/replyMapper.xml"/>
+		<mapper resource="/sqls/personal_mapper.xml"/>
 		<mapper resource="/sqls/mailboxAttachMapper.xml"/>
       	<mapper resource="/sqls/help_mapper.xml"/>
 	</mappers>

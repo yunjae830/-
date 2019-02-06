@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="person">
+<select id="personalSelect" parameterType="PersonalDto" resultType="String"> <!-- 하나만 가져와서 String -->
+	SELECT members_pw FROM members WHERE members_email = #{members_email}
+</select>
+<select id="personalList" parameterType="PersonalDto" resultType="PersonalDto"> <!-- 여러개 컬럼 가져와서 dto -->
+	SELECT members_email, members_name, members_pw FROM members WHERE members_email = #{members_email}
+</select>
+<update id="personalPwChange" parameterType="PersonalDto">
+	UPDATE members SET members_pw = #{members_pw} WHERE members_email = #{members_email}
+</update>
+
+</mapper>

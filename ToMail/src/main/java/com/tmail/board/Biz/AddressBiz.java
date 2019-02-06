@@ -21,4 +21,5 @@ public interface AddressBiz {
    public int group_cnt(Address_GroupDto dto);
    public int delete_addr(AddressDto dto);
    public String selectOne_email(AddressDto dto);
+   public List<String> selectOne_cus_seq(AddressDto dto);
 }

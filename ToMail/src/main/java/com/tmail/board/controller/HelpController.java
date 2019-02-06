@@ -2,25 +2,38 @@ package com.tmail.board.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tmail.board.Biz.AddressBiz;
 import com.tmail.board.Biz.HelpBiz;
 import com.tmail.board.Biz.RegisterBiz;
+import com.tmail.board.Dto.AddressDto;
+import com.tmail.board.Dto.Address_GroupDto;
 import com.tmail.board.Dto.HelpDto;
 
 @Controller
 public class HelpController {
+
+	Logger log = LoggerFactory.getLogger(HelpController.class);
+
 	@Autowired
 	private RegisterBiz biz;
 	@Autowired
 	private HelpBiz help_biz;
+	@Autowired
+	private AddressBiz address_biz;
 
 	@RequestMapping(value = "helpform.do")
 	public String helpform(String email, Model model, HttpSession session, HelpDto dto) {
@@ -102,5 +115,44 @@ public class HelpController {
 			return "help_tomail";
 		}
 		return "error";
+	}
+
+	// 클라이언트가 선택한 그룹
+	@RequestMapping(value = "addr_group.do")
+	public String group_seq(int[] all_value, HttpSession session, AddressDto dto, Model model) {
+		List<String> addr_email = new ArrayList<String>();
+		List<String> cus_seq = null;
+		List<String> emails = new ArrayList<String>();
+		String email = (String) session.getAttribute("group_email");
+		System.out.println(email + "세션 이메일------------------");
+		int members_seq = biz.member_seq_return(email);
+		System.out.println(members_seq + "멤버 seq 리턴");
+		for (int i = 0; i < all_value.length; i++) {
+			int res = address_biz.group_admin_size(all_value[i]);
+			System.out.println(all_value[i] + "그룹SEQ-------------------");
+			if (res != 0) {
+				dto.setGroup_seq(all_value[i]);
+				dto.setMembers_seq(members_seq);
+				cus_seq = address_biz.selectOne_cus_seq(dto);
+				System.out.println(cus_seq+"cus_seq-----return");
+				System.out.println("controller:" + dto.getCustomer_seq() + "");
+				List<String> emails_return = help_biz.help_email_return(dto,cus_seq);
+				System.out.println(emails_return+"##################");
+				for(String j : emails_return){
+				    emails.add(j);
+				}
+				//System.out.println("controller:" + addr_email.get(i));
+				System.out.println("controller end");
+			}
+		}
+		System.out.println(emails + "++++++++++++++");
+		model.addAttribute("emails", emails);
+		return "emailTemplate";
+	}
+
+	@RequestMapping(value = "emailBuild.do")
+	public String emailBuildForm(String email) {
+
+		return "emailBuild";
 	}
 }

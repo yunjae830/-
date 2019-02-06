@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.tmail.board.Biz.HelpBiz;
 import com.tmail.board.Dao.HelpDao;
+import com.tmail.board.Dto.AddressDto;
 import com.tmail.board.Dto.HelpDto;
 
 @Service
@@ -34,5 +35,9 @@ public class HelpBizImpl implements HelpBiz{
    public int help_delete(int help_seq) {
 	   return dao.help_delete(help_seq);
 }
+   @Override
+   public List<String> help_email_return(AddressDto dto, List<String> cus_seq) {
+	   return dao.help_email_return(dto,cus_seq);
+   }
 
 }

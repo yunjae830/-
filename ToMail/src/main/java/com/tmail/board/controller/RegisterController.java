@@ -36,7 +36,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.util.WebUtils;
 
+import com.tmail.board.Biz.PersonalBiz;
 import com.tmail.board.Biz.RegisterBiz;
+import com.tmail.board.Dto.PersonalDto;
 import com.tmail.board.Dto.RegisterDto;
 import com.tmail.board.sha256.SHA256;
 
@@ -477,5 +479,73 @@ public class RegisterController {
             return "pass_change";
          }
       }
-   
+      @Autowired
+  	private PersonalBiz biz_p;                               
+  	
+  	@RequestMapping(value="update1.do")
+  	public String personal(String email, Model model, HttpSession httpSession) {
+  		
+  		model.addAttribute("email", email);
+  		httpSession.setAttribute("personalEmail", email);
+  		
+  		return "personal1";
+  	}
+  	
+  	@RequestMapping(value="personal1.do",  method = RequestMethod.POST)
+  	public String personal1(PersonalDto dto, HttpServletResponse response, Model model) {
+  		
+  		int result = biz_p.person(dto);
+  		//비밀번호 확인해주려고 맞으면 1 / 아니면 0		
+  		if(result == 1) {
+
+  		      model.addAttribute("personalList", biz_p.personalList(dto));
+  		      
+  			return "personal2";
+  		}else if(result != 1) {
+  			response.setCharacterEncoding("UTF-8");
+  		    response.setContentType("text/html; charset=UTF-8"); // 한글깨짐 방지
+  		      PrintWriter out = null;
+  		      try {
+  		         out = response.getWriter();
+  		         out.println("<script>alert('비밀번호를 다시 입력해주세요.');</script>");
+  		      } catch (IOException e) {
+  		         e.printStackTrace();
+  		      } finally {
+  		         out.flush();
+  		      }
+  		      
+  			return "personal1";
+  		}
+  		return "error";
+  	}
+  	@RequestMapping(value = "personal2.do", method = RequestMethod.POST)
+  	public String personal2(PersonalDto dto,HttpSession session, HttpServletResponse response, Model model) {
+  		//header에서 받아온 이메일 정보
+  		 String email = (String) session.getAttribute("personalEmail");
+  		//위의 내용을 dto에 넣어줌
+  		 dto.setMembers_email(email);
+  		//성공 1 실패 0
+  		 int res = biz_p.personalPwChange(dto);
+  		 System.out.println(res); 
+  		//화면에 alert창 띄우기, 위에 httpservletResponse를 써줘야한다. 
+  		 response.setCharacterEncoding("UTF-8");
+  		 response.setContentType("text/html; charset=UTF-8"); // 한글깨짐 방지
+  		      PrintWriter out = null;
+  		      try {
+  		         out = response.getWriter();
+  		         out.println("<script>alert('비밀번호를 변경했습니다.');</script>");
+  		      } catch (IOException e) {
+  		         e.printStackTrace();
+  		      } finally {
+  		         out.flush();
+  		      }
+  		      
+  		 
+  		//header에 이메일 정보를 보내줌 , jsp의 ${email등등}부분
+  		 model.addAttribute("email", email);
+  		model.addAttribute("personalList", biz_p.personalList(dto));
+
+  		 return "personal2";
+  		 
+  	}
 }
