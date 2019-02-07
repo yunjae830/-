@@ -345,17 +345,20 @@ public class AddressController {
          System.out.println(addr_emails);
          addr_email.add(addr_emails);
       }
+      TestDto testDto = new TestDto();
+      model.addAttribute("testDto", testDto);
       System.out.println(addr_email+"list값");
       model.addAttribute("email", addr_email);
-      return "mailTest";
+//      return "mailTest";
+      return "addMailTest";
    }
    // 테스트중
-   @RequestMapping(value = "test.do")
-   public String test() {
-      return "mailTest";
-   }
+//   @RequestMapping(value = "test.do")
+//   public String test() {
+//      return "addMailTest";
+//   }
 
-   @RequestMapping("tests.do")
+   @RequestMapping(value="tests.do", method=RequestMethod.POST)
    public String tests(HttpServletResponse response, TestDto dto) throws MessagingException, IOException {
       MimeMessage message = mailSender.createMimeMessage();
       MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
@@ -380,4 +383,5 @@ public class AddressController {
       out_p.flush();
       return "";
    }
+   
 }

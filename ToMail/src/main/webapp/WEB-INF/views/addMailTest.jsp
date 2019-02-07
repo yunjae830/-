@@ -7,15 +7,24 @@
 <head>
 <meta charset="UTF-8">
 <title>${board.title }</title>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-
-$(document).ready(function(e){
+/* $(document).ready(function(e){
 	
+	var form = $("#mailForm");
+	
+	$("button[type='submit']").on("click", function(e){
+		e.preventDefault();
+		form.attr("action", "test.do");
+		form.submit();
+	}); */
+	
+/* 
 	var formObj = $("form[role='form']");
 	
 	$("button[type='submit']").on("click", function(e){
@@ -173,8 +182,8 @@ $(document).ready(function(e){
 			}
 		}); // end ajax
 	}); // end .uploadResult onclick
-	
-}); // end $(document).ready(function(){}))
+	*/
+//}); // end $(document).ready(function(){})) 
 </script>
 
 <style type="text/css">
@@ -230,50 +239,60 @@ $(document).ready(function(e){
 
 
 </head>
-<body>
+
+<body style="box-sizing: border-box;">
 
 <h1>${title }</h1>
 
-  <div class="container">
+	<h2>CSS Layout Flexbox</h2>
+		<p style="font-size: 20px; font-family: verdana;">In this example, we have created a header, two columns/boxes and a footer. On smaller screens, the columns will stack on top of each other.</p>
+		<p>Resize the browser window to see the responsive effect.</p>
+		<p><strong>Note:</strong> Flexbox is not supported in Internet Explorer 10 eand earlier versions.</p>
+
+  <div style="margin-top: 30px;">
   
-  <form role="form" action="/board/mailbox/addMail" method="post">
+  	<form id="mailForm" action="/board/tests.do" method="post">
   
-  <div class="form-group">
-  	<label>Recipient</label>
-  	<input class="form-control" name="recipient"/>
+  			<label>Recipient</label>
+  				<c:forEach items="${email }" var="list" varStatus="status">
+					<input type="text" name="email" value="${email[status.index]}" readonly="readonly"/><br/>
+				</c:forEach>
+  
+	
+  			<header style="  background-color: #666; padding: 20px; text-align: center; font-size: 30px; color: white;">
+  				<label>Title</label>
+  				<h2><input type="text" name="title" value="${testDto.title }"/></h2>
+  			</header>
+  
+			<section style="display: -webkit-flex; display: flex;">
+  				<nav style="-webkit-flex: 1; -ms-flex: 1; flex: 1; background: #ccc; padding: 20px;">
+    				<ul style="list-style-type: none; padding: 0;">
+				      <li></li>
+				      <li></li>
+				      <li></li>
+    				</ul>
+  				</nav>
+  
+  				<article style="-webkit-flex: 3; -ms-flex: 3; flex: 3; background-color: #f1f1f1; padding: 10px;">
+	    			<h1><label>Text Area</label></h1>
+	    			<p><textarea name="content" rows="40" cols="100">${testDto.content }</textarea></p>
+  				</article>
+			</section>
+
+			<footer style="  background-color: #777; padding: 30px; text-align: center; color: white;">
+  				<b style="font-family:sans-serif; font-size: 20px;">Footer</b>
+			</footer>
+  
+		<button type="submit">Post</button>
+		<button type="reset" >Reset</button>
+  	</form>
   </div>
   
-  <div class="form-group">
-  	<label>Title</label>
-  	<input class="form-control" name="title"/>
-  </div>
   
-  <div class="form-group">
-  	<label>Text Area</label>
-  	<textarea class="form-control" name="content" rows="10">
-  	
-  		<div class="formBuildArea">
-  		
-  		</div>
-  	
-  	</textarea>
-  </div>
-  
-  <button type="submit" class="btn btn-default">Post</button>
-  <button type="reset"  class="btn btn-primary">Reset</button>
-  	
-  </form>
-  
-  </div>
-  
-  <div class="panel panel-default">
-  	<!-- start panel-heading -->
-  	<div class="panel-heading">File Attachment</div>
-  	<!-- end panel-heading -->
-  	
-  	<!-- start panel-body -->
-  		<div class="panel-body">
-  			<div class="form-group uploadDiv">
+  <div>
+  	<div>File Attachment</div>
+  		<div>
+  			<div class="uploadDiv">
   			
   				<input type="file" name="uploadFile" multiple/>
   				<div class="uploadResult">
@@ -281,103 +300,6 @@ $(document).ready(function(e){
   					
   					</ul>
   				</div> 
-  				<!-- end uploadResult -->
   			</div>
-  			<!-- end uploadDiv -->
   		</div>
-  		<!-- end panel-body -->
-
   </div>
-  
-  <head>
-<title>CSS Template</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Style the header */
-header {
-  
-  padding: 30px;
-  text-align: center;
-  font-size: 35px;
-  color: white;
-}
-
-/* Create two columns/boxes that floats next to each other */
-nav {
-  float: left;
-  width: 30%;
-  height: 300px; /* only for demonstration, should be removed */
-  background: #ccc;
-  padding: 20px;
-}
-
-/* Style the list inside the menu */
-nav ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-article {
-  float: left;
-  padding: 20px;
-  width: 70%;
-  background-color: #f1f1f1;
-  height: 300px; /* only for demonstration, should be removed */
-}
-
-/* Clear floats after the columns */
-section:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Style the footer */
-footer {
-  background-color: #777;
-  padding: 10px;
-  text-align: center;
-  color: white;
-}
-
-/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-@media (max-width: 600px) {
-  nav, article {
-    width: 100%;
-    height: auto;
-  }
-}
-</style>
-</head>
-
-<body style="boxsizing: border-box; font-family: Arial, Helvetica, sans-serif;">
-<table style="width:100%">
-	<tr>
-		<th></th>
-	</tr>
-	<tr>
-		<td></td>
-		<td></td>
-	</tr>
-
-
-
-</table>
-
-  
-  
-  
- 
-</body>
-
-
-</html>
