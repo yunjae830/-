@@ -48,7 +48,7 @@ body{
    height: 45px;
 }
 #a{
-   background-image: url("img/bg1.jpg");
+   background-image: url("resources/img/bg1.jpg");
     height:  100%; 
     height: 600px;
      /* Center and scale the image nicely */
@@ -153,7 +153,7 @@ $(function () {
 <body>
 <nav class="navbar navbar-expand-sm fixed-top transparent navbar-light">
 <div class="container">
-         <a class="navbar-brand" href="main.do"><img alt="tomail" src="/board/resources/img/logo_tomail_font.png" width="100px"></a>
+         <a class="navbar-brand" href="main.do"><img alt="tomail" src="resources/img/logo_tomail_font.png" width="100px"></a>
                      
          <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent">
@@ -195,7 +195,7 @@ $(function () {
       </div>
       <div class="row" align="center">
          <div class="col-sm">
-            <img id="img" alt="tomainmain" src="/board/resources/img/main2.png">
+            <img id="img" alt="tomainmain" src="resources/img/main2.png">
          </div>
          <div class="col-sm">
             <h2 id="h2">
@@ -213,7 +213,7 @@ $(function () {
       <div class="row" align="center" style="background-color: #F4F4F5">
          <div class="col-sm">
             <div class="col-sm  hidden-lg">
-               <img id="img" alt="tomainmain" src="/board/resources/img/main.png">
+               <img id="img" alt="tomainmain" src="resources/img/main.png">
             </div>
             <h2 id="h2">
                행동이나 조건에 따라<br>
@@ -226,12 +226,12 @@ $(function () {
             </p>
          </div>
          <div class="col-sm  hidden-xs">
-            <img id="img" alt="tomainmain" src="/board/resources/img/main.png">
+            <img id="img" alt="tomainmain" src="resources/img/main.png">
          </div>
       </div>
       <div class="row" align="center">
          <div class="col-sm">
-            <img id="img" alt="tomainmain" src="/board/resources/img/main3.png">
+            <img id="img" alt="tomainmain" src="resources/img/main3.png">
          </div>
          <div class="col-sm">
             <h2 id="h2">
@@ -252,7 +252,7 @@ $(function () {
    <div class="row justify-content-center hidden-xs"
       style="background-color: #5B5BAE;">
       <div align="center">
-         <img alt="tomainmain" src="/board/resources/img/main4.png"><br>
+         <img alt="tomainmain" src="resources/img/main4.png"><br>
          <br>
          <br>
          <p style="color: white;">
@@ -267,10 +267,10 @@ $(function () {
    </div>
    <div class="row col-sm-12" style="background-color: #F4F4F5">
       <div class="col-sm"  align="center">
-         <img alt="tomail" src="/board/resources/img/logo_tomail_font.png" width="150px"><br><br>
+         <img alt="tomail" src="resources/img/logo_tomail_font.png" width="150px"><br><br>
          <p><a href="#">이용약관</a> | <a href="#">개인정보취급방침</a> | <a href="#">스팸메일정책</a></p>
       </div>
-      <div  class="col-sm"><p style="padding-top: 15px;">(주)투메일, 대표 최경수, 사업자등록번호 100-82-82821,
+      <div  class="col-sm"><p style="padding-top: 15px;">(주)투메일, 대표 3조, 사업자등록번호 100-82-82821,
       통신판매업신고번호 2019-서울역삼-8282,<br>
       서울특별시 강남구 테헤란로14길 6 남도빌딩 2층, 3층, 4층 
       support@tomail.com 080-335-0020</p> </div>

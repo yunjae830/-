@@ -7,7 +7,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -18,11 +21,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.util.WebUtils;
@@ -91,8 +96,14 @@ public class EmailbuilderController {
 	}
 	
 	@RequestMapping(value="tem_sel.do")
-	public String template_select(HttpSession session, Model model, SummernoteDto dto, String email) {
-        model.addAttribute("email", email);
+	public String template_select(HttpSession session, Model model, SummernoteDto dto) {
+		 ArrayList<String> list = (ArrayList<String>)session.getAttribute("emails");
+		 for(int i = 0; i<list.size(); i++) {
+			 System.out.println(list.get(i)+"리스트 내용 출력");
+		 }
+		String email = (String) session.getAttribute("email");
+		session.setAttribute("emails", list);
+		session.setAttribute("client_email", email);
 		int num = (Integer) session.getAttribute("num");
 		System.out.println(num);
 		if(num==1) {

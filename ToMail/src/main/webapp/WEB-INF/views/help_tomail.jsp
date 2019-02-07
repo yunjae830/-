@@ -64,7 +64,7 @@ hr {
 }
 
 .bg {
-	background-image: url("img/bg.png");
+	background-image: url("resources/img/bg.png");
 	/* Full height */
 	height: 100%;
 	/* Center and scale the image nicely */
@@ -184,7 +184,7 @@ function group_seq(num){
 				<div>
 					<div id="logo_body" style="float: left; border: 1px;">
 						<img alt="도움말"
-							src="img/logo_tomail.png"
+							src="resources/img/logo_tomail.png"
 							style="width: 40px; height: 50px; margin-top: 50px;">
 					</div>
 					<div id="logo_side"
@@ -219,9 +219,9 @@ function group_seq(num){
 		<div style="padding-top: 10px;">
 			<section class="section">
 				<c:forEach var="dto" items="${list }">
-					<hr>
-					<div>
-						<img alt="로고" src="/board/resources/img/camel.png" style="width: 150px; height: 100px;">
+					<div style="border: 1px; float: left; margin-right: 10px;">
+						<img alt="로고" src="resources/img/camel.png"
+							style="width: 150px; height: 100px;">
 					</div>
 					<div>
 						<div>

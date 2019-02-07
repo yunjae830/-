@@ -125,6 +125,7 @@ public class HelpController {
 		List<String> emails = new ArrayList<String>();
 		String email = (String) session.getAttribute("group_email");
 		System.out.println(email + "세션 이메일------------------");
+		System.out.println(emails + "보낸 구독자 이메일");
 		int members_seq = biz.member_seq_return(email);
 		System.out.println(members_seq + "멤버 seq 리턴");
 		for (int i = 0; i < all_value.length; i++) {
@@ -146,13 +147,8 @@ public class HelpController {
 			}
 		}
 		System.out.println(emails + "++++++++++++++");
-		model.addAttribute("emails", emails);
+		session.setAttribute("emails", emails);
+		model.addAttribute("email",email);
 		return "emailTemplate";
-	}
-
-	@RequestMapping(value = "emailBuild.do")
-	public String emailBuildForm(String email) {
-
-		return "emailBuild";
 	}
 }
