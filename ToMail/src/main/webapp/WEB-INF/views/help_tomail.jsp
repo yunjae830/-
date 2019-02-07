@@ -174,6 +174,12 @@ function group_seq(num){
 	//alert(num);
 	document.getElementById("group").value = num;
 }
+
+$("#addr_se").click(function(){
+    var name = document.getElementById("search_name").value;
+    var offset = $("#" + name).offset();//절대좌표 offset()
+      $('html, body').animate({scrollTop : offset.top}, 400); //400은 이동되는 시간
+ });
 </script>
 </head>
 <body>
@@ -189,7 +195,7 @@ function group_seq(num){
 					</div>
 					<div id="logo_side"
 						style="float: right; border: 1px; margin-top: 60px;">
-						<a href="#" onclick="location.href='main2.do'">투메일로 이동</a>
+						<a href="#" onclick="location.href='main2.do'" style="color: white;">투메일로 이동</a>
 					</div>
 				</div>
 				<div style="margin-top: 110px;">
@@ -197,7 +203,7 @@ function group_seq(num){
 					<div class="box">
 						<div class="container-4">
 							<input type="search" id="search" placeholder="답변 검색 중..." name=""/>
-							<button class="icon" type="submit">
+							<button id="addr_se" class="icon" type="submit">
 								<i class="fa fa-search"></i>
 							</button>
 						</div>
@@ -220,13 +226,13 @@ function group_seq(num){
 			<section class="section">
 				<c:forEach var="dto" items="${list }">
 					<div style="border: 1px; float: left; margin-right: 10px;">
-						<img alt="로고" src="resources/img/camel.png"
-							style="width: 150px; height: 100px;">
+						<img alt="로고" src="resources/img/cute.png"
+							style="width: 64px; height: 64px;">
 					</div>
 					<div>
 						<div>
 							<h3>
-								<a>${dto.help_title }</a>
+								<a id="${dto.help_title }">${dto.help_title }</a>
 							</h3>
 						</div>
 						<div>
