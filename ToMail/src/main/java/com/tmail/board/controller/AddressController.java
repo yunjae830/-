@@ -30,10 +30,12 @@ import org.springframework.web.util.WebUtils;
 
 import com.tmail.board.Biz.AddressBiz;
 import com.tmail.board.Biz.HelpBiz;
+import com.tmail.board.Biz.MailboxBiz;
 import com.tmail.board.Biz.RegisterBiz;
 import com.tmail.board.Dto.AddressDto;
 import com.tmail.board.Dto.Address_GroupDto;
 import com.tmail.board.Dto.InsertResultDto;
+import com.tmail.board.Dto.MailboxDto;
 import com.tmail.board.Dto.TestDto;
 import com.tmail.board.excel.ReadXLSX;
 import com.tmail.board.sha256.SHA256;
@@ -50,6 +52,8 @@ public class AddressController {
    private ReadXLSX ex_red;
    @Autowired
    private HelpBiz help_biz;
+   @Autowired
+   private MailboxBiz mailboxBiz;
 
    @RequestMapping(value = "myaddr_Form.do")
    public String myaddr_Form(Model model, HttpSession session, int group_seq, AddressDto dto) {
@@ -336,6 +340,7 @@ public class AddressController {
       List<String> addr_email = new ArrayList<String>();
       String email = (String) session.getAttribute("group_email");
       int members_seq = reg_biz.member_seq_return(email);
+      session.setAttribute("mno", members_seq);
       for(int i=0; i<all_value.length; i++) {
          System.out.println(all_value[i]+"\t"+members_seq+"\t"+group_seq);
          dto.setMembers_seq(members_seq);
@@ -350,16 +355,11 @@ public class AddressController {
       System.out.println(addr_email+"list값");
       model.addAttribute("email", addr_email);
 //      return "mailTest";
-      return "addMailTest";
+      return "getList";
    }
-   // 테스트중
-//   @RequestMapping(value = "test.do")
-//   public String test() {
-//      return "addMailTest";
-//   }
 
    @RequestMapping(value="tests.do", method=RequestMethod.POST)
-   public String tests(HttpServletResponse response, TestDto dto) throws MessagingException, IOException {
+   public String tests(HttpServletResponse response, TestDto dto, MailboxDto mail, int mno) throws MessagingException, IOException {
       MimeMessage message = mailSender.createMimeMessage();
       MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
       String setfrom = "jea830@hanmail.net";
@@ -381,7 +381,12 @@ public class AddressController {
       out_p.println("<script>alert('메일을 보냈어요!');</script>");
 
       out_p.flush();
-      return "";
+      
+      response.addIntHeader("mno", mno);
+      mailboxBiz.addMail(mail);
+      
+      return "redirect: /board/mailbox/getList";
+      
    }
    
 }

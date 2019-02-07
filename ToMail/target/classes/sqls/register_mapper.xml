@@ -30,4 +30,13 @@
    <select id="master_name_selectOne" parameterType="String" resultType="String">
       SELECT MEMBERS_NAME FROM MEMBERS WHERE MEMBERS_EMAIL = #{members_email}
    </select>
+   
+   <select id="selectList">
+   		SELECT * FROM MEMBERS
+   </select>
+   
+   <select id="selectMember" resultType = "RegisterDto">
+		SELECT * FROM MEMBERS WHERE MEMBERS_SEQ = #{members_seq}
+   </select>
+   
 </mapper>

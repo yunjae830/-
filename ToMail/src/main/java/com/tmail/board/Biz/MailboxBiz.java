@@ -8,12 +8,13 @@ import com.tmail.board.Dto.MailboxDto;
 
 public interface MailboxBiz {
 	
-	List<MailboxDto> getList(Criteria cri);
+	List<MailboxDto> getList(Criteria cri, String email);
+	List<MailboxDto> getTemplates(String email);
 	void addMail(MailboxDto mail);
 	MailboxDto getMail(int bno);
 	boolean deleteMail(int bno);
 	boolean updateMail(MailboxDto mail);
-	int getTotal(Criteria cri);
+	int getTotal(Criteria cri, String email);
 	List<MailboxAttachDto> getAttachList(int bno);
 
 }

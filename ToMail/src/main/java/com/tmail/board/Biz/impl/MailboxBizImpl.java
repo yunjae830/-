@@ -32,23 +32,13 @@ public class MailboxBizImpl implements MailboxBiz{
 	}
 
 	@Override
-	public List<MailboxDto> getList(Criteria cri) {
-		return dao.getList(cri);
+	public List<MailboxDto> getList(Criteria cri, String email) {
+		return dao.getList(cri, email);
 	}
 
-	@Transactional
 	@Override
 	public void addMail(MailboxDto mail) {
-		dao.insertSelectKey(mail);
-		
-		if(mail.getAttachList() == null || mail.getAttachList().size() <=0) {
-			return;
-		}
-		
-		mail.getAttachList().forEach(attach->{
-			attach.setBno(mail.getBno());
-			attachDao.insert(attach);
-		});
+		dao.addMail(mail);
 	}
 
 	@Override
@@ -83,14 +73,20 @@ public class MailboxBizImpl implements MailboxBiz{
 
 	
 	@Override
-	public int getTotal(Criteria cri) {
-		return dao.getTotal(cri);
+	public int getTotal(Criteria cri, String email) {
+		return dao.getTotal(email);
 	}
 
 	@Override
 	public List<MailboxAttachDto> getAttachList(int bno) {
 		
 		return attachDao.findByBno(bno);
+	}
+
+	@Override
+	public List<MailboxDto> getTemplates(String email) {
+		
+		return dao.getTemplates(email);
 	}
 	
 	

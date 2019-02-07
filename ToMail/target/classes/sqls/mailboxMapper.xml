@@ -2,18 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mailbox">
 	
-	<select id="getList" resultType="MailboxDto">
-		SELECT * FROM TBL_MAILBOX ORDER BY BNO DESC
+	<select id="getTemplates" resultType="MailboxDto">
+		SELECT * FROM TBL_MAILBOX WHERE EMAIL = #{email}
 	</select>
 	
 	<select id="getMail" resultType="MailboxDto">
-		SELECT * FROM TBL_MAILBOX
-		WHERE BNO = #{bno}
+		SELECT * FROM TBL_MAILBOX WHERE BNO = #{bno}
 	</select>
 	
 	<insert id="addMail" parameterType="MailboxDto">
-		INSERT INTO TBL_MAILBOX (BNO, RECIPIENT, TITLE, CONTENT) VALUES(
-			SEQ_MAILBOX.NEXTVAL, #{recipient}, #{title}, #{content}
+		INSERT INTO TBL_MAILBOX(BNO, TEMPLATE, EMAIL, TITLE, CONTENT)
+		VALUES(SEQ_MAILBOX.NEXTVAL, #{template, jdbcType=VARCHAR}, #{title, jdbcType=VARCHAR}, #{content,  jdbcType=VARCHAR}
 		)
 	</insert>
 	
@@ -23,8 +22,10 @@
 			SELECT SEQ_MAILBOX.NEXTVAL FROM DUAL
 		</selectKey>
 		
-		INSERT INTO TBL_MAILBOX(BNO, RECIPIENT, TITLE, CONTENT)
-		VALUES(#{bno}, #{recipient}, #{title}, #{content})
+		INSERT INTO TBL_MAILBOX(BNO, TEMPLATE, TITLE, CONTENT)
+		VALUES(#{bno, jdbcType=INTEGER}, #{template, jdbcType=VARCHAR}, #{title, jdbcType=VARCHAR}, #{content,  jdbcType=VARCHAR}
+		 
+		)
 		
 	</insert>
 	
@@ -34,61 +35,36 @@
 	
 	<update id="updateMail" parameterType="MailboxDto">
 		UPDATE TBL_MAILBOX
-		SET RECIPIENT = #{recipient},
-		TITLE = #{title},
-		CONTENT = #{content}
+		SET 
+		TITLE = #{title, jdbcType=VARCHAR},
+		CONTENT = #{content, jdbcType=VARCHAR},
+		TEMPLATE = #{template, jdbcType=VARCHAR}
 		WHERE BNO = #{bno}
 	</update>
 	
-	<sql id="criteria">
-		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
-			<foreach item='type' collection="typeArr">
-				<trim prefix="OR">
-					<choose>
-						<when test="type == 'T'.toString()">
-							TITLE LIKE '%'||#{keyword}||'%'
-						</when>
-						<when test="type == 'C'.toString()">
-							CONTENT LIKE '%'||#{keyword}||'%'
-						</when>
-						<when test="type == 'R'.toString()">
-							RECIPIENT LIKE '%'||#{keyword}||'%'
-						</when>
-					</choose>					
-				</trim>
-			</foreach>
-		</trim>
-	</sql>
-	
 	<select id="getListWithPaging" resultType="MailboxDto">
 	<![CDATA[
-		SELECT BNO, WRITER, RECIPIENT, TITLE, CONTENT, REGDATE
+		SELECT BNO, TEMPLATE, TITLE, CONTENT, REGDATE
 		FROM
 		(
-		SELECT /*+INDEX_DESC(TBL_MAILBOX PK_MAILBOX)*/
-		ROWNUM RN, BNO, WRITER, RECIPIENT, TITLE, CONTENT, REGDATE
+		SELECT /*+INDEX_DESC(TBL_MAILBOX IDX_MAILBOX)*/
+		ROWNUM RN, BNO, TEMPLATE, TITLE, CONTENT, REGDATE
 		FROM
 			TBL_MAILBOX
-		WHERE 
-
-		]]>
-		
-		<include refid="criteria"/>
-		
-		<![CDATA[
-				ROWNUM <= #{pageNum} * #{amount}
+		WHERE EMAIL = #{email}
+		AND BNO > 0
+		AND	ROWNUM <= #{cri.pageNum} * #{cri.amount}
 		)
-		WHERE RN > (#{pageNum} -1) * #{amount}
+		WHERE RN > (#{cri.pageNum} -1) * #{cri.amount}
+		
 		]]>
 		
 	</select>
 	
-	<select id="getTotalCount" resultType="int">
-		SELECT COUNT(*) FROM TBL_MAILBOX WHERE
+	<select id="getCountByEmail" resultType="int">
+	
+		SELECT COUNT(BNO) FROM TBL_MAILBOX WHERE EMAIL= #{email}
 		
-		<include refid="criteria"/>
-		
-		BNO > 0
 	</select>
 
 

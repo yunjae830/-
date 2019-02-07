@@ -300,7 +300,7 @@ $(document).ready(function(){
 							<div>
 								<div align="center">
 									<div>
-										<img alt="tomail" src="img/logo_tomail.png" width="200px"><br>
+										<img alt="tomail" src="/board/resources/img/logo_tomail.png" width="200px"><br>
 									</div>
 									<div>
 										<h3>
@@ -391,7 +391,7 @@ $(document).ready(function(){
 									<div align="center">
 										<br>
 										<div>
-											<img alt="tomail" src="img/logo_tomail_font.png"
+											<img alt="tomail" src="/board/resources/img/logo_tomail_font.png"
 												width="150px"><br>
 										</div>
 									</div>
@@ -421,7 +421,7 @@ $(document).ready(function(){
 								<div>
 									<div align="center">
 										<div>
-											<img alt="tomail" src="img/logo_tomail.png" width="200px"
+											<img alt="tomail" src="/board/resources/img/logo_tomail.png" width="200px"
 												onclick="location.href='main.do'"><br>
 										</div>
 										<div>
@@ -457,7 +457,7 @@ $(document).ready(function(){
 										<div align="center">
 											<br>
 											<div>
-												<img alt="tomail" src="img/logo_tomail_font.png"
+												<img alt="tomail" src="/board/resources/img/logo_tomail_font.png"
 													width="150px"><br>
 											</div>
 										</div>

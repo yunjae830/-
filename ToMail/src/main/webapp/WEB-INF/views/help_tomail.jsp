@@ -219,9 +219,9 @@ function group_seq(num){
 		<div style="padding-top: 10px;">
 			<section class="section">
 				<c:forEach var="dto" items="${list }">
-					<div style="border: 1px; float: left; margin-right: 10px;">
-						<img alt="로고" src="img/camel.png"
-							style="width: 150px; height: 100px;">
+					<hr>
+					<div>
+						<img alt="로고" src="/board/resources/img/camel.png" style="width: 150px; height: 100px;">
 					</div>
 					<div>
 						<div>

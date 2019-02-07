@@ -1,5 +1,7 @@
 package com.tmail.board.Dto;
 
+import java.util.List;
+
 public class AddressDto {
 
    private int customer_seq;
@@ -8,6 +10,8 @@ public class AddressDto {
    private int group_seq;
    private int members_seq;
    private String all_cus_seq;
+   
+   private List<String> email_list;
    
    public int getCustomer_seq() {
       return customer_seq;
@@ -45,7 +49,15 @@ public class AddressDto {
    }
    public void setAll_cus_seq(String all_cus_seq) {
 	this.all_cus_seq = all_cus_seq;
+	
+	
    }
+public List<String> getEmail_list() {
+	return email_list;
+}
+public void setEmail_list(List<String> email_list) {
+	this.email_list = email_list;
+}
 @Override
    public String toString() {
       return "Email [customer_seq=" + customer_seq + ", customer_name=" + customer_name + ", customer_email="

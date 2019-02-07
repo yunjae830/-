@@ -65,7 +65,7 @@ i, i:link{
    <nav class="navbar navbar-expand-md navbar-light">
       <div class="container">
          <a class="navbar-brand" href="main2.do"><img alt="tomail"
-            src="img/logo_tomail_font.png" width="100px"></a>
+            src="/board/resources/img/logo_tomail_font.png" width="100px"></a>
 
          <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent">

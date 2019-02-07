@@ -10,11 +10,15 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,14 +30,35 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.util.WebUtils;
 
+import com.tmail.board.Biz.AddressBiz;
+import com.tmail.board.Biz.HelpBiz;
+import com.tmail.board.Biz.MailboxBiz;
+import com.tmail.board.Biz.RegisterBiz;
+import com.tmail.board.Dto.AddressDto;
 import com.tmail.board.Dto.InsertResultDto;
+import com.tmail.board.Dto.MailboxDto;
 import com.tmail.board.Dto.SummernoteDto;
 import com.tmail.board.Dto.TestDto;
+import com.tmail.board.excel.ReadXLSX;
 
 import oracle.net.ns.ClientProfile;
 
 @Controller
 public class EmailbuilderController {
+	
+	   @Autowired
+	   private JavaMailSender mailSender;
+	   @Autowired
+	   private RegisterBiz reg_biz;
+	   @Autowired
+	   private AddressBiz biz;
+	   @Autowired
+	   private ReadXLSX ex_red;
+	   @Autowired
+	   private HelpBiz help_biz;
+	   @Autowired
+	   private MailboxBiz mailboxBiz;
+	
 	
 	@RequestMapping(value="EmailBuilderForm.do")
 	public String EmailBuilderForm() {
@@ -41,7 +66,8 @@ public class EmailbuilderController {
 	}
 	
 	@RequestMapping(value="testess.do")
-	   public String testess() {
+	   public String testess(Model model, String email) {
+		model.addAttribute("email", email);
 		return "emailTemplate";
 	}
 	
@@ -50,8 +76,10 @@ public class EmailbuilderController {
 		System.out.println(profile);
 			return "mailTest";
 	}
+	
 	@RequestMapping(value="tem.do")
-	public String template(HttpSession session ,int num) {
+	public String template(HttpSession session ,int num, String email, Model model) {
+		model.addAttribute("email", email);
 		session.setAttribute("num", num);
 		if(num==1) {
 			return "tem1";
@@ -66,8 +94,10 @@ public class EmailbuilderController {
 		}
 			return "error";
 	}
+	
 	@RequestMapping(value="tem_sel.do")
-	public String template_select(HttpSession session, Model model, SummernoteDto dto) {
+	public String template_select(HttpSession session, Model model, SummernoteDto dto, String email) {
+        model.addAttribute("email", email);
 		int num = (Integer) session.getAttribute("num");
 		System.out.println(num);
 		if(num==1) {
@@ -193,4 +223,37 @@ public class EmailbuilderController {
 	    	  }
 	       return "templateBuilder_view";
 	}
+	
+	  @RequestMapping(value="sendMail.do", method=RequestMethod.POST)
+	   public String tests(HttpServletResponse response, AddressDto addr, MailboxDto mail, HttpSession session, Model model, String email) throws MessagingException, IOException {
+		  int num = (Integer) session.getAttribute("num");
+		  model.addAttribute("num", num);
+		  model.addAttribute("email", email);
+	      MimeMessage message = mailSender.createMimeMessage();
+	      MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+	      String setfrom = "jea830@hanmail.net";
+	      List<String> tomail = addr.getEmail_list(); // 받는 사람 이메일
+	      String title = mail.getTitle(); // 제목
+	      String content = mail.getContent(); // 내용
+	      for(int i = 0; i< tomail.size(); i++) {
+	      messageHelper.setFrom(setfrom); // 보내는사람 생략하거나 하면 정상작동을 안함
+	      messageHelper.setTo(tomail.get(i)); // 받는사람 이메일
+	      messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+	      messageHelper.setText(content, true); // html이라는 의미로 true를 써준다.
+	      mailSender.send(message);
+	      }
+	      response.setCharacterEncoding("UTF-8");
+	      response.setContentType("text/html; charset=UTF-8"); // 한글깨짐 방지
+	      PrintWriter out_p = null;
+
+	      out_p = response.getWriter();
+	      out_p.println("<script>alert('메일을 보냈어요!');</script>");
+
+	      out_p.flush();
+	      
+	      mailboxBiz.addMail(mail);
+	      
+	      return "redirect: /mailbox/getList";
+	      
+	   }
 }

@@ -1,6 +1,8 @@
 package com.tmail.board.Dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,16 @@ public class MailboxDaoImpl implements MailboxDao{
 	SqlSessionTemplate sql;
 	
 	@Override
-	public List<MailboxDto> getList(Criteria cri) {
-		return sql.selectList(namespace + "getListWithPaging", cri);
+	public List<MailboxDto> getList(Criteria cri, String email) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cri", cri);
+		map.put("email", email);
+		return sql.selectList(namespace + "getListWithPaging", map);
+	}
+	
+	@Override
+	public int getTotal(String email) {
+		return sql.selectOne(namespace + "getCountByEmail", email);
 	}
 
 	@Override
@@ -47,9 +57,11 @@ public class MailboxDaoImpl implements MailboxDao{
 	}
 
 	@Override
-	public int getTotal(Criteria cri) {
-		return sql.selectOne(namespace + "getTotalCount", cri);
+	public List<MailboxDto> getTemplates(String email) {
+		return sql.selectList(namespace + "getTemplates", email);
 	}
+
+	
 
 	
 

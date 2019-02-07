@@ -1,18 +1,27 @@
 package com.tmail.board.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,10 +29,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tmail.board.Biz.MailboxBiz;
+import com.tmail.board.Biz.RegisterBiz;
+import com.tmail.board.Dto.AddressDto;
 import com.tmail.board.Dto.Criteria;
 import com.tmail.board.Dto.MailboxAttachDto;
 import com.tmail.board.Dto.MailboxDto;
 import com.tmail.board.Dto.PageDto;
+import com.tmail.board.Dto.RegisterDto;
 
 @Controller
 @RequestMapping("/mailbox")
@@ -32,17 +44,32 @@ public class MailboxController {
 	@Autowired
 	MailboxBiz biz;
 	
+	@Autowired
+	RegisterBiz regBiz;
+	
+	@Autowired
+	JavaMailSender mailSender;
+	
+	RegisterDto regDto = new RegisterDto();
+	
 	@RequestMapping("/mailForm")
 	public String getFileForm() {
 		return "mailFormTest";
 	}
 	
 	@RequestMapping("/getList")
-	public String getList(Criteria cri, Model model) {
-		model.addAttribute("list", biz.getList(cri));
-		int total = biz.getTotal(cri);
+	public String getList(Criteria cri, String email, Model model) {
+		model.addAttribute("email", email);
+		model.addAttribute("list", biz.getList(cri, email));
+		int total = biz.getTotal(cri, email);
 		model.addAttribute("pageMaker", new PageDto(cri, total));
 		return "getList";
+	}
+	
+	@RequestMapping("/getTemplates")
+	public String getTemplate(String email, Model model) {
+		model.addAttribute("template", biz.getTemplates(email));
+		return "templates";
 	}
 	
 	@GetMapping(value="/getAttachList", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -51,40 +78,55 @@ public class MailboxController {
 		return new ResponseEntity<>(biz.getAttachList(bno), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/getMail", method=RequestMethod.GET)
-	public String getMail(@RequestParam("bno") int bno, @ModelAttribute("cri") Criteria cri, Model model) {
-		model.addAttribute("mail", biz.getMail(bno));
-		return "getMail";
-	}
-	
 	@RequestMapping(value= "/updateMail", method=RequestMethod.GET)
-	public String updateMail(@RequestParam("bno") int bno, @ModelAttribute("cri") Criteria cri, Model model) {
+	public String updateMail(MailboxDto mail, int bno, String email, String template, Criteria cri, Model model) {
 		model.addAttribute("mail", biz.getMail(bno));
-		return "updateMail";
+		
+			if(template == "1") {
+				return "template1";
+			} else if(template =="2") {
+				return "template2";
+			} else if(template =="3") {
+				return "template3";
+			} else if(template =="4") {
+				return "template4";
+			} else if(template =="5") {
+				return "template5";
+			}
+		
+		return "updateMailTest";
 	}
 	
-	@RequestMapping(value="/addMail", method=RequestMethod.GET)
-	public String addMail(Model model) {
-		model.addAttribute("title", "Add Mail");
-		return "addMail";
-	}
 	
 	@RequestMapping(value="/addMail", method=RequestMethod.POST)
-	public String addMail(MailboxDto mail, RedirectAttributes rttr) {
-		
-		if(mail.getAttachList() != null) {
-			mail.getAttachList().forEach(attach-> System.out.println(attach));
-		}
-		
+	public String addMail(MailboxDto mail, String email, RedirectAttributes rttr, Criteria cri) {
 		biz.addMail(mail);
-		rttr.addFlashAttribute("result", mail.getBno());
-		
-		return "redirect: /board/mailbox/getList";
+		rttr.addAttribute("email", email);
+		return "redirect: /mailbox/getTemplates";
 	}
 	
 	
 	@RequestMapping(value="/updateMail", method=RequestMethod.POST)
-	public String updateMail(MailboxDto mail, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String updateMail(MailboxDto mail, Criteria cri, RedirectAttributes rttr, String email,
+			String template, HttpServletResponse response, AddressDto addr) throws MessagingException, IOException {
+		
+		MimeMessage message = mailSender.createMimeMessage();
+		MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+		
+		messageHelper.setFrom("jea830@hanmail.net");
+		messageHelper.setTo(addr.getCustomer_email());
+		messageHelper.setSubject(mail.getTitle());
+		messageHelper.setText(mail.getContent(), true);
+		
+		
+		mailSender.send(message);
+		
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = null;
+		out = response.getWriter();
+		out.println("<script>alert('sent!');</script>");
 		
 		if(mail.getAttachList() !=null) {
 			mail.getAttachList().forEach(attach-> System.out.println(attach));
@@ -92,23 +134,26 @@ public class MailboxController {
 		
 		if(biz.updateMail(mail)) {
 			rttr.addFlashAttribute("result", "success");
+			rttr.addAttribute("email", email);
 		}
 		
-		return "redirect: /board/mailbox/getList" + cri.getListLink();
+		return "redirect: /mailbox/getList" + cri.getListLink();
 	}
 	
 	
+	
 	@RequestMapping(value="/deleteMail")
-	public String deleteMail(@RequestParam("bno") int bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String deleteMail(@RequestParam("bno") int bno, String email, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		
 		List<MailboxAttachDto> attachList = biz.getAttachList(bno);
 		
 		if(biz.deleteMail(bno)) {
 			deleteFiles(attachList);
 			rttr.addFlashAttribute("result", "success");
+			rttr.addAttribute("email", email);
 		}
 		
-		return "redirect: /board/mailbox/getList" + cri.getListLink();
+		return "redirect: /mailbox/getList" + cri.getListLink();
 	}
 	
 	private void deleteFiles(List<MailboxAttachDto> attachList) {
@@ -141,6 +186,24 @@ public class MailboxController {
 		
 	}
 	
+	@RequestMapping(method= {RequestMethod.PUT, RequestMethod.PATCH}, value="/preview",
+			consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
+	@ResponseBody
+	public ResponseEntity<String> preview(@RequestBody MailboxDto dto, @RequestParam("bno") int bno) {
+		dto.setBno(bno);
+		
+		return biz.updateMail(dto)
+				? new ResponseEntity<>("success", HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		
+	}
+	
+	@RequestMapping(value="/showPreview", produces= {MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_UTF8_VALUE})
+	@ResponseBody
+	public ResponseEntity<MailboxDto> showPreview(@RequestParam("bno") int bno){
+		return new ResponseEntity<>(biz.getMail(bno), HttpStatus.OK);
+	}
 	
 	
 }

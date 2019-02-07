@@ -13,6 +13,7 @@
 			alert(jb);
 			console.log(jb);
 			document.getElementById("All_code").value = jb;
+			
 		}
 		//이미지 미리보기
 		function previewImage(targetObj, View_area) {
@@ -124,6 +125,9 @@
 		   var fileKind = fileName.split(".")[1];
 		   alert(filePath);
 		  }
+		
+		
+		
 </script>
 <body>
 	<%@ include file="EmailBuilder_head.jsp"%>
@@ -131,10 +135,13 @@
 		<jsp:include page="${template}" />
 	</div>
 	<button onclick="all_content()">클릭</button>
-	<form action="tests.do" method="post">
-	<input type="text" name="email">
+	<form action="sendMail.do" method="post">
+	
+	<input type="text" name="email_list">
 	<input type="text" name="title">
 	<input id="All_code" type="hidden" name="content">
+	<input type="hidden" name="template" value="${num }"/>
+	<input type="hidden" name="email" value="${email }"/>
 	<button type="submit">보내기</button>
 	</form>
 	<div id="hed"></div>
@@ -385,5 +392,6 @@
 			</div>
 		</div>
 	</div>
+	
 </body>
 </html>

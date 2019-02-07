@@ -12,4 +12,6 @@ public interface RegisterBiz {
    public String mail_check(String email);
    public int member_seq_return(String email);
    public String master_name_ck(String email);
+   
+   public RegisterDto getMember(int members_seq);
 }

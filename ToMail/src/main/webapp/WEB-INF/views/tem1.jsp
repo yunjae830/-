@@ -75,8 +75,10 @@ function change7(id){
 function change8(id){
 	$('#myModalT8').modal('show');
 }
+
 </script>
 <body id="u_body" class="u_body" width="100%" bgcolor="#000000" style="margin: 0; mso-line-height-rule: exactly;">
+<input type="hidden" name="template" value="1"/>
 <div id="all_content">
   <div id="header">
   <div style="background-color: #000000; font-family: helvetica,sans-serif;">
@@ -464,7 +466,7 @@ function change8(id){
 <td style="vertical-align:top;width:167px;">
   <![endif]-->
   <div id="u_column_10" class="email-col-33 outlook-group-fix u_column" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
-    
+  
 <table id="u_content_image_5" class="u_content_image" style="font-family:helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
   <tbody>
     <tr>

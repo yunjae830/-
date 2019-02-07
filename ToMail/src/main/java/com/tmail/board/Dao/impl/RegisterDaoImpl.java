@@ -132,4 +132,9 @@ public class RegisterDaoImpl implements RegisterDao {
       }
    }
 
+	@Override
+	public RegisterDto getMember(int members_seq) {
+		return sqlSession.selectOne(namespace + "selectMember" , members_seq);
+	}
+
 }

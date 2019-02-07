@@ -97,7 +97,7 @@ b {
 						<div align="center">
 							<div class="img">
 								<a href="main.do" title="tomail"> <img alt="tomail"
-									src="img/logo2.png" width="200px"></a>
+									src="/board/resources/img/logo2.png" width="200px"></a>
 							</div>
 							<h4>
 								<strong>다시 만나서 반가워요!</strong>
@@ -109,6 +109,7 @@ b {
 
 						<form class="justify-content-center" action="login.do"
 							name="loginForm" method="post">
+							
 							<div class="form-group">
 								<label class="control-label" for="email">이메일 주소</label> <input
 									class="form-control" id="email" name="members_email"
@@ -134,10 +135,11 @@ b {
 							<br> <br> <br>
 							<div align="center">
 								<div>
-									<img alt="tomail" src="img/logo_tomail_font.png" width="150px"><br>
+									<img alt="tomail" src="/board/resources/img/logo_tomail_font.png" width="150px"><br>
 								</div>
 							</div>
 							<br> <br>
+							
 						</form>
 					</div>
 				</div>
