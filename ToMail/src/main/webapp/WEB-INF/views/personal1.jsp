@@ -25,9 +25,9 @@
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 <!-- sweetalert -->
-<script src="js/sweetalert2.all.min.js"></script>
-<script src="js/sweetalert2.min.js"></script>
-<link rel="stylesheet" href="js/sweetalert2.min.css">
+<script src="resources/js/sweetalert2.all.min.js"></script>
+<script src="resources/js/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="resources/js/sweetalert2.min.css">
 <style type="text/css">
 body, html {
   height: 100%;
@@ -43,7 +43,7 @@ body, html {
 #c{margin-left: 40px; width: 300px;}
 .bg {
   /* The image used */
-  background-image: url("img/register_up.png");
+  background-image: url("resources/img/register_up.png");
 
   /* Full height */
   height: 100%; 
@@ -79,7 +79,7 @@ body, html {
 					<div align="center"><button class="btn btn-primary rounded-0" type="submit" style="width: 100px">확인</button></div><br><br><br>
 				</div>
 				<div align="center">
-									<img alt="tomail" src="img/logo_tomail_font.png" width="150px"><br>
+									<img alt="tomail" src="resources/img/logo_tomail_font.png" width="150px"><br>
 								</div>
 				</form>
 			</div>

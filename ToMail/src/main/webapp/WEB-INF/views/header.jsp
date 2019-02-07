@@ -79,7 +79,7 @@ i, i:link{
                <li class="nav-item active"><a class="nav-link" href="group_mail.do?email=${email }">주소록</a></li>
                <li class="nav-item active"><a class="nav-link" href="helpform.do?email=${email }">도움말</a>
                
-               <li class="nav-item active" id="mobile"><a class="nav-link" href="#">계정관리</a></li>
+               <li class="nav-item active" id="mobile"><a class="nav-link" href="#" onclick="location.href='update1.do?email=${email}'">계정관리</a></li>
                <li class="nav-item active" id="mobile"><a class="nav-link" href="#">고객사례</a></li>
                <li class="nav-item active" id="mobile"><a class="nav-link" href="#" onclick="location.href='helpform.do?email=${email}'">도움말</a></li>
                <li class="nav-item active" id="mobile"><a class="nav-link" href="#" onclick="location.href='logout.do'">로그아웃</a></li>
@@ -91,7 +91,7 @@ i, i:link{
             </a>
             <div class="dropdown-menu">
                <a class="dropdown-item" href="#" style="margin-top: 10px;"><b>${email }</b></a><hr>
-               <a class="dropdown-item" href="#">계정관리</a> 
+               <a class="dropdown-item" href="#" onclick="location.href='update1.do?email=${email}'">계정관리</a> 
                <a class="dropdown-item" href="#">고객사례</a> 
                <a class="dropdown-item" href="#" onclick="location.href='helpform.do?email=${email}'">도움말</a>
                <a class="dropdown-item" href="#" onclick="location.href='logout.do'">로그아웃</a>

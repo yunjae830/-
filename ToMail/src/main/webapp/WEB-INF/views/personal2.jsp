@@ -24,9 +24,9 @@
    <!-- emoji -->
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
    <!-- sweetalert -->
-   <script src="js/sweetalert2.all.min.js"></script>
-   <script src="js/sweetalert2.min.js"></script>
-   <link rel="stylesheet" href="js/sweetalert2.min.css">
+   <script src="resources/js/sweetalert2.all.min.js"></script>
+   <script src="resources/js/sweetalert2.min.js"></script>
+   <link rel="stylesheet" href="resources/js/sweetalert2.min.css">
 
 <script type="text/javascript">
 
@@ -66,7 +66,7 @@ body, html {
 #c{margin-left: 40px; width: 300px;}
 .bg {
   /* The image used */
-  background-image: url("img/register_up.png");
+  background-image: url("resources/img/register_up.png");
 
   /* Full height */
   height: 100%; 
@@ -112,7 +112,7 @@ body, html {
 					<br>
 				</c:forEach>
 				<div align="center">
-					<img alt="tomail" src="img/logo_tomail_font.png" width="150px"><br>
+					<img alt="tomail" src="resources/img/logo_tomail_font.png" width="150px"><br>
 				</div>
 			</div>
 		</div>
@@ -136,7 +136,7 @@ body, html {
 								<div>
 									<div align="center">
 										<div>
-											<img alt="tomail" src="img/logo_tomail.png" width="200px"
+											<img alt="tomail" src="resources/img/logo_tomail.png" width="200px"
 												onclick="location.href='main.do'"><br>
 										</div>
 										<div>
@@ -173,7 +173,7 @@ body, html {
 										<div align="center">
 											<br>
 											<div>
-												<img alt="tomail" src="img/logo_tomail_font.png" width="150px"><br><br><br><br>
+												<img alt="tomail" src="resources/img/logo_tomail_font.png" width="150px"><br><br><br><br>
 											</div>
 										</div>
 									</div>
