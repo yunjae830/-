@@ -75,6 +75,18 @@ function change7(id){
 function change8(id){
 	$('#myModalT8').modal('show');
 }
+function change9(id){
+	$('#myModalT9').modal('show');
+}
+function change10(id){
+	$('#myModalT10').modal('show');
+}
+function change11(id){
+	$('#myModalT11').modal('show');
+}
+function change12(id){
+	$('#myModalT12').modal('show');
+}
 </script>
 <body id="u_body" class="u_body" width="100%" bgcolor="#000000" style="margin: 0; mso-line-height-rule: exactly;">
 <div id="all_content">
@@ -105,15 +117,7 @@ function change8(id){
 <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr>
     <td style="padding-right: 0px; padding-left: 0px;" align="left">
-      	<c:set var="img" value="${img}"/>
-		<c:choose>
-		<c:when test="${fn:length(img) > 0}">
-		<a href="#" data-toggle="modal" data-target="#myModal"><img id="img1_head" align="left" border="0" src="${img}" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 294px;" width="294"></a>
-      	</c:when>
-      	<c:when test="${fn:length(img) == 0}">
-      	<a href="#" data-toggle="modal" data-target="#myModal"><img id="img1_head" align="left" border="0" src="https://blogfiles.pstatic.net/MjAxOTAyMDRfMTE4/MDAxNTQ5MjgyMzM1OTk4.vfkxMw5xVgFhuCJ6SdwmvsP3nSfMSpVp6pMKWpn1EREg.KYa6X1_vpe_vCpDShCC39Q_RwVtYNrCvHMab_ExIo6Qg.PNG.jea830/image-5.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 294px;" width="294"></a>
-      	</c:when>
-      	</c:choose>
+      	<a href="#" data-toggle="modal" data-target="#myModal"><img id="img1" align="left" border="0" src="https://blogfiles.pstatic.net/MjAxOTAyMDRfMTE4/MDAxNTQ5MjgyMzM1OTk4.vfkxMw5xVgFhuCJ6SdwmvsP3nSfMSpVp6pMKWpn1EREg.KYa6X1_vpe_vCpDShCC39Q_RwVtYNrCvHMab_ExIo6Qg.PNG.jea830/image-5.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 294px;" width="294"></a>
     </td>
   </tr>
 </table>
@@ -252,7 +256,7 @@ function change8(id){
   <tr>
     <td style="padding-right: 0px; padding-left: 0px;" align="center">
       
-      <img align="center" border="0" src="https://postfiles.pstatic.net/MjAxOTAyMDRfOTkg/MDAxNTQ5MjgyMzM2MDE5.7DGnjfl5NwYiNlublACgS0RJMaR8xqs9vPt-Ry6Sce0g.hgRfYIgv00lI_yFj8ldicTWBEDnKeynI4kXp6U-aVsog.PNG.jea830/image-1.png?type=w580" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 73px;" width="73">
+      <a href="#" data-toggle="modal" data-target="#myModal2"><img id="img2" align="center" border="0" src="https://postfiles.pstatic.net/MjAxOTAyMDRfOTkg/MDAxNTQ5MjgyMzM2MDE5.7DGnjfl5NwYiNlublACgS0RJMaR8xqs9vPt-Ry6Sce0g.hgRfYIgv00lI_yFj8ldicTWBEDnKeynI4kXp6U-aVsog.PNG.jea830/image-1.png?type=w580" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 73px;" width="73"></a>
       
     </td>
   </tr>
@@ -326,7 +330,7 @@ function change8(id){
   <tr>
     <td style="padding-right: 0px; padding-left: 0px;" align="center">
       
-      <img align="center" border="0" src="https://blogfiles.pstatic.net/MjAxOTAyMDRfNDcg/MDAxNTQ5MjgyMzM1OTkw.eQgjJdu8klhHBViByUYBB7cB65FJgTYNWvmL8zAMpV8g.b6Igla4j7G2mvw7gtXirHiqDficGScU4mlMGtBti_j8g.PNG.jea830/image-4.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 73px;" width="73">
+      <a href="#" data-toggle="modal" data-target="#myModal3"><img id="img3" align="center" border="0" src="https://blogfiles.pstatic.net/MjAxOTAyMDRfNDcg/MDAxNTQ5MjgyMzM1OTkw.eQgjJdu8klhHBViByUYBB7cB65FJgTYNWvmL8zAMpV8g.b6Igla4j7G2mvw7gtXirHiqDficGScU4mlMGtBti_j8g.PNG.jea830/image-4.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 73px;" width="73"></a>
       
     </td>
   </tr>
@@ -400,7 +404,7 @@ function change8(id){
   <tr>
     <td style="padding-right: 0px; padding-left: 0px;" align="center">
       
-      <img align="center" border="0" src="https://blogfiles.pstatic.net/MjAxOTAyMDRfMTY0/MDAxNTQ5MjgyMzM1OTU5.t7WA25ZiZjRK8-pOB34OZjya5UnhEqoqaSBkjDRpn2og.53pi8CUtmJ27MF_NkCaBFZNLADSpT3Rc--fFulatuuwg.PNG.jea830/image-3.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 73px;" width="73">
+      <a href="#" data-toggle="modal" data-target="#myModal4"><img id="img4" align="center" border="0" src="https://blogfiles.pstatic.net/MjAxOTAyMDRfMTY0/MDAxNTQ5MjgyMzM1OTU5.t7WA25ZiZjRK8-pOB34OZjya5UnhEqoqaSBkjDRpn2og.53pi8CUtmJ27MF_NkCaBFZNLADSpT3Rc--fFulatuuwg.PNG.jea830/image-3.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 73px;" width="73"></a>
       
     </td>
   </tr>
@@ -474,7 +478,7 @@ function change8(id){
   <tr>
     <td style="padding-right: 0px; padding-left: 0px;" align="center">
       
-      <img align="center" border="0" src="https://blogfiles.pstatic.net/MjAxOTAyMDRfMjEz/MDAxNTQ5MjgyMzM2MDAy.9PohfporMdRdVwQmub3crc-1-F3BWTdWk3KYL0i8MyMg.u1S4EAxb2UaeqRvcCYHGnP_RkqTOjCY-68Bp7UadVfkg.PNG.jea830/image-6.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 73px;" width="73">
+      <a href="#" data-toggle="modal" data-target="#myModal5"><img id="img5" align="center" border="0" src="https://blogfiles.pstatic.net/MjAxOTAyMDRfMjEz/MDAxNTQ5MjgyMzM2MDAy.9PohfporMdRdVwQmub3crc-1-F3BWTdWk3KYL0i8MyMg.u1S4EAxb2UaeqRvcCYHGnP_RkqTOjCY-68Bp7UadVfkg.PNG.jea830/image-6.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 73px;" width="73"></a>
       
     </td>
   </tr>
@@ -546,55 +550,6 @@ function change8(id){
     </a>
   <!--[if mso]></center></v:roundrect></td></tr></table><![endif]-->
 </div>
-
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-  </div>
-  <!--[if mso | IE]>
-  </td>
-</tr></table>
-                <![endif]-->
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <!--[if mso | IE]>
-      </td></tr></table>
-      <![endif]-->
-    </td>
-  </tr>
-</table>
-
-<table id="u_row_10" class="u_row" align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 0; padding: 0">
-  <tr>
-    <td align="center" valign="top" bgcolor="#f0f0f0" style="padding: 30px; background-color: #f0f0f0;">
-      <!--[if mso | IE]>
-      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="500" align="center" style="width:500px;"><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
-      <![endif]-->
-      <div style="margin:0px auto;max-width:500px;">
-        <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:0px;width:100%;" align="center" border="0">
-          <tbody>
-            <tr>
-              <td style="text-align:center;vertical-align:top;direction:ltr;font-size:0px;" bgcolor="">
-                <!--[if mso | IE]>
-                <table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:top;width:500px;">
-  <![endif]-->
-  <div id="u_column_18" class="email-col-100 outlook-group-fix u_column" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
-    
-<table id="u_content_text_12" class="u_content_text" style="font-family:helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-  <tbody>
-    <tr>
-      <td style="overflow-wrap: break-word;padding:20px;font-family:helvetica,sans-serif;" align="left">
-        
-  <div style="color: #000; line-height: 120%; text-align: left;">
-    <div style="font-family: arial, helvetica, sans-serif;"><span style="font-size: 12px; color: #999999; line-height: 14.4px;">You received this email because you signed up for My Company Inc.</span></div>
-<div style="font-family: arial, helvetica, sans-serif;">&nbsp;</div>
-<div style="font-family: arial, helvetica, sans-serif;"><span style="font-size: 12px; color: #999999; line-height: 14.4px;">Unsubscribe</span></div>
-  </div>
 
       </td>
     </tr>

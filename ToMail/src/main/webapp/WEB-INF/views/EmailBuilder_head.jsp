@@ -112,7 +112,7 @@ i, i:link {
 	<nav class="navbar navbar-expand-md navbar-light"
 		style="padding-bottom: 0px;padding-top: 0px;padding-left: 0px;height: 77.5px;">
 		<div align="left">
-			<a class="btn col-sm"> <img alt="back" src="img/entrar.png"
+			<a class="btn col-sm"> <img alt="back" src="resources/img/entrar.png"
 				style="width: 70px; height: 70px;">
 			</a>
 		</div>
@@ -128,7 +128,14 @@ i, i:link {
 		</c:when>
 		</c:choose>
 		<div align="right">
-			<div class="btn col-sm" id="submit" style="right: 0px; left: 1300px;">발송하기</div>
+			<div class="btn col-sm" id="submit" style="right: 0px; left: 1140px;" onclick="all_content()">저장하기</div>
+		</div>
+		<div align="right">
+		<form action="tests.do" method="post">
+			<input type="hidden" name="title" value="${title }">
+			<input id="All_code" type="hidden" name="content">
+			<div class="btn col-sm" id="submit" style="right: 0px; left: 1180px;" onclick="all_content()">보내기</div>
+		</form>
 		</div>
 	</nav>
 </body>

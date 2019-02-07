@@ -60,7 +60,7 @@ function clause(){
          <div>
             <div align="center">
                <div>
-                  <img alt="tomail" src="img/logo_tomail.png" width="200px" onclick="location.href='main.do'"><br>
+                  <img alt="tomail" src="resources/img/logo_tomail.png" width="200px" onclick="location.href='main.do'"><br>
                </div>
                <div>
                   <h3><strong>환영합니다!</strong></h3><br>
@@ -121,7 +121,7 @@ function clause(){
                      <a href="main.do">tomail.com으로 돌아가기</a>
                   </div><br><br><br>
                   <div>
-                     <img alt="tomail" src="img/logo_tomail_font.png" width="150px"><br>
+                     <img alt="tomail" src="resources/img/logo_tomail_font.png" width="150px"><br>
                   </div>
                </div>
             </div>

@@ -10,78 +10,9 @@
 		function all_content(){
 			var all_value = new Array();
 			var jb = document.getElementById( 'all_content' ).innerHTML;
-			alert(jb);
 			console.log(jb);
+			alert('저장되었습니다');
 			document.getElementById("All_code").value = jb;
-		}
-		//이미지 미리보기
-		function previewImage(targetObj, View_area) {
-			var preview = document.getElementById(View_area); //div id
-			var ua = window.navigator.userAgent;
-
-		  //ie일때(IE8 이하에서만 작동)
-			if (ua.indexOf("MSIE") > -1) {
-				targetObj.select();
-				try {
-					var src = document.selection.createRange().text; // get file full path(IE9, IE10에서 사용 불가)
-					var ie_preview_error = document.getElementById("ie_preview_error_" + View_area);
-
-
-					if (ie_preview_error) {
-						preview.removeChild(ie_preview_error); //error가 있으면 delete
-					}
-
-					var img = document.getElementById(View_area); //이미지가 뿌려질 곳
-
-					//이미지 로딩, sizingMethod는 div에 맞춰서 사이즈를 자동조절 하는 역할
-					img.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+src+"', sizingMethod='scale')";
-				} catch (e) {
-					if (!document.getElementById("ie_preview_error_" + View_area)) {
-						var info = document.createElement("<p>");
-						info.id = "ie_preview_error_" + View_area;
-						info.innerHTML = e.name;
-						preview.insertBefore(info, null);
-					}
-				}
-		  //ie가 아닐때(크롬, 사파리, FF)
-			} else {
-				var files = targetObj.files;
-				for ( var i = 0; i < files.length; i++) {
-					var file = files[i];
-					var imageType = /image.*/; //이미지 파일일경우만.. 뿌려준다.
-					if (!file.type.match(imageType))
-						continue;
-					var prevImg = document.getElementById("prev_" + View_area); //이전에 미리보기가 있다면 삭제
-					if (prevImg) {
-						preview.removeChild(prevImg);
-					}
-					var img = document.createElement("img"); 
-					img.id = "prev_" + View_area;
-					img.classList.add("obj");
-					img.file = file;
-					img.style.width = '100px'; 
-					img.style.height = '100px';
-					preview.appendChild(img);
-					if (window.FileReader) { // FireFox, Chrome, Opera 확인.
-						var reader = new FileReader();
-						reader.onloadend = (function(aImg) {
-							return function(e) {
-								aImg.src = e.target.result;
-							};
-						})(img);
-						reader.readAsDataURL(file);
-					} else { // safari is not supported FileReader
-						//alert('not supported FileReader');
-						if (!document.getElementById("sfr_preview_error_"
-								+ View_area)) {
-							var info = document.createElement("p");
-							info.id = "sfr_preview_error_" + View_area;
-							info.innerHTML = "not supported FileReader";
-							preview.insertBefore(info, null);
-						}
-					}
-				}
-			}
 		}
 		
 		function textInner(){
@@ -116,31 +47,102 @@
 			var text = document.getElementById('text8').value;
 			document.getElementById('text_content8').innerHTML = text;
 		}
+		function textInner9(){
+			var text = document.getElementById('text9').value;
+			document.getElementById('text_content9').innerHTML = text;
+		}
+		function textInner10(){
+			var text = document.getElementById('text10').value;
+			document.getElementById('text_content10').innerHTML = text;
+		}
+		function textInner11(){
+			var text = document.getElementById('text11').value;
+			document.getElementById('text_content11').innerHTML = text;
+		}
+		function textInner12(){
+			var text = document.getElementById('text12').value;
+			document.getElementById('text_content12').innerHTML = text;
+		}
+		function textInner13(){
+			var text = document.getElementById('text13').value;
+			document.getElementById('text_content13').innerHTML = text;
+		}
 		
-		function reviewUploadImg(fileObj)
-		  {
-		   var filePath = fileObj.value;
-		   var fileName = filePath.substring(filePath.lastIndexOf("\\")+1);
-		   var fileKind = fileName.split(".")[1];
-		   alert(filePath);
-		  }
+
+		function uploadFile(input,num) {   
+	if(num==1){
+		if (input.files && input.files[0]) {    
+
+		var reader = new FileReader(); 
+		$('#img_in').click(function img_change(){
+			
+		
+		reader.onload = function (e) {     
+		$('#img1').attr('src', e.target.result).width(100).height(100);    
+		};    
+		reader.readAsDataURL(input.files[0]);
+		});
+		}
+	}else if(num==2){
+		if (input.files && input.files[0]) {    
+
+			var reader = new FileReader(); 
+			$('#img_in2').click(function img_change(){
+				
+			
+			reader.onload = function (e) {     
+			$('#img2').attr('src', e.target.result).width(100).height(100);    
+			};    
+			reader.readAsDataURL(input.files[0]);
+			});
+		}
+	}else if (num==3){
+		if (input.files && input.files[0]) {    
+
+			var reader = new FileReader(); 
+			$('#img_in3').click(function img_change(){
+				
+			
+			reader.onload = function (e) {     
+			$('#img3').attr('src', e.target.result).width(100).height(100);    
+			};    
+			reader.readAsDataURL(input.files[0]);
+			});
+		}
+	}else if(num==4){
+		if (input.files && input.files[0]) {    
+
+			var reader = new FileReader(); 
+			$('#img_in4').click(function img_change(){
+				
+			
+			reader.onload = function (e) {     
+			$('#img4').attr('src', e.target.result).width(100).height(100);    
+			};    
+			reader.readAsDataURL(input.files[0]);
+			});
+		}
+	}else if(num==5){
+		if (input.files && input.files[0]) {    
+
+			var reader = new FileReader(); 
+			$('#img_in5').click(function img_change(){
+				
+			
+			reader.onload = function (e) {     
+			$('#img5').attr('src', e.target.result).width(100).height(100);    
+			};    
+			reader.readAsDataURL(input.files[0]);
+			});
+		}
+	}
+} 
 </script>
 <body>
 	<%@ include file="EmailBuilder_head.jsp"%>
 	<div class="container">
 		<jsp:include page="${template}" />
 	</div>
-	<button onclick="all_content()">클릭</button>
-	<form action="tests.do" method="post">
-	<input type="text" name="email">
-	<input type="text" name="title">
-	<input id="All_code" type="hidden" name="content">
-	<button type="submit">보내기</button>
-	</form>
-	<div id="hed"></div>
-	<div id="hedT"></div>
-	<div id="body"></div>
-	<div id="footer"></div>
 
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -155,14 +157,111 @@
 				</div>
 				<div class="modal-body">
 					<div class="container">
-							<div id='View_area' style='position:relative; width: 100px; height: 100px; color: black; border: 0px solid black; dispaly: inline; '></div>
 							<div class="form-group" style="border: 1px; float: left;">
-								<input type="file" name="image_file" id="image_file" size="60" class="inputText" onchange="reviewUploadImg(this);" />
+								<input type="file" name="image_file" id="image_file" size="60" class="inputText" onchange="uploadFile(this,1);"/>
 							</div>
 							<div style="border: 1px; float: left;">
-								<button class="btn btn-primary btn-block login-button"
-								id="img_insert" title="이미지 넣기"
-								 name="img_insert">이미지 넣기</button>
+								<a id="img_in" href="#" data-dismiss="modal"><img alt="넣기" src="resources/img/suc.png" style="width: 30px;"></a>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h3><b>이미지를 넣어주세요</b></h3>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+							<div class="form-group" style="border: 1px; float: left;">
+								<input type="file" name="image_file" id="image_file" size="60" class="inputText" onchange="uploadFile(this,2);"/>
+							</div>
+							<div style="border: 1px; float: left;">
+								<a id="img_in2" href="#" data-dismiss="modal"><img alt="넣기" src="resources/img/suc.png" style="width: 30px;"></a>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="myModal3" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h3><b>이미지를 넣어주세요</b></h3>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+							<div class="form-group" style="border: 1px; float: left;">
+								<input type="file" name="image_file" id="image_file" size="60" class="inputText" onchange="uploadFile(this,3);"/>
+							</div>
+							<div style="border: 1px; float: left;">
+								<a id="img_in3" href="#" data-dismiss="modal"><img alt="넣기" src="resources/img/suc.png" style="width: 30px;"></a>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="myModal4" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h3><b>이미지를 넣어주세요</b></h3>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+							<div class="form-group" style="border: 1px; float: left;">
+								<input type="file" name="image_file" id="image_file" size="60" class="inputText" onchange="uploadFile(this,4);"/>
+							</div>
+							<div style="border: 1px; float: left;">
+								<a id="img_in4" href="#" data-dismiss="modal"><img alt="넣기" src="resources/img/suc.png" style="width: 30px;"></a>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="myModal5" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h3><b>이미지를 넣어주세요</b></h3>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+							<div class="form-group" style="border: 1px; float: left;">
+								<input type="file" name="image_file" id="image_file" size="60" class="inputText" onchange="uploadFile(this,5);"/>
+							</div>
+							<div style="border: 1px; float: left;">
+								<a id="img_in5" href="#" data-dismiss="modal"><img alt="넣기" src="resources/img/suc.png" style="width: 30px;"></a>
 							</div>
 					</div>
 				</div>
@@ -378,6 +477,141 @@
 							<div style="border: 1px; float: left;">
 								<button class="btn btn-primary btn-block login-button"
 								id="text_insert" onclick="textInner8()" title="글작성"
+								 name="text_insert" data-dismiss="modal">글 작성</button>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="myModalT9" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h3><b>글을 입력해주세요</b></h3>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+							<div class="form-group" style="border: 1px; float: left;">
+								<input id="text9" name="content" type="text" placeholder="글을 입력해주세요" class="form-control"/>
+							</div>
+							<div style="border: 1px; float: left;">
+								<button class="btn btn-primary btn-block login-button"
+								id="text_insert" onclick="textInner9()" title="글작성"
+								 name="text_insert" data-dismiss="modal">글 작성</button>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="myModalT10" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h3><b>글을 입력해주세요</b></h3>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+							<div class="form-group" style="border: 1px; float: left;">
+								<input id="text10" name="content" type="text" placeholder="글을 입력해주세요" class="form-control"/>
+							</div>
+							<div style="border: 1px; float: left;">
+								<button class="btn btn-primary btn-block login-button"
+								id="text_insert" onclick="textInner10()" title="글작성"
+								 name="text_insert" data-dismiss="modal">글 작성</button>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="myModalT11" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h3><b>글을 입력해주세요</b></h3>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+							<div class="form-group" style="border: 1px; float: left;">
+								<input id="text11" name="content" type="text" placeholder="글을 입력해주세요" class="form-control"/>
+							</div>
+							<div style="border: 1px; float: left;">
+								<button class="btn btn-primary btn-block login-button"
+								id="text_insert" onclick="textInner11()" title="글작성"
+								 name="text_insert" data-dismiss="modal">글 작성</button>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="myModalT12" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h3><b>글을 입력해주세요</b></h3>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+							<div class="form-group" style="border: 1px; float: left;">
+								<input id="text12" name="content" type="text" placeholder="글을 입력해주세요" class="form-control"/>
+							</div>
+							<div style="border: 1px; float: left;">
+								<button class="btn btn-primary btn-block login-button"
+								id="text_insert" onclick="textInner12()" title="글작성"
+								 name="text_insert" data-dismiss="modal">글 작성</button>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="myModalT13" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h3><b>글을 입력해주세요</b></h3>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+							<div class="form-group" style="border: 1px; float: left;">
+								<input id="text13" name="content" type="text" placeholder="글을 입력해주세요" class="form-control"/>
+							</div>
+							<div style="border: 1px; float: left;">
+								<button class="btn btn-primary btn-block login-button"
+								id="text_insert" onclick="textInner13()" title="글작성"
 								 name="text_insert" data-dismiss="modal">글 작성</button>
 							</div>
 					</div>

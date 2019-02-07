@@ -47,7 +47,7 @@ hr {
 }
 
 .bg {
-	background-image: url("img/bg.png");
+	background-image: url("resources/img/bg.png");
 	/* Full height */
 	height: 100%;
 	/* Center and scale the image nicely */
@@ -97,7 +97,7 @@ b {
 						<div align="center">
 							<div class="img">
 								<a href="main.do" title="tomail"> <img alt="tomail"
-									src="img/logo2.png" width="200px"></a>
+									src="resources/img/logo2.png" width="200px"></a>
 							</div>
 							<h4>
 								<strong>다시 만나서 반가워요!</strong>
@@ -134,7 +134,7 @@ b {
 							<br> <br> <br>
 							<div align="center">
 								<div>
-									<img alt="tomail" src="img/logo_tomail_font.png" width="150px"><br>
+									<img alt="tomail" src="resources/img/logo_tomail_font.png" width="150px"><br>
 								</div>
 							</div>
 							<br> <br>

@@ -66,7 +66,7 @@ hr {
 }
 
 .bg {
-	background-image: url("img/bg.png");
+	background-image: url("resources/img/bg.png");
 	/* Full height */
 	height: 100%;
 	/* Center and scale the image nicely */
@@ -229,10 +229,10 @@ b {
 					<div class="col-sm-4" style="padding-top: 40px;">
 					<div align="right">
 					<div id="delete_bb" style="float: right; border: 1px;">
-					<a id="delete_group" class="btn btn-sm" onclick="button_event(${dto.group_seq })"><img alt="삭제" src="img/delete.png" style="width: 30px;"></a>
+					<a id="delete_group" class="btn btn-sm" onclick="button_event(${dto.group_seq })"><img alt="삭제" src="resources/img/delete.png" style="width: 30px;"></a>
 					</div>
 					<div id="update_bb" style="float: right; border: 1px; margin-right: 10px;">
-					<a id="update_group" class="btn btn-sm" onclick="button_event2(${dto.group_seq })" data-toggle="modal" data-target="#myModal_up"><img alt="수정" src="img/update.png" style="width: 30px;"></a>
+					<a id="update_group" class="btn btn-sm" onclick="button_event2(${dto.group_seq })" data-toggle="modal" data-target="#myModal_up"><img alt="수정" src="resources/img/update.png" style="width: 30px;"></a>
 					</div>
 					</div>
 				</div>

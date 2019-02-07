@@ -66,7 +66,7 @@ hr {
 }
 
 .bg {
-	background-image: url("img/bg.png");
+	background-image: url("resources/img/bg.png");
 	/* Full height */
 	height: 100%;
 	/* Center and scale the image nicely */
@@ -214,7 +214,7 @@ $(document).ready(function(){
 						<div class="container-4">
 							<input type="search" id="search_name" placeholder="구독자 이름 검색중..."/>
 							<a id="addr_se" href="#">
-								<img alt="검색" src="img/search.png" style="width: 30px; padding-bottom: 10px;">
+								<img alt="검색" src="resources/img/search.png" style="width: 30px; padding-bottom: 10px;">
 							</a>
 						</div>
 					</div>
@@ -254,10 +254,10 @@ $(document).ready(function(){
 						</div>
 					<div class="col-sm-4" style="padding-top: 10px;">
 					<div id="delete_bb" style="float: right; border: 1px;">
-						<a id="delete_group" class="btn btn-sm" onclick="button_event(${dto.customer_seq},${group_seq})"><img alt="삭제" src="img/delete.png" style="width: 30px;"></a>
+						<a id="delete_group" class="btn btn-sm" onclick="button_event(${dto.customer_seq},${group_seq})"><img alt="삭제" src="resources/img/delete.png" style="width: 30px;"></a>
 					</div>
 					<div id="update_bb" style="float: right; border: 1px; margin-right: 10px;">
-						<a id="update_group" class="btn btn-sm" onclick="cus_seq(${dto.customer_seq })" data-toggle="modal" data-target="#myModal_up"><img alt="수정" src="img/update.png" style="width: 30px;"></a>
+						<a id="update_group" class="btn btn-sm" onclick="cus_seq(${dto.customer_seq })" data-toggle="modal" data-target="#myModal_up"><img alt="수정" src="resources/img/update.png" style="width: 30px;"></a>
 					</div>
 					</div>
 				</div>
@@ -300,7 +300,7 @@ $(document).ready(function(){
 							<div>
 								<div align="center">
 									<div>
-										<img alt="tomail" src="img/logo_tomail.png" width="200px"><br>
+										<img alt="tomail" src="resources/img/logo_tomail.png" width="200px"><br>
 									</div>
 									<div>
 										<h3>
@@ -331,7 +331,7 @@ $(document).ready(function(){
 									<div align="center">
 										<br>
 										<div>
-											<img alt="tomail" src="img/logo_tomail_font.png"
+											<img alt="tomail" src="resources/img/logo_tomail_font.png"
 												width="150px"><br>
 										</div>
 									</div>
@@ -361,7 +361,7 @@ $(document).ready(function(){
 							<div>
 								<div align="center">
 									<div>
-										<img alt="tomail" src="img/logo_tomail.png" width="200px"><br>
+										<img alt="tomail" src="resources/img/logo_tomail.png" width="200px"><br>
 									</div>
 									<div>
 										<h3>
@@ -391,7 +391,7 @@ $(document).ready(function(){
 									<div align="center">
 										<br>
 										<div>
-											<img alt="tomail" src="img/logo_tomail_font.png"
+											<img alt="tomail" src="resources/img/logo_tomail_font.png"
 												width="150px"><br>
 										</div>
 									</div>
@@ -421,7 +421,7 @@ $(document).ready(function(){
 								<div>
 									<div align="center">
 										<div>
-											<img alt="tomail" src="img/logo_tomail.png" width="200px"
+											<img alt="tomail" src="resources/img/logo_tomail.png" width="200px"
 												onclick="location.href='main.do'"><br>
 										</div>
 										<div>
@@ -457,7 +457,7 @@ $(document).ready(function(){
 										<div align="center">
 											<br>
 											<div>
-												<img alt="tomail" src="img/logo_tomail_font.png"
+												<img alt="tomail" src="resources/img/logo_tomail_font.png"
 													width="150px"><br>
 											</div>
 										</div>

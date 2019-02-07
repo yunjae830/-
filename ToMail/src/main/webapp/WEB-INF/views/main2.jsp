@@ -86,17 +86,17 @@ h2{
       <div class="row justify-content-center " id="button">
          
          <div class="card col-sm" align="center">
-            <div><img alt="" src="img/main2-1.png"></div><br>
+            <div><img alt="" src="resources/img/main2-1.png"></div><br>
             <div class="btn col-sm" onclick="location.href='group_mail.do?email=${email }'">주소록 만들기</div><br>
             <p id="mainword">이메일 주소, 이름 등 이메일을<br>받을 사람의 정보를 등록합니다.</p>
          </div>
          <div class="card col-sm" align="center">
-            <div><img alt="" src="img/main2-2.png"></div><br>
+            <div><img alt="" src="resources/img/main2-2.png"></div><br>
             <div class="btn col-sm">이메일 만들기</div><br>
             <p id="mainword">이메일 제목, 콘텐츠 등을<br>작성하여 이메일을 만듭니다.</p>
          </div>
          <div class="card col-sm" align="center">
-            <div><img alt="" src="img/main2-3.png"></div><br>
+            <div><img alt="" src="resources/img/main2-3.png"></div><br>
             <div class="btn col-sm">임시 메일함</div><br>
             <p id="mainword">임시로 저장된 이메일을 확인하여<br>받을 사람의 정보를 등록합니다.</p>
          </div>   

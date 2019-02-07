@@ -146,13 +146,8 @@ public class HelpController {
 			}
 		}
 		System.out.println(emails + "++++++++++++++");
-		model.addAttribute("emails", emails);
+		session.setAttribute("emails", emails);
+		model.addAttribute("email",email);
 		return "emailTemplate";
-	}
-
-	@RequestMapping(value = "emailBuild.do")
-	public String emailBuildForm(String email) {
-
-		return "emailBuild";
 	}
 }
