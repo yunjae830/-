@@ -12,8 +12,7 @@
 	
 	<insert id="addMail" parameterType="MailboxDto">
 		INSERT INTO TBL_MAILBOX(BNO, TEMPLATE, EMAIL, TITLE, CONTENT)
-		VALUES(SEQ_MAILBOX.NEXTVAL, #{template, jdbcType=VARCHAR}, #{title, jdbcType=VARCHAR}, #{content,  jdbcType=VARCHAR}
-		)
+		VALUES(SEQ_MAILBOX.NEXTVAL, #{template}, #{email}, #{title}, #{content})
 	</insert>
 	
 	<insert id="insertSelectKey" parameterType="MailboxDto">
@@ -22,8 +21,8 @@
 			SELECT SEQ_MAILBOX.NEXTVAL FROM DUAL
 		</selectKey>
 		
-		INSERT INTO TBL_MAILBOX(BNO, TEMPLATE, TITLE, CONTENT)
-		VALUES(#{bno, jdbcType=INTEGER}, #{template, jdbcType=VARCHAR}, #{title, jdbcType=VARCHAR}, #{content,  jdbcType=VARCHAR}
+		INSERT INTO TBL_MAILBOX(BNO, TEMPLATE, EMAIL, TITLE, CONTENT)
+		VALUES(#{bno, jdbcType=INTEGER}, #{template, jdbcType=INTEGER}, #{email, jdbcType=VARCHAR}, #{title, jdbcType=VARCHAR}, #{content,  jdbcType=VARCHAR}
 		 
 		)
 		

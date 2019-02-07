@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="eg" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%-- 
+	<sql:query var="data">
+		select content,
+		textValue
+		from TBL_MAILBOX
+		where bno = ?
+		<sql:param value="${param['bno']}"/>
+	</sql:query> --%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,14 +146,19 @@
 	<div class="container">
 		<jsp:include page="${template}" />
 	</div>
+	<div class="container">
+		${mail.content }
+	</div>	
 	<button onclick="all_content()">클릭</button>
 	<form action="sendMail.do" method="post">
 	
-	<input type="text" name="email_list">
+	
 	<input type="text" name="title">
 	<input id="All_code" type="hidden" name="content">
-	<input type="hidden" name="template" value="${num }"/>
-	<input type="hidden" name="email" value="${email }"/>
+	<input type="hidden" name="template" value="${num}"/>
+	<input type="hidden" name="email" value="highkick89@naver.com"/>
+	<input type="hidden" name="pageNum" value="1"/>
+	<input type="hidden" name="amount" value="10"/>
 	<button type="submit">보내기</button>
 	</form>
 	<div id="hed"></div>

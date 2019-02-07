@@ -27,19 +27,19 @@ $(document).ready(function(){
 	$(".page-item a").on("click", function(e){
 		e.preventDefault();
 		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+		actionForm.find("input[name='template']").val($(this).attr("title"));
 		actionForm.submit();
 	});
 	
-	/* $('#regBtn').on("click", function(e){
+	$('#regBtn').on("click", function(e){
 		e.preventDefault();
-		addForm.attr("action", "/testess.do");
+		addForm.attr("action", "testess.do");
 		addForm.submit();
 	});
- */	
+ 	
 	$(".move").on("click", function(e){
 		e.preventDefault();
 		actionForm.append("<input type='hidden' name='bno' value='"+ $(this).attr("href")+"'>");
-		actionForm.append("<input type='hidden' name='template' value='"+$(this).attr("title")+"'>");
 		actionForm.attr("action", "updateMail");
 		actionForm.submit();
 	});
@@ -71,13 +71,13 @@ $(document).ready(function(){
   		<c:forEach items="${list }" var="mail">
   		<div class="p-2 border">
 	  		<div class="card">
-	    		<img class="card-img-top" src="img/template<c:out value="${mail.template }"/>.png" alt="Card image" style="width:100%;">
-	      			<div class="card">
+	    		<img class="card-img-top" src="resources/img/template<c:out value="${mail.template }"/>.png" alt="Card image" style="width:100%;">
+	      			<div class="card-body">
 	      				<h4 class="card-title">${mail.title }</h4>
-	      				<p style="overflow:hidden;"class="card-text">text<br/>
+	      				<p style="overflow:hidden;"class="card-text">
 	      				<fmt:formatDate pattern="yyyy-MM-dd" value="${mail.regdate }"/>
 	      				</p>
-	      				<a href="${mail.bno }" title="${mail.template }" class="move btn btn-primary btn-block" style="align-self:flex-end;">See detail</a>
+	      				<a href="${mail.bno }" class="move btn btn-primary btn-block" style="align-self:flex-end;">See detail</a>
 	      			</div>
 	      	</div>
       	</div>
@@ -109,10 +109,10 @@ $(document).ready(function(){
   				<input type="hidden" name="amount" value="${pageMaker.cri.amount }"/>
   				<input type="hidden" name="email" value="${email}"/>
   			</form>
-  	<%-- 		<form id="addForm" action="addMail" method="post">
+  		 	<form id="addForm" action="addMail" method="post">
   				<input type="hidden" name="email" value="${email}"/>
-  			</form> --%>
-  		<button class="btn btn-success" id="regBtn" onclick="location.href='testess.do'">Add</button>
+  			</form>
+  		<button class="btn btn-success" id="regBtn">Add</button>
   		<button class="btn btn-primary" onclick="location.href='main2.do'">Back to home</button>
   		</div>
 	</div>

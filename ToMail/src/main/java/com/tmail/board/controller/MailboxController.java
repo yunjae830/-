@@ -38,7 +38,6 @@ import com.tmail.board.Dto.PageDto;
 import com.tmail.board.Dto.RegisterDto;
 
 @Controller
-@RequestMapping("/mailbox")
 public class MailboxController {
 
 	@Autowired
@@ -79,22 +78,11 @@ public class MailboxController {
 	}
 	
 	@RequestMapping(value= "/updateMail", method=RequestMethod.GET)
-	public String updateMail(MailboxDto mail, int bno, String email, String template, Criteria cri, Model model) {
+	public String updateMail(MailboxDto mail, int bno, String email, Criteria cri, Model model, HttpServletResponse response) {
 		model.addAttribute("mail", biz.getMail(bno));
-		
-			if(template == "1") {
-				return "template1";
-			} else if(template =="2") {
-				return "template2";
-			} else if(template =="3") {
-				return "template3";
-			} else if(template =="4") {
-				return "template4";
-			} else if(template =="5") {
-				return "template5";
-			}
-		
-		return "updateMailTest";
+	    response.setCharacterEncoding("UTF-8");
+	    response.setContentType("text/html; charset=UTF-8");
+		return "templateBuilder_view";
 	}
 	
 	

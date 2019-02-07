@@ -16,6 +16,7 @@ public class MailboxDto {
 	*/
 	
 	private int bno;
+	private String email;
 	private String template;
 	private String title;
 	private String content;
@@ -101,5 +102,16 @@ public class MailboxDto {
 	public void setAttachList(List<MailboxAttachDto> attachList) {
 		this.attachList = attachList;
 	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	
 }

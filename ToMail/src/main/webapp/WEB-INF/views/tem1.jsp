@@ -78,7 +78,6 @@ function change8(id){
 
 </script>
 <body id="u_body" class="u_body" width="100%" bgcolor="#000000" style="margin: 0; mso-line-height-rule: exactly;">
-<input type="hidden" name="template" value="1"/>
 <div id="all_content">
   <div id="header">
   <div style="background-color: #000000; font-family: helvetica,sans-serif;">

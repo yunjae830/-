@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -21,8 +20,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,13 +32,11 @@ import com.tmail.board.Biz.HelpBiz;
 import com.tmail.board.Biz.MailboxBiz;
 import com.tmail.board.Biz.RegisterBiz;
 import com.tmail.board.Dto.AddressDto;
-import com.tmail.board.Dto.InsertResultDto;
+import com.tmail.board.Dto.Criteria;
 import com.tmail.board.Dto.MailboxDto;
+import com.tmail.board.Dto.PageDto;
 import com.tmail.board.Dto.SummernoteDto;
-import com.tmail.board.Dto.TestDto;
 import com.tmail.board.excel.ReadXLSX;
-
-import oracle.net.ns.ClientProfile;
 
 @Controller
 public class EmailbuilderController {
@@ -225,23 +220,21 @@ public class EmailbuilderController {
 	}
 	
 	  @RequestMapping(value="sendMail.do", method=RequestMethod.POST)
-	   public String tests(HttpServletResponse response, AddressDto addr, MailboxDto mail, HttpSession session, Model model, String email) throws MessagingException, IOException {
-		  int num = (Integer) session.getAttribute("num");
-		  model.addAttribute("num", num);
-		  model.addAttribute("email", email);
+	   public String tests(HttpServletResponse response, AddressDto addr, MailboxDto mail, Criteria cri,  HttpSession session, Model model, String email) throws MessagingException, IOException {
+	
 	      MimeMessage message = mailSender.createMimeMessage();
 	      MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 	      String setfrom = "jea830@hanmail.net";
-	      List<String> tomail = addr.getEmail_list(); // 받는 사람 이메일
+//	      List<String> tomail = addr.getEmail_list(); // 받는 사람 이메일
 	      String title = mail.getTitle(); // 제목
 	      String content = mail.getContent(); // 내용
-	      for(int i = 0; i< tomail.size(); i++) {
+//	      for(int i = 0; i< tomail.size(); i++) {
 	      messageHelper.setFrom(setfrom); // 보내는사람 생략하거나 하면 정상작동을 안함
-	      messageHelper.setTo(tomail.get(i)); // 받는사람 이메일
+	      messageHelper.setTo("highkick89@naver.com"); // 받는사람 이메일
 	      messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
 	      messageHelper.setText(content, true); // html이라는 의미로 true를 써준다.
 	      mailSender.send(message);
-	      }
+//	      }
 	      response.setCharacterEncoding("UTF-8");
 	      response.setContentType("text/html; charset=UTF-8"); // 한글깨짐 방지
 	      PrintWriter out_p = null;
@@ -251,9 +244,15 @@ public class EmailbuilderController {
 
 	      out_p.flush();
 	      
+	      int num = (Integer) session.getAttribute("num");
 	      mailboxBiz.addMail(mail);
+	      model.addAttribute("num", num);
+	      model.addAttribute("email", email);
+	      model.addAttribute("list", mailboxBiz.getList(cri, email));
+	      int total = mailboxBiz.getTotal(cri, email);
+	      model.addAttribute("pageMaker", new PageDto(cri, total));
 	      
-	      return "redirect: /mailbox/getList";
+	      return "getList";
 	      
 	   }
 }
