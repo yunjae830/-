@@ -92,7 +92,7 @@ h2{
          </div>
          <div class="card col-sm" align="center">
             <div><img alt="" src="resources/img/main2-2.png"></div><br>
-            <div class="btn col-sm">이메일 만들기</div><br>
+            <div class="btn col-sm" onclick="location.href='group_mail.do?email=${email }'">이메일 만들기</div><br>
             <p id="mainword">이메일 제목, 콘텐츠 등을<br>작성하여 이메일을 만듭니다.</p>
          </div>
          <div class="card col-sm" align="center">

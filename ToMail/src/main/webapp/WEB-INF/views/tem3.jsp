@@ -73,7 +73,7 @@ function change12(id){
   <tr>
     <td style="padding-right: 0px; padding-left: 0px;" align="left">
       
-      <a href="#" data-toggle="modal" data-target="#myModal"><img id="img1" align="left" border="0" src="https://postfiles.pstatic.net/MjAxOTAyMDVfMTAw/MDAxNTQ5MzM2MzM2Mzg3.dGP_B_lig3S_Y5cz9fU-R_LJzMZc5BSHgOWMZHM72AYg.PIGryzCy-kd9JcpLm_HfzfCEx1AY_XoTq1hiWVblbVkg.PNG.jea830/image-1.png?type=w580" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 224px;" width="224"></a>
+      <a href="#" data-toggle="modal" data-target="#myModal"><img id="img1" align="left" border="0" src="resources/img/tem/tem3-3.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 224px;" width="224"></a>
       
     </td>
   </tr>
@@ -187,7 +187,7 @@ function change12(id){
   <tr>
     <td style="padding-right: 0px; padding-left: 0px;" align="center">
       
-      <a href="#" data-toggle="modal" data-target="#myModal2"><img id="img2" align="center" border="0" src="https://postfiles.pstatic.net/MjAxOTAyMDVfMjY2/MDAxNTQ5MzM2MzM2ODEx.lS-mfyvEjXqNAON4cnNLHOCsK0EPNdrNY6ETz-GDAfEg.nQSnOyj3eJme9wEkctoosxuk_6hfYh2r3sBz4lqTGgYg.JPEG.jea830/image-2.jpeg?type=w580" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 560px;" width="560"></a>
+      <a href="#" data-toggle="modal" data-target="#myModal2"><img id="img2" align="center" border="0" src="resources/img/tem/tem3-1.jpeg" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 560px;" width="560"></a>
       
     </td>
   </tr>
@@ -404,7 +404,7 @@ function change12(id){
   <tr>
     <td style="padding-right: 0px; padding-left: 0px;" align="center">
       
-      <a href="#" data-toggle="modal" data-target="#myModal3"><img id="img3" align="center" border="0" src="https://postfiles.pstatic.net/MjAxOTAyMDVfMjYg/MDAxNTQ5MzM2MzM2Nzkw.m4QWew6R2pJmchCzVjNEAohNz6slb6b86eqp2Sgt5MIg.QG0-tEw9I6gS4YUgtlYwvrIM0xvLUq5klHWNAZt6ZYwg.JPEG.jea830/image-3.jpeg?type=w580" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 560px;" width="560"></a>
+      <a href="#" data-toggle="modal" data-target="#myModal3"><img id="img3" align="center" border="0" src="resources/img/tem/tem3-2.jpeg" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 560px;" width="560"></a>
       
     </td>
   </tr>

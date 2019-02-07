@@ -73,7 +73,7 @@ function change12(id){
   <tr>
     <td style="padding-right: 0px; padding-left: 0px;" align="left">
       
-      <a href="#" data-toggle="modal" data-target="#myModal"><img id="img1" align="left" border="0" src="https://blogfiles.pstatic.net/MjAxOTAyMDVfMjM3/MDAxNTQ5MzM1MTMzNDk4.6xNshZF-H905v8cHDfBNI3aZKBT3jFj64dFjvtfmPDAg.zBcl0aQ_no-cTuJ1WZjRqrlozLB80r9ORZlmQGV2KqMg.PNG.jea830/image-1.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 150px;" width="150"></a>
+      <a href="#" data-toggle="modal" data-target="#myModal"><img id="img1" align="left" border="0" src="resources/img/tem/tem2-1.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 150px;" width="150"></a>
       
     </td>
   </tr>
@@ -241,7 +241,7 @@ function change12(id){
   <tr>
     <td style="padding-right: 0px; padding-left: 0px;" align="center">
       
-      <a href="#" data-toggle="modal" data-target="#myModal2"><img id="img2" align="center" border="0" src="https://postfiles.pstatic.net/MjAxOTAyMDVfMTY0/MDAxNTQ5MzM1MTM0MDU2.95wZgXA7_Wa0TC_QiOzgI2RJq0ky1zgLz26H5bAC8Uog.kkewmI3bE1-lKpFGjzc1PJICC3D9HJ3rrbSNgEA8aUgg.JPEG.jea830/image-5.jpeg?type=w580" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 280px;" width="280"></a>
+      <a href="#" data-toggle="modal" data-target="#myModal2"><img id="img2" align="center" border="0" src="resources/img/tem/tem2-5.jpeg" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 280px;" width="280"></a>
       
     </td>
   </tr>
@@ -268,7 +268,7 @@ function change12(id){
   <tr>
     <td style="padding-right: 0px; padding-left: 0px;" align="center">
       
-      <a href="#" data-toggle="modal" data-target="#myModal3"><img id="img3" align="center" border="0" src="https://postfiles.pstatic.net/MjAxOTAyMDVfMTkg/MDAxNTQ5MzM1MTM0MTUx.9pKzb4wj-SmGiGzsnWhnOHTXTX0C57QQ7XMB35_-nD0g.zmVO-gfGR3zj-Q8ydwNC_P4OUNpGwPN2MAavu8Axjgcg.JPEG.jea830/image-2.jpeg?type=w580" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 280px;" width="280"></a>
+      <a href="#" data-toggle="modal" data-target="#myModal3"><img id="img3" align="center" border="0" src="resources/img/tem/tem2-2.jpeg" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 280px;" width="280"></a>
       
     </td>
   </tr>
@@ -302,7 +302,7 @@ function change12(id){
   <tr>
     <td style="padding-right: 0px; padding-left: 0px;" align="center">
       
-      <a href="#" data-toggle="modal" data-target="#myModal4"><img id="img4" align="center" border="0" src="https://postfiles.pstatic.net/MjAxOTAyMDVfMjU2/MDAxNTQ5MzM1MTM0MTQz.LF_6_JWjHdVoncSNeT3sJgKKMy_wJghANLDFDDC9phkg.XO37Dtl7bAjcvWnvh9CcCSOCpQup-JH4eb10j4lbJIAg.JPEG.jea830/image-4.jpeg?type=w580" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 280px;" width="280"></a>
+      <a href="#" data-toggle="modal" data-target="#myModal4"><img id="img4" align="center" border="0" src="resources/img/tem/tem2-4.jpeg" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 280px;" width="280"></a>
       
     </td>
   </tr>

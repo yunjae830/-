@@ -107,6 +107,15 @@ i, i:link {
 	font-size: 25px;
 }
 </style>
+
+<script type="text/javascript">
+
+function submitFunc(){
+	alert("test");
+}
+
+</script>
+
 <body style="padding-top: 0px;">
 
 	<nav class="navbar navbar-expand-md navbar-light"
@@ -131,10 +140,10 @@ i, i:link {
 			<div class="btn col-sm" id="submit" style="right: 0px; left: 1140px;" onclick="all_content()">저장하기</div>
 		</div>
 		<div align="right">
-		<form action="tests.do" method="post">
+		<form action="tests.do" method="post" onsubmit="submitFunc()">
 			<input type="hidden" name="title" value="${title }">
 			<input id="All_code" type="hidden" name="content">
-			<div class="btn col-sm" id="submit" style="right: 0px; left: 1180px;" onclick="all_content()">보내기</div>
+			<input type="submit" class="btn col-sm" id="submit" style="right: 0px; left: 1180px;" value="보내기" />
 		</form>
 		</div>
 	</nav>
