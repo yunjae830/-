@@ -8,11 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeUtility;
@@ -20,24 +16,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.util.WebUtils;
 
+import com.tmail.board.Biz.MailboxBiz;
 import com.tmail.board.Biz.PersonalBiz;
 import com.tmail.board.Biz.RegisterBiz;
+import com.tmail.board.Dto.Criteria;
+import com.tmail.board.Dto.MailboxDto;
 import com.tmail.board.Dto.PersonalDto;
 import com.tmail.board.Dto.RegisterDto;
 import com.tmail.board.sha256.SHA256;
@@ -51,6 +46,9 @@ public class RegisterController {
    // 값주입
       @Autowired
       private JavaMailSender mailSender;
+      
+      @Autowired
+      private MailboxBiz mailboxBiz;
       //주소록
       @RequestMapping(value="addressForm.do")
       public String addressForm() {
@@ -63,9 +61,10 @@ public class RegisterController {
 
       // 로그인 성공시 들어갈 메인
       @RequestMapping(value = "main2.do")
-      public String main2(HttpSession session, Model model) {
+      public String main2(HttpSession session, Model model, MailboxDto mail, Criteria cri) {
          String email = (String) session.getAttribute("email_login");
          model.addAttribute("email", email);
+         model.addAttribute("mail", mailboxBiz.getList(cri, email));
          return "main2";
       }
 

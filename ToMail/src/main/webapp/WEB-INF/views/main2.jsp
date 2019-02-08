@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,7 +99,7 @@ h2{
          </div>
          <div class="card col-sm" align="center">
             <div><img alt="" src="resources/img/main2-3.png"></div><br>
-            <div class="btn col-sm">임시 메일함</div><br>
+            <div class="btn col-sm" onclick="location.href='getList?email=${email}'">임시 메일함</div><br>
             <p id="mainword">임시로 저장된 이메일을 확인하여<br>받을 사람의 정보를 등록합니다.</p>
          </div>   
       </div>
@@ -114,26 +116,18 @@ h2{
          <thead class="thead-light">
             <tr>
                <th>제목</th>
-               <th>메일주소</th>
+               <th>발송처</th>
                <th>날짜</th>
             </tr>
          </thead>
          <tbody>
+         	<c:forEach items="${mail }" var="mail">
             <tr>
-               <td>아니아아아아아아아ㅏ아아아아</td>
-               <td>swan9405@naver.com</td>
-               <td>1994.05.01</td>
+               <td>${mail.title }</td>
+               <td>${mail.recipient }highkick89@naver.com</td>
+               <td><fmt:formatDate value="${mail.regdate }" pattern="yyyy-MM-dd"/></td>
             </tr>
-            <tr>
-               <td>아니아아아아아아아ㅏ아아아아</td>
-               <td>swan9405@naver.com</td>
-               <td>1994.05.01</td>
-            </tr>
-            <tr>
-               <td>아니아아아아아아아ㅏ아아아아</td>
-               <td>swan9405@naver.com</td>
-               <td>1994.05.01</td>
-            </tr>
+        	</c:forEach>
          </tbody>
       </table>
 

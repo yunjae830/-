@@ -151,6 +151,7 @@
 	}
 } 
 </script>
+		
 <body>
 	<%@ include file="EmailBuilder_head.jsp"%>
 	<div class="container">
@@ -158,19 +159,9 @@
 	</div>
 	<div class="container">
 		${mail.content }
-	</div>	
-	<button onclick="all_content()">클릭</button>
-	<form action="sendMail.do" method="post">
+	</div>
+		
 	
-	
-	<input type="text" name="title">
-	<input id="All_code" type="hidden" name="content">
-	<input type="hidden" name="template" value="${num}"/>
-	<input type="hidden" name="email" value="highkick89@naver.com"/>
-	<input type="hidden" name="pageNum" value="1"/>
-	<input type="hidden" name="amount" value="10"/>
-	<button type="submit">보내기</button>
-	</form>
 	<div id="hed"></div>
 	<div id="hedT"></div>
 	<div id="body"></div>

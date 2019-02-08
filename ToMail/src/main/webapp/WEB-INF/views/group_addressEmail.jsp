@@ -282,7 +282,7 @@ height: 1.25rem;
                         <div>
                            <div align="center">
                               <div>
-                                 <img alt="tomail" src="img/logo_tomail.png" width="200px"
+                                 <img alt="tomail" src="resources/img/logo_tomail.png" width="200px"
                                     onclick="location.href='main.do'"><br>
                               </div>
                               <div>
@@ -315,14 +315,13 @@ height: 1.25rem;
                                        disabled="disabled" name="group_insert">그룹 등록</button>
                                     <!-- disabled : 칸은 보이지만 사용 못함 -->
                                  </div>
->>>>>>> branch 'master' of https://github.com/yunjae830/project_ToMail.git
 
                               </form>
                               <br>
                               <div align="center">
                                  <br>
                                  <div>
-                                    <img alt="tomail" src="img/logo_tomail_font.png"
+                                    <img alt="tomail" src="resources/img/logo_tomail_font.png"
                                        width="150px"><br>
                                  </div>
                               </div>
@@ -352,7 +351,7 @@ height: 1.25rem;
                         <div>
                            <div align="center">
                               <div>
-                                 <img alt="tomail" src="img/logo_tomail.png" width="200px"
+                                 <img alt="tomail" src="resources/img/logo_tomail.png" width="200px"
                                     onclick="location.href='main.do'"><br>
                               </div>
                               <div>
@@ -389,7 +388,7 @@ height: 1.25rem;
                               <div align="center">
                                  <br>
                                  <div>
-                                    <img alt="tomail" src="img/logo_tomail_font.png"
+                                    <img alt="tomail" src="resources/img/logo_tomail_font.png"
                                        width="150px"><br>
                                  </div>
                               </div>

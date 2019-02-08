@@ -359,7 +359,7 @@ public class AddressController {
    }
 
    @RequestMapping(value="tests.do", method=RequestMethod.POST)
-   public String tests(HttpServletResponse response, TestDto dto, MailboxDto mail, int mno) throws MessagingException, IOException {
+   public String tests(HttpServletResponse response, TestDto dto, MailboxDto mail) throws MessagingException, IOException {
       MimeMessage message = mailSender.createMimeMessage();
       MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
       String setfrom = "jea830@hanmail.net";
@@ -382,7 +382,6 @@ public class AddressController {
 
       out_p.flush();
       
-      response.addIntHeader("mno", mno);
       mailboxBiz.addMail(mail);
       
       return "redirect: /board/mailbox/getList";

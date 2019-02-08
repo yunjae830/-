@@ -65,12 +65,6 @@ public class MailboxController {
 		return "getList";
 	}
 	
-	@RequestMapping("/getTemplates")
-	public String getTemplate(String email, Model model) {
-		model.addAttribute("template", biz.getTemplates(email));
-		return "templates";
-	}
-	
 	@GetMapping(value="/getAttachList", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<MailboxAttachDto>> getAttachList(int bno){
@@ -78,54 +72,37 @@ public class MailboxController {
 	}
 	
 	@RequestMapping(value= "/updateMail", method=RequestMethod.GET)
-	public String updateMail(MailboxDto mail, int bno, String email, Criteria cri, Model model, HttpServletResponse response) {
+	public String updateMail(MailboxDto mail, int bno, String email, Criteria cri, int template, Model model, HttpServletResponse response) {
 		model.addAttribute("mail", biz.getMail(bno));
+		
+			if(template == 1) {
+				model.addAttribute("template", "temFn1.jsp");
+			} else if(template == 2) {
+				model.addAttribute("template", "temFn2.jsp");
+			} else if(template == 3) {
+				model.addAttribute("template", "temFn3.jsp");
+			} else if(template == 4) {
+				model.addAttribute("template", "temFn4.jsp");
+			} else if(template == 5) {
+				model.addAttribute("template", "temFn5.jsp");
+			}
+		
 	    response.setCharacterEncoding("UTF-8");
 	    response.setContentType("text/html; charset=UTF-8");
 		return "templateBuilder_view";
 	}
 	
-	
-	@RequestMapping(value="/addMail", method=RequestMethod.POST)
-	public String addMail(MailboxDto mail, String email, RedirectAttributes rttr, Criteria cri) {
-		biz.addMail(mail);
-		rttr.addAttribute("email", email);
-		return "redirect: /mailbox/getTemplates";
-	}
-	
-	
 	@RequestMapping(value="/updateMail", method=RequestMethod.POST)
 	public String updateMail(MailboxDto mail, Criteria cri, RedirectAttributes rttr, String email,
 			String template, HttpServletResponse response, AddressDto addr) throws MessagingException, IOException {
 		
-		MimeMessage message = mailSender.createMimeMessage();
-		MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
-		
-		messageHelper.setFrom("jea830@hanmail.net");
-		messageHelper.setTo(addr.getCustomer_email());
-		messageHelper.setSubject(mail.getTitle());
-		messageHelper.setText(mail.getContent(), true);
-		
-		
-		mailSender.send(message);
-		
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		
-		PrintWriter out = null;
-		out = response.getWriter();
-		out.println("<script>alert('sent!');</script>");
-		
-		if(mail.getAttachList() !=null) {
-			mail.getAttachList().forEach(attach-> System.out.println(attach));
-		}
 		
 		if(biz.updateMail(mail)) {
 			rttr.addFlashAttribute("result", "success");
 			rttr.addAttribute("email", email);
 		}
 		
-		return "redirect: /mailbox/getList" + cri.getListLink();
+		return "redirect: getList" + cri.getListLink();
 	}
 	
 	
@@ -141,7 +118,7 @@ public class MailboxController {
 			rttr.addAttribute("email", email);
 		}
 		
-		return "redirect: /mailbox/getList" + cri.getListLink();
+		return "redirect: getList" + cri.getListLink();
 	}
 	
 	private void deleteFiles(List<MailboxAttachDto> attachList) {

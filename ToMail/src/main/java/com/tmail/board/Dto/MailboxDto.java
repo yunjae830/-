@@ -22,6 +22,7 @@ public class MailboxDto {
 	private String content;
 	private Date regdate;
 	
+	private List<String> recipient; 
 	
 	private List<MailboxAttachDto> attachList;
 
@@ -112,6 +113,18 @@ public class MailboxDto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+
+	public List<String> getRecipient() {
+		return recipient;
+	}
+
+
+	public void setRecipient(List<String> recipient) {
+		this.recipient = recipient;
+	}
+
+	
 	
 	
 }

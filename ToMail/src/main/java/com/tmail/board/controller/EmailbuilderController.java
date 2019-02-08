@@ -97,7 +97,8 @@ public class EmailbuilderController {
 	
 	@RequestMapping(value="tem_sel.do")
 	public String template_select(HttpSession session, Model model, SummernoteDto dto) {
-		 ArrayList<String> list = (ArrayList<String>)session.getAttribute("emails");
+		 
+		ArrayList<String> list = (ArrayList<String>)session.getAttribute("emails");
 		 for(int i = 0; i<list.size(); i++) {
 			 System.out.println(list.get(i)+"리스트 내용 출력");
 		 }
@@ -236,16 +237,16 @@ public class EmailbuilderController {
 	      MimeMessage message = mailSender.createMimeMessage();
 	      MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 	      String setfrom = "jea830@hanmail.net";
-//	      List<String> tomail = addr.getEmail_list(); // 받는 사람 이메일
+	      List<String> tomail = mail.getRecipient(); // 받는 사람 이메일
 	      String title = mail.getTitle(); // 제목
 	      String content = mail.getContent(); // 내용
-//	      for(int i = 0; i< tomail.size(); i++) {
+	      for(int i = 0; i< tomail.size(); i++) {
 	      messageHelper.setFrom(setfrom); // 보내는사람 생략하거나 하면 정상작동을 안함
-	      messageHelper.setTo("highkick89@naver.com"); // 받는사람 이메일
+	      messageHelper.setTo(tomail.get(i)); // 받는사람 이메일
 	      messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
 	      messageHelper.setText(content, true); // html이라는 의미로 true를 써준다.
 	      mailSender.send(message);
-//	      }
+	      }
 	      response.setCharacterEncoding("UTF-8");
 	      response.setContentType("text/html; charset=UTF-8"); // 한글깨짐 방지
 	      PrintWriter out_p = null;
@@ -255,9 +256,7 @@ public class EmailbuilderController {
 
 	      out_p.flush();
 	      
-	      int num = (Integer) session.getAttribute("num");
 	      mailboxBiz.addMail(mail);
-	      model.addAttribute("num", num);
 	      model.addAttribute("email", email);
 	      model.addAttribute("list", mailboxBiz.getList(cri, email));
 	      int total = mailboxBiz.getTotal(cri, email);

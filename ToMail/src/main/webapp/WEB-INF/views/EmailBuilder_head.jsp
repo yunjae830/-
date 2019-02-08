@@ -114,6 +114,12 @@ function submitFunc(){
 	alert("test");
 }
 
+function canDelete(mailTitle){
+	return confirm("Are you sure you want to delete" + mailTitle + "?");
+	
+}
+
+
 </script>
 
 <body style="padding-top: 0px;">
@@ -137,15 +143,42 @@ function submitFunc(){
 		</c:when>
 		</c:choose>
 		<div align="right">
+		<c:choose>
+			<c:when test="${mail.bno > 0 }">
+			<form action="deleteMail" method="get">
+			<input type="hidden" name="bno" value="${mail.bno }"/>
+			<input type="hidden" name="email" value="${mail.email }"/>
+			<input onclick="return canDelete('${mail.title}');" type="submit" 
+			class="btn col-sm" id="submit" style="right:0px; left: 1140px; background-color:red;" value="삭제"/>
+			</form>
+			<form action="updateMail" method="post" id="updateMailAction">
+			<input type="hidden" name="titie" value="<c:out value="${mail.title }"/>">
+			<input type="hidden" name="content" value="<c:out value="${mail.content }"/>"/>
+			<input type="hidden" name="bno" value="<c:out value="${mail.bno}"/>"/>
+			<input type="hidden" name="email" value="<c:out value="${mail.email }"/>"/>
+			<input type="hidden" name="template" value="<c:out value="${mail.template }"/>"/>
+			<input type="submit" class="btn col-sm" id="submit" style="right: 0px; left: 1140px;" value="수정하기"/>
+			</form>
+			</c:when>
+			<c:otherwise>
 			<div class="btn col-sm" id="submit" style="right: 0px; left: 1140px;" onclick="all_content()">저장하기</div>
+			</c:otherwise>
+		</c:choose>	
 		</div>
+		<c:if test="${mail.bno == null}">
 		<div align="right">
-		<form action="tests.do" method="post" onsubmit="submitFunc()">
+		<form action="sendMail.do" method="post" onsubmit="submitFunc()">
+			<input type="hidden" name="recipient" value="highkick89@naver.com"/><%-- ${emails } --%>
 			<input type="hidden" name="title" value="${title }">
 			<input id="All_code" type="hidden" name="content">
+			<input type="hidden" name="template" value="${num}"/>
+			<input type="hidden" name="email" value="${email }"/>
+			<input type="hidden" name="pageNum" value="1"/>
+			<input type="hidden" name="amount" value="10"/>
 			<input type="submit" class="btn col-sm" id="submit" style="right: 0px; left: 1180px;" value="보내기" />
 		</form>
 		</div>
+		</c:if>
 	</nav>
 </body>
 </html>

@@ -205,31 +205,31 @@ jQuery(document).ready(function(){
 				<div class="img">
 					<a class="bmd-modalButton" data-toggle="modal" data-bmdSrc="tem.do?num=1" data-bmdWidth="600" data-bmdHeight="450" data-target="#myModal"><img src="resources/img/tem1.png" onmouseover="this.src='resources/img/write.png';" onmouseout="this.src='resources/img/tem1.png';" alt="템플릿사용하기" title="템플릿사용하기"  style="width: 180px; height: 180px; cursor:pointer" class="img-thumbnail"/></a>
 		 		</div>
-		 		<div><b>뉴스레터 1</b></div>
+		 		<div><b>Occasions</b></div>
 			</div>
 			<div class="card col-sm" align="center">
 				<div class="img">
 					<a class="bmd-modalButton" data-toggle="modal" data-bmdSrc="tem.do?num=2" data-bmdWidth="600" data-bmdHeight="450" data-target="#myModal"><img src="resources/img/tem2.png" onmouseover="this.src='resources/img/write2.png';" onmouseout="this.src='resources/img/tem2.png';" alt="템플릿사용하기" title="템플릿사용하기"  style="width: 180px; height: 180px; cursor:pointer" class="img-thumbnail"/></a>
 		 		</div>
-		 		<div><b>뉴스레터 2</b></div>
+		 		<div><b>Fashion</b></div>
 			</div>
 			<div class="card col-sm" align="center">
 				<div class="img">
 					<a class="bmd-modalButton" data-toggle="modal" data-bmdSrc="tem.do?num=3" data-bmdWidth="600" data-bmdHeight="450" data-target="#myModal"><img src="resources/img/tem3.png" onmouseover="this.src='resources/img/write3.png';" onmouseout="this.src='resources/img/tem3.png';" alt="템플릿사용하기" title="템플릿사용하기"  style="width: 180px; height: 180px; cursor:pointer" class="img-thumbnail"/></a>
 		 		</div>
-		 		<div><b>뉴스레터 3</b></div>
+		 		<div><b>Real Estate</b></div>
 			</div>
 			<div class="card col-sm" align="center">
 				<div class="img">
 					<a class="bmd-modalButton" data-toggle="modal" data-bmdSrc="tem.do?num=4" data-bmdWidth="600" data-bmdHeight="450" data-target="#myModal"><img src="resources/img/tem4.png" onmouseover="this.src='resources/img/write4.png';" onmouseout="this.src='resources/img/tem4.png';" alt="템플릿사용하기" title="템플릿사용하기"  style="width: 180px; height: 180px; cursor:pointer" class="img-thumbnail"/></a>
 		 		</div>
-		 		<div><b>뉴스레터 4</b></div>
+		 		<div><b>Beauty</b></div>
 			</div>
 			<div class="card col-sm" align="center">
 				<div class="img">
 					<a class="bmd-modalButton" data-toggle="modal" data-bmdSrc="tem.do?num=5" data-bmdWidth="600" data-bmdHeight="450" data-target="#myModal"><img src="resources/img/tem5.png" onmouseover="this.src='resources/img/write5.png';" onmouseout="this.src='resources/img/tem5.png';" alt="템플릿사용하기" title="템플릿사용하기"  style="width: 180px; height: 180px; cursor:pointer" class="img-thumbnail"/></a>
 		 		</div>
-		 		<div><b>뉴스레터 5</b></div>
+		 		<div><b>Travel</b></div>
 			</div>
 		</div>
 	</div>

@@ -40,6 +40,7 @@ $(document).ready(function(){
 	$(".move").on("click", function(e){
 		e.preventDefault();
 		actionForm.append("<input type='hidden' name='bno' value='"+ $(this).attr("href")+"'>");
+		actionForm.append("<input type='hidden' name='template' value='"+$(this).attr("title")+"'>");
 		actionForm.attr("action", "updateMail");
 		actionForm.submit();
 	});
@@ -71,13 +72,13 @@ $(document).ready(function(){
   		<c:forEach items="${list }" var="mail">
   		<div class="p-2 border">
 	  		<div class="card">
-	    		<img class="card-img-top" src="resources/img/template<c:out value="${mail.template }"/>.png" alt="Card image" style="width:100%;">
+	    		<img class="card-img-top" src="resources/img/tem<c:out value="${mail.template }"/>.png" alt="Card image" style="width:100%;">
 	      			<div class="card-body">
 	      				<h4 class="card-title">${mail.title }</h4>
 	      				<p style="overflow:hidden;"class="card-text">
 	      				<fmt:formatDate pattern="yyyy-MM-dd" value="${mail.regdate }"/>
 	      				</p>
-	      				<a href="${mail.bno }" class="move btn btn-primary btn-block" style="align-self:flex-end;">See detail</a>
+	      				<a href="${mail.bno }" title="${mail.template }" class="move btn btn-primary btn-block" style="align-self:flex-end;">See detail</a>
 	      			</div>
 	      	</div>
       	</div>
