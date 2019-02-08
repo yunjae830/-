@@ -382,6 +382,7 @@ $(document).ready(function(){
                               </p>
                            </div>
                         </div>
+                        	<img alt="예제" src="resources/img/excel_ex.png">
                         <div>
                            <form:form id="insert_addr" action="myaddr_insert_file.do?members_seq=${members_seq}" name="address" method="post" enctype="multipart/form-data" modelAttribute="uploadFile">
                               <div>

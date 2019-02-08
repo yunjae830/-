@@ -21,6 +21,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -345,13 +346,13 @@ public class AddressController {
          System.out.println(addr_emails);
          addr_email.add(addr_emails);
       }
-      TestDto testDto = new TestDto();
-      model.addAttribute("testDto", testDto);
       System.out.println(addr_email+"list값");
-      model.addAttribute("email", addr_email);
+      model.addAttribute("emails", addr_email);
+      model.addAttribute("email_", email);
 //      return "mailTest";
-      return "addMailTest";
+      return "emailTemplate";
    }
+   
    // 테스트중
 //   @RequestMapping(value = "test.do")
 //   public String test() {

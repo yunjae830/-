@@ -193,7 +193,7 @@ jQuery(document).ready(function(){
 <body>
 	<%@ include file="header.jsp"%>
 	<div class="container">
-		<div>
+		<div style="margin-top: 30px;">
 			<h3><strong>템플릿을 선택하세요</strong></h3>
 		</div>
 		<hr>
