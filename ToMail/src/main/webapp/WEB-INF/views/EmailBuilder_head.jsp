@@ -141,6 +141,9 @@ function submitFunc(){
 		</div>
 		<div align="right">
 		<form action="tests.do" method="post" onsubmit="submitFunc()">
+			<c:forEach var="num" items="${email_fuc}">
+				<input name="email" type="hidden" class="listval" value="${num}" />
+			</c:forEach>
 			<input type="hidden" name="title" value="${title }">
 			<input id="All_code" type="hidden" name="content">
 			<input type="submit" class="btn col-sm" id="submit" style="right: 0px; left: 1180px;" value="보내기" />

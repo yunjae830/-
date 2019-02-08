@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -347,8 +348,9 @@ public class AddressController {
          addr_email.add(addr_emails);
       }
       System.out.println(addr_email+"list값");
-      model.addAttribute("emails", addr_email);
-      model.addAttribute("email_", email);
+      model.addAttribute("emails_fuc", addr_email);
+      System.out.println(addr_email+"으아아아아아아");
+      model.addAttribute("email", email);
 //      return "mailTest";
       return "emailTemplate";
    }
@@ -361,6 +363,7 @@ public class AddressController {
 
    @RequestMapping(value="tests.do", method=RequestMethod.POST)
    public String tests(HttpServletResponse response, TestDto dto) throws MessagingException, IOException {
+	   System.out.println(dto.getEmail());
       MimeMessage message = mailSender.createMimeMessage();
       MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
       String setfrom = "jea830@hanmail.net";
@@ -369,7 +372,7 @@ public class AddressController {
       String content = dto.getContent(); // 내용
       for(int i = 0; i<tomail.size(); i++) {
       messageHelper.setFrom(setfrom); // 보내는사람 생략하거나 하면 정상작동을 안함
-      messageHelper.setTo(tomail.get(i)); // 받는사람 이메일
+      messageHelper.setTo(dto.getEmail().get(i));; // 받는사람 이메일
       messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
       messageHelper.setText(content, true); // html이라는 의미로 true를 써준다.
       mailSender.send(message);
