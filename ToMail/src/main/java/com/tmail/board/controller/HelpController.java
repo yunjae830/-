@@ -146,8 +146,9 @@ public class HelpController {
 				System.out.println("controller end");
 			}
 		}
-		System.out.println(emails + "++++++++++++++");
+		System.out.println(emails + "------------------------------제발");
 		session.setAttribute("emails", emails);
+		model.addAttribute("emails_fuc",emails);
 		model.addAttribute("email",email);
 		return "emailTemplate";
 	}

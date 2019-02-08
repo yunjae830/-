@@ -1,6 +1,7 @@
 package com.tmail.board.Dto;
 
 import java.util.Date;
+import java.util.List;
 
 import oracle.sql.CLOB;
 
@@ -10,6 +11,15 @@ public class SummernoteDto {
 	private String build_content;
 	private String build_summer;
 	private Date build_date;
+	private List<String> email;
+	
+	
+	public List<String> getEmail() {
+		return email;
+	}
+	public void setEmail(List<String> email) {
+		this.email = email;
+	}
 	public int getBulid_seq() {
 		return bulid_seq;
 	}

@@ -97,33 +97,33 @@ public class EmailbuilderController {
 	
 	@RequestMapping(value="tem_sel.do")
 	public String template_select(HttpSession session, Model model, SummernoteDto dto) {
-		 
-		ArrayList<String> list = (ArrayList<String>)session.getAttribute("emails");
-		 for(int i = 0; i<list.size(); i++) {
-			 System.out.println(list.get(i)+"리스트 내용 출력");
-		 }
+		System.out.println(dto.getEmail()+"와 제발 하느님");
 		String email = (String) session.getAttribute("email");
-		session.setAttribute("emails", list);
 		session.setAttribute("client_email", email);
 		int num = (Integer) session.getAttribute("num");
 		System.out.println(num);
 		if(num==1) {
+			model.addAttribute("email_fuc", dto.getEmail());
 			model.addAttribute("template", "tem1.jsp");
 			model.addAttribute("title",dto.getBuild_content());
 			return "templateBuilder_view";
 		}else if(num==2) {
+			model.addAttribute("email_fuc", dto.getEmail());
 			model.addAttribute("template", "tem2.jsp");
 			model.addAttribute("title",dto.getBuild_content());
 			return "templateBuilder_view";
 		}else if(num==3) {
+			model.addAttribute("email_fuc", dto.getEmail());
 			model.addAttribute("template", "tem3.jsp");
 			model.addAttribute("title",dto.getBuild_content());
 			return "templateBuilder_view";
 		}else if(num==4) {
+			model.addAttribute("email_fuc", dto.getEmail());
 			model.addAttribute("template", "tem4.jsp");
 			model.addAttribute("title",dto.getBuild_content());
 			return "templateBuilder_view";
 		}else if(num==5) {
+			model.addAttribute("email_fuc", dto.getEmail());
 			model.addAttribute("template", "tem5.jsp");
 			model.addAttribute("title",dto.getBuild_content());
 			return "templateBuilder_view";

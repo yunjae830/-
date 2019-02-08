@@ -285,7 +285,7 @@ public class RegisterController {
       }
 
       @RequestMapping(value = "login.do", method=RequestMethod.POST)
-      public String login(RegisterDto dto, HttpSession session, Model model, HttpServletResponse response) throws Exception {
+      public String login(RegisterDto dto, HttpSession session, Model model, HttpServletResponse response, MailboxDto mail, Criteria cri) throws Exception {
          System.out.println("로그인 유지 체크 여부" + dto.getLogin_check());
          System.out.println("내가보낸 비번값 : " + dto.getMembers_pw());
          int res = biz.loginSelect(dto.getMembers_email(), dto.getMembers_pw());
@@ -308,9 +308,9 @@ public class RegisterController {
                }
                return "login";
             } else if (res == 1) {
+            
                System.out.println("로그인 성공");
                session.setAttribute("email_login", dto.getMembers_email());
-               session.setAttribute("mno", biz.member_seq_return(dto.getMembers_email()));
                response.setCharacterEncoding("UTF-8");
                response.setContentType("text/html; charset=UTF-8"); // 한글깨짐 방지
                PrintWriter out = null;

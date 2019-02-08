@@ -152,6 +152,8 @@ b {
 </head>
 <script language="javascript"> 
 jQuery(document).ready(function(){
+		//alert(${emails_fuc} + '???' + typeof(${emails_fuc}));
+		//console.log(${emails_fuc});
 	  jQuery("#myModal").bmdIframe();
 	});
 	
@@ -193,7 +195,7 @@ jQuery(document).ready(function(){
 <body>
 	<%@ include file="header.jsp"%>
 	<div class="container">
-		<div>
+		<div style="margin-top: 30px;">
 			<h3><strong>템플릿을 선택하세요</strong></h3>
 		</div>
 		<hr>
@@ -251,8 +253,11 @@ jQuery(document).ready(function(){
 				<div>
 				<form action="tem_sel.do">
 				<input id="templateTitle" name="build_content" type="text" placeholder="탬플릿 제목을 적어주세요" class="form-control"/>
+				<c:forEach var="num" items="${emails_fuc}">
+						<input name="email" type="hidden" class="listval" value="${num}" />
+					</c:forEach>
 					<button class="btn btn-primary btn-block login-button" id="template_select" title="템플릿선택"
-													 name="group_insert">템플릿 사용하기</button>
+													 name="group_insert">템플릿 사용하기</button>								 
 				</form>
 				</div>
 			</div><!-- /.modal-content -->

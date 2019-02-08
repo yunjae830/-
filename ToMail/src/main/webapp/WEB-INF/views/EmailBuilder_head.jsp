@@ -168,11 +168,13 @@ function canDelete(mailTitle){
 		<c:if test="${mail.bno == null}">
 		<div align="right">
 		<form action="sendMail.do" method="post" onsubmit="submitFunc()">
-			<input type="hidden" name="recipient" value="highkick89@naver.com"/><%-- ${emails } --%>
+			<c:forEach var="num" items="${email_fuc}">
+				<input name="recipient" type="hidden" class="listval" value="${num}" />
+			</c:forEach>
 			<input type="hidden" name="title" value="${title }">
 			<input id="All_code" type="hidden" name="content">
 			<input type="hidden" name="template" value="${num}"/>
-			<input type="hidden" name="email" value="${email }"/>
+			<input type="hidden" name="email" value="highkick89@naver.com"/>
 			<input type="hidden" name="pageNum" value="1"/>
 			<input type="hidden" name="amount" value="10"/>
 			<input type="submit" class="btn col-sm" id="submit" style="right: 0px; left: 1180px;" value="보내기" />
